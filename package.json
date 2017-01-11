@@ -27,6 +27,11 @@
   "jest": {
     "preset": "react-native"
   },
+  "rnpm": {
+    "assets": [
+      "./js/fonts"
+    ]
+  },
   "repository": {
     "url": "git+ssh://git@github.com/mozilla-magnet/journey.git",
     "type": "git"

@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
+
+import { defaultTextStyle } from '../../config';
 
 export default class Map extends Component {
   constructor(props) {
@@ -20,11 +23,11 @@ export default class Map extends Component {
   render() {
     return (
       <View>
-        <Text>Map scene</Text>
-        <TouchableHighlight
+        <Text style={styles.header}>Map</Text>
+        <TouchableOpacity
           onPress={this.onBackPress}>
-          <Text>Back</Text>
-        </TouchableHighlight>
+          <Text style={styles.text}>Back</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -33,3 +36,15 @@ export default class Map extends Component {
 Map.propTypes = {
   navigator: React.PropTypes.object,
 };
+
+const styles = StyleSheet.create({
+  header: {
+    ...defaultTextStyle,
+    fontSize: 22,
+    textAlign: 'center',
+  },
+
+  text: {
+    ...defaultTextStyle,
+  },
+});

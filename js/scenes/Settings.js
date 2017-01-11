@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { settings } from '../../config';
+import { defaultTextStyle, settings } from '../../config';
 
 export default class Settings extends Component {
   constructor(props) {
@@ -33,21 +33,21 @@ export default class Settings extends Component {
   render() {
     return (
       <View>
-        <Text>Settings scene</Text>
+        <Text style={styles.header}>Settings</Text>
 
         {settings.links.map((link, id) => (
           <View key={id}>
             <View style={styles.separator}/>
             <TouchableOpacity
               onPress={this.onItemPress.bind(this, link.url)}>
-              <Text>{link.label}</Text>
+              <Text style={styles.text}>{link.label}</Text>
             </TouchableOpacity>
           </View>
         ))}
 
         <TouchableOpacity
           onPress={this.onBackPress}>
-          <Text>Back</Text>
+          <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
       </View>
     );
@@ -59,6 +59,16 @@ Settings.propTypes = {
 };
 
 const styles = StyleSheet.create({
+  header: {
+    ...defaultTextStyle,
+    fontSize: 22,
+    textAlign: 'center',
+  },
+
+  text: {
+    ...defaultTextStyle,
+  },
+
   separator: {
     height: 1,
     backgroundColor: '#eee',

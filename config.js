@@ -1,5 +1,12 @@
 export const theme = {
   'colorBackground': '#f2f2f2',
+  'fontLightItalic': 'FiraSans-LightItalic',
+  'fontBook': 'FiraSans-Book',
+};
+
+export const defaultTextStyle = {
+  'fontFamily': theme.fontBook,
+  'fontSize': 16,
 };
 
 export const settings = {

@@ -24,6 +24,8 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		4171ADEE82944774BC4A228B /* FiraSans-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */; };
+		607DD96F3FEB4B86AC5BD465 /* FiraSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +236,8 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */ = {isa = PBXFileReference; name = "FiraSans-Book.ttf"; path = "../js/fonts/FiraSans-Book.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; name = "FiraSans-LightItalic.ttf"; path = "../js/fonts/FiraSans-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +428,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MagnetJourneyTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				2F0A17BC77814540B01C778F /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -436,6 +441,16 @@
 				00E356EE1AD99517003FC87E /* MagnetJourneyTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2F0A17BC77814540B01C778F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */,
+				BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -749,6 +764,8 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				4171ADEE82944774BC4A228B /* FiraSans-Book.ttf in Resources */,
+				607DD96F3FEB4B86AC5BD465 /* FiraSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

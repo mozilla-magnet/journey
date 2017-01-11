@@ -50,5 +50,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>FiraSans-Book.ttf</string>
+		<string>FiraSans-LightItalic.ttf</string>
+	</array>
 </dict>
 </plist>
