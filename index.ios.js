@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  View
+  View,
 } from 'react-native';
-import { theme } from './config';
+import theme from './config';
 import AppProvider from './lib/AppProvider';
 
 export default class MagnetJourney extends Component {
@@ -13,7 +13,7 @@ export default class MagnetJourney extends Component {
         backgroundColor: theme.colorBackground,
         paddingTop: 20,
         flex: 1,
-        }}>
+      }}>
         <AppProvider/>
       </View>
     );

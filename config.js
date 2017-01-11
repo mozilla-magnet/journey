@@ -1,2 +1,5 @@
-const staticConfig = require('./config.json');
-module.exports = staticConfig;
+export default {
+  'theme': {
+    'colorBackground': '#f2f2f2',
+  },
+};
