@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "lint": "eslint ./*.js ./lib/ ./__test__/",
+    "lint": "eslint ./*.js ./js/ ./__test__/",
+    "lintfix": "eslint ./*.js ./js/ ./__test__/ --fix",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "pretest": "npm run lint"

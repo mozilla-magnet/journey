@@ -1,12 +1,11 @@
 import 'react-native';
 import React from 'react';
-import MagnetJourney from '../index.ios.js';
+import Item from '../../../js/scenes/Item';
 
-// Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
   const tree = renderer.create(
-    <MagnetJourney/>
+    <Item/>
   );
 });
