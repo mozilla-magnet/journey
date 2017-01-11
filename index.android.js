@@ -3,7 +3,7 @@ import {
   AppRegistry,
   View,
 } from 'react-native';
-import theme from './config';
+import { theme } from './config';
 import AppProvider from './js/AppProvider';
 
 export default class MagnetJourney extends Component {

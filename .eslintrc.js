@@ -26,6 +26,7 @@ module.exports = {
     'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],
     'semi': ['error', 'always'],
     'comma-dangle': ['error', 'always-multiline'],
+    'arrow-parens': ['error', 'always'],
     'no-console': 0,
   },
 };
