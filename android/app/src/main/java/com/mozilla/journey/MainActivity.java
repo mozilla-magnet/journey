@@ -1,4 +1,4 @@
-package com.magnetjourney;
+package com.mozilla.journey;
 
 import com.facebook.react.ReactActivity;
 

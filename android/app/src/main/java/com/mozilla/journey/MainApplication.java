@@ -1,4 +1,4 @@
-package com.magnetjourney;
+package com.mozilla.journey;
 
 import android.app.Application;
 import android.util.Log;
