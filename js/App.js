@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   Navigator,
   BackAndroid,
+  Linking,
 } from 'react-native';
 
 import List from './scenes/List';
@@ -28,10 +29,13 @@ export default class App extends Component {
 
   componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this.onAndroidBack);
+    Linking.addEventListener('url', this.onDeepLink);
   }
 
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.onAndroidBack);
+    Linking.getInitialURL().then((url) => this.onDeepLink({ url }));
+    Linking.removeEventListener('url', this.onDeepLink);
   }
 
   /**
@@ -60,6 +64,14 @@ export default class App extends Component {
     // let system handle event
     // (minimises android app)
     return false;
+  }
+
+  onDeepLink({ url }) {
+    if (!url) {
+      return;
+    }
+
+    console.log('App#onDeepLink()', url);
   }
 
   render() {
