@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Navigator,
   BackAndroid,
-  Linking,
 } from 'react-native';
 
 import List from './scenes/List';
@@ -29,13 +28,13 @@ export default class App extends Component {
 
   componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this.onAndroidBack);
-    Linking.addEventListener('url', this.onDeepLink);
+    //Linking.addEventListener('url', this.onDeepLink);
   }
 
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.onAndroidBack);
-    Linking.getInitialURL().then((url) => this.onDeepLink({ url }));
-    Linking.removeEventListener('url', this.onDeepLink);
+    //Linking.getInitialURL().then((url) => this.onDeepLink({ url }));
+    //Linking.removeEventListener('url', this.onDeepLink);
   }
 
   /**
