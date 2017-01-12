@@ -1,36 +1,43 @@
 language: android
 env:
-    - BUILD_TYPE=android
+- BUILD_TYPE=android
 android:
-    components:
-        - platform-tools
-        - tools
-        - build-tools-23.0.1
-        - android-23
-        - android-24
-        - appcompat-v7
-        - extra-android-support
-        - extra-android-m2repository
-        - extra-google-m2repository
-        - extra-google-google_play_services
+  components:
+  - platform-tools
+  - tools
+  - build-tools-23.0.1
+  - android-23
+  - android-24
+  - appcompat-v7
+  - extra-android-support
+  - extra-android-m2repository
+  - extra-google-m2repository
+  - extra-google-google_play_services
 before_cache:
-      - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
-    directories:
-        - $HOME/.gradle/caches/
-        - $HOME/.gradle/wrapper/
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 before_install:
-    - git clone https://github.com/creationix/nvm.git /tmp/.nvm
-    - source /tmp/.nvm/nvm.sh
-    - nvm install 6.0
-    - nvm use --delete-prefix 6.0
-    - node --version && npm --version
-    - npm install -g yarn
+- git clone https://github.com/creationix/nvm.git /tmp/.nvm
+- source /tmp/.nvm/nvm.sh
+- nvm install 6.0
+- nvm use --delete-prefix 6.0
+- node --version && npm --version
+- npm install -g yarn
 install:
-    - source build-scripts/bootstrap.sh
+- source build-scripts/bootstrap.sh
 script:
-    - npm test
-    - env
-    - source ./build-scripts/build.sh
-after_success:
-    - source ./build-scripts/deploy.sh
+- npm test
+- env
+- source ./build-scripts/build.sh
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: D9QlP05c3SNRi3jKRDZFGyOj+NmWrROvQaHoxHEkSo76e/PXR9rxcfmWAIPIALkLCdKDEZeNPEPAUPZoFUNBzB+8LxIimE5LL6OxkhRW2NDErTYT7tblZDh8U7rlqC25EyCEy8YiTrPi+yAr/l2oPS5zh8/YWHpzDtvkfrP0Av8iSCPWQ+z9SDBgVUEPcOmpR3gfxYz0Zd/VTSCd03xHQA1fvWaIwqYIDd1fa/SMtpyTvSbOxqLCc1hJpSBiK3xGhTZvDaAyQefi/qgjJ3VV7lVe+5RGu00MJ1izTcRtKGUMw+kBckEOGiCEbxER3YCrHFuvWXhDmFREsfAexPr0ObxZo2aJeSJ2rWNy4NMmjuaiOz8sOShDkT6iHkg2dnm3ub/GrGNdW4y8TwxTmXWSGMKN1SKrqjf+l9eZfKhqEGkL5WmIhFjUEx+ojqS5vag5cpnqXx21fFvsd1FV1+VR1jtNf3jSfsC5J3ZJQt4g5Seh0pvTxzzVG49eXgO4dW52QVshuO3q4OwoZ+UYfmdE0SLT5mPFgjCb+IBaRQmbOR+3Q2eHGefSR9/lBpdDlq+beCTSLI5OjhqUTnQadC7OF6ZGNPWqv9Lqe8OllOnW9HMkpkgg7z2YmEmlP/HqtPEKMcCY7yCTQ56PJtjNFYEm8SAY82VWsCYEnrXQqshscWY=
+  file: android/app/build/outputs/apk/app-release.apk
+  on:
+    repo: mozilla-magnet/journey
+    tags: true

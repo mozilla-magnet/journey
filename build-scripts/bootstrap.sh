@@ -5,12 +5,6 @@ if [ -z "$TAG" ]; then
 export TAG=$TRAVIS_TAG
 fi
 
-if [[ $TAG = "nightly" || $TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-    export BUILD_RELEASE=1
-else
-    export BUILD_RELEASE=0
-fi
-
 yarn global add react-native-cli
 yarn global add s3-cli-upload
 
