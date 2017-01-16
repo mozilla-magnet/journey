@@ -24,6 +24,14 @@ $ react-native run-android
 $ react-native run-ios
 ```
 
+## Coding styles
+
+The coding styles are defined in the [ESLint configuration file](https://github.com/mozilla-magnet/journey/blob/master/.eslintrc.js).
+Make sure to run the following command to fix your code style before committing:
+```bash
+$ yarn run fix
+```
+
 ## Not what you're looking for?
 
 If you're looking for a physical web beacon browsing app, go to [magnet-client](https://github.com/mozilla-magnet/magnet-client).
