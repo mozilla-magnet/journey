@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  StatusBar,
   View,
 } from 'react-native';
 import { theme } from './config';
@@ -11,9 +12,12 @@ export default class MagnetJourney extends Component {
     return (
       <View style={{
         backgroundColor: theme.colorBackground,
-        paddingTop: 20,
         flex: 1,
       }}>
+        <StatusBar
+          translucent={true}
+          backgroundColor="rgba(255, 255, 255, 0.7)"
+          barStyle="light-content"/>
         <AppProvider/>
       </View>
     );

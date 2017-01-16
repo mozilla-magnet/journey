@@ -1,5 +1,5 @@
 export const theme = {
-  'colorBackground': '#f2f2f2',
+  'colorBackground': '#777',
   'fontLightItalic': 'FiraSans-LightItalic',
   'fontBook': 'FiraSans-Book',
 };
