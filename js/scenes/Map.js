@@ -2,10 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import {
   Text,
   TouchableOpacity,
-  Dimensions,
   StyleSheet,
 } from 'react-native';
-import MapView from 'react-native-maps';
 
 import Header from '../components/Header';
 import MagnetMapView from '../components/MagnetMapView';
@@ -24,9 +22,6 @@ export default class Map extends Component {
   }
 
   render() {
-    const height = Dimensions.get('window').height;
-    const width = Dimensions.get('window').width;
-
     return (
       <MagnetMapView
         region={{
@@ -54,15 +49,5 @@ Map.propTypes = {
 const styles = StyleSheet.create({
   text: {
     ...defaultTextStyle,
-  },
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    height: 300,
-    width: 400,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
   },
 });
