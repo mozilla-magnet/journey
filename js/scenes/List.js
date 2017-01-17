@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Header from '../components/Header';
 import { defaultTextStyle } from '../../config';
 
 export default class List extends Component {
@@ -22,7 +23,12 @@ export default class List extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.header}>List</Text>
+        <Header
+          title="List"
+          titleColor="white"
+          style={{ backgroundColor: '#333' }}
+        />
+
         <TouchableOpacity
           onPress={this.onItemPress.bind(this, 'item')}>
           <Text style={styles.text}>Go to Item scene</Text>
@@ -45,16 +51,10 @@ export default class List extends Component {
 }
 
 List.propTypes = {
-  navigator: React.PropTypes.object,
+  navigator: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
-  header: {
-    ...defaultTextStyle,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-
   text: {
     ...defaultTextStyle,
   },
