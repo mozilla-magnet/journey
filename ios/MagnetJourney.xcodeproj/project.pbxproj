@@ -279,7 +279,6 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */,
-				C99DCE6DF69149D5851F9595 /* AirMaps.xcodeproj */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
