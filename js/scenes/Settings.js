@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Header from '../components/Header';
 import { defaultTextStyle, settings } from '../../config';
 
 export default class Settings extends Component {
@@ -33,11 +34,10 @@ export default class Settings extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.header}>Settings</Text>
+        <Header title="Settings"/>
 
         {settings.links.map((link, id) => (
           <View key={id}>
-            <View style={styles.separator}/>
             <TouchableOpacity
               onPress={this.onItemPress.bind(this, link.url)}>
               <Text style={styles.text}>{link.label}</Text>
@@ -55,22 +55,11 @@ export default class Settings extends Component {
 }
 
 Settings.propTypes = {
-  navigator: React.PropTypes.object,
+  navigator: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
-  header: {
-    ...defaultTextStyle,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-
   text: {
     ...defaultTextStyle,
-  },
-
-  separator: {
-    height: 1,
-    backgroundColor: '#eee',
   },
 });

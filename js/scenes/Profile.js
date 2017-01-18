@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import Header from '../components/Header';
 import { defaultTextStyle } from '../../config';
 
 export default class Profile extends Component {
@@ -23,7 +24,8 @@ export default class Profile extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.header}>Profile</Text>
+        <Header title="Profile"/>
+
         <TouchableOpacity
           onPress={this.onBackPress}>
           <Text style={styles.text}>Back</Text>
@@ -34,16 +36,10 @@ export default class Profile extends Component {
 }
 
 Profile.propTypes = {
-  navigator: React.PropTypes.object,
+  navigator: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
-  header: {
-    ...defaultTextStyle,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-
   text: {
     ...defaultTextStyle,
   },

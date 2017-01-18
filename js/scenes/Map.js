@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
-  View,
   Text,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 
+import Header from '../components/Header';
+import MagnetMapView from '../components/MagnetMapView';
 import { defaultTextStyle } from '../../config';
 
 export default class Map extends Component {
@@ -22,28 +23,30 @@ export default class Map extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.header}>Map</Text>
+      <MagnetMapView
+        region={{
+          latitude: 51.525,
+          longitude: -0.078315,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Header title="Map"/>
+
         <TouchableOpacity
           onPress={this.onBackPress}>
           <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
-      </View>
+      </MagnetMapView>
     );
   }
 }
 
 Map.propTypes = {
-  navigator: React.PropTypes.object,
+  navigator: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
-  header: {
-    ...defaultTextStyle,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-
   text: {
     ...defaultTextStyle,
   },
