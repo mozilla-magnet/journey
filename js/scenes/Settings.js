@@ -34,11 +34,7 @@ export default class Settings extends Component {
   render() {
     return (
       <View>
-        <Header
-          title="Settings"
-          titleColor="white"
-          style={{ backgroundColor: '#333' }}
-        />
+        <Header title="Settings"/>
 
         {settings.links.map((link, id) => (
           <View key={id}>

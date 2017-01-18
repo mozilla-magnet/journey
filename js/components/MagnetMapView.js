@@ -25,7 +25,7 @@ export default class MagnetMapView extends Component {
 
 MagnetMapView.propTypes = {
   region: PropTypes.object,
-  children: PropTypes.object,
+  children: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

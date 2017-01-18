@@ -29,11 +29,7 @@ export default class Item extends Component {
   render() {
     return (
       <View>
-        <Header
-          title="Item"
-          titleColor="white"
-          style={{ backgroundColor: '#333' }}
-        />
+        <Header title="Item"/>
 
         <TouchableOpacity
           onPress={this.onMapPress}>

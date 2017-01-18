@@ -23,11 +23,7 @@ export default class List extends Component {
   render() {
     return (
       <View>
-        <Header
-          title="List"
-          titleColor="white"
-          style={{ backgroundColor: '#333' }}
-        />
+        <Header title="List"/>
 
         <TouchableOpacity
           onPress={this.onItemPress.bind(this, 'item')}>

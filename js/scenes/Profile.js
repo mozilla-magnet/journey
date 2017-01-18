@@ -24,11 +24,7 @@ export default class Profile extends Component {
   render() {
     return (
       <View>
-        <Header
-          title="Profile"
-          titleColor="white"
-          style={{ backgroundColor: '#333' }}
-        />
+        <Header title="Profile"/>
 
         <TouchableOpacity
           onPress={this.onBackPress}>

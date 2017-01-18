@@ -31,11 +31,7 @@ export default class Map extends Component {
           longitudeDelta: 0.0421,
         }}
       >
-        <Header
-          title="Map"
-          titleColor="white"
-          style={{ backgroundColor: '#333' }}
-        />
+        <Header title="Map"/>
 
         <TouchableOpacity
           onPress={this.onBackPress}>
