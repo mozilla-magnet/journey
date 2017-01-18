@@ -14,11 +14,16 @@
 
 #import "RCTLinkingManager.h"
 
+#import <GoogleMaps/GoogleMaps.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  
+  // API key for google-maps
+  [GMSServices provideAPIKey:@"AIzaSyBTDdg8WyP2Ksd6uCh3Y4gw2mVuD-FtkHA"];
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 
