@@ -31,7 +31,12 @@ export default class Settings extends Component {
     });
   }
 
+  onNavigate(id) {
+    this.navigator.push({ id });
+  }
+
   render() {
+    const debugOptions = this.renderDebug();
     return (
       <View>
         <Header title="Settings"/>
@@ -45,12 +50,25 @@ export default class Settings extends Component {
           </View>
         ))}
 
+        {debugOptions}
+
         <TouchableOpacity
           onPress={this.onBackPress}>
           <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
       </View>
     );
+  }
+
+  renderDebug() {
+    if (__DEV__) {
+      return (<TouchableOpacity
+          onPress={this.onNavigate.bind(this, 'debug')}>
+          <Text style={styles.text}>Go to Debug</Text>
+        </TouchableOpacity>);
+    } else {
+      return '';
+    }
   }
 }
 
