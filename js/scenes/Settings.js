@@ -63,14 +63,14 @@ export default class Settings extends Component {
   }
 
   renderDebug() {
-    if (__DEV__) {
-      return (<TouchableOpacity
-          onPress={this.navigate.bind(this, 'debug')}>
-          <Text style={styles.text}>Go to Debug</Text>
-        </TouchableOpacity>);
-    } else {
-      return '';
+    if (!__DEV__) {
+      return; 
     }
+    
+    return (<TouchableOpacity
+      onPress={this.navigate.bind(this, 'debug')}>
+      <Text style={styles.text}>Go to Debug</Text>
+    </TouchableOpacity>);
   }
 }
 

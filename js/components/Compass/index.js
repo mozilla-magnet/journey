@@ -9,7 +9,6 @@ import {
 import ReactNativeHeading from 'react-native-heading';
 
 export default class Compass extends Component {
-
   constructor(props) {
     super(props);
 
@@ -58,9 +57,7 @@ export default class Compass extends Component {
 
   startAnimation(z) {
     const offset = this.calculateOffset();
-    if (offset != 0) {
-      z -= offset;
-    }
+    z -= offset;
     this.state.rotation.setValue(this.state.defaultAzimuth - z);
   }
 
