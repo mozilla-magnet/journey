@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import {
   Navigator,
   BackAndroid,
+  View,
+  StatusBar,
+  StyleSheet,
 } from 'react-native';
+
+import { theme } from '../config';
 
 import List from './scenes/List';
 import Item from './scenes/Item';
@@ -75,10 +80,17 @@ export default class App extends Component {
 
   render() {
     return (
-      <Navigator
-        ref="navigator"
-        initialRoute={{ id: 'list' }}
-        renderScene={this.renderScene}/>
+      <View style={styles.container}>
+        <StatusBar
+          translucent={true}
+          backgroundColor="rgba(0, 0, 0, 0.2)"
+          barStyle="light-content"
+        />
+        <Navigator
+          ref="navigator"
+          initialRoute={{ id: 'list' }}
+          renderScene={this.renderScene}/>
+      </View>
     );
   }
 
@@ -90,3 +102,10 @@ export default class App extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colorBackground,
+  },
+});
