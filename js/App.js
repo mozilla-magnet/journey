@@ -1,3 +1,5 @@
+/* global __DEV__ */
+
 import React, { Component } from 'react';
 import {
   Navigator,

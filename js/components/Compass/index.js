@@ -1,8 +1,10 @@
+/* global require */
 import React, { Component } from 'react';
 import {
+  /*eslint-disable no-unused-vars*/
   Image,
   Animated,
-  DeviceEventEmitter
+  DeviceEventEmitter,
 } from 'react-native';
 import ReactNativeHeading from 'react-native-heading';
 
@@ -12,29 +14,31 @@ export default class Compass extends Component {
     super(props);
 
     this.state = {
-      defaultAzimut: props.azimut || 360,
+      defaultAzimuth: props.azimuth || 360,
       rotation: new Animated.Value(0),
       headingIsSupported: false,
-      angleFilter: props.degreesFilter || 2
-    }
+      angleFilter: props.degreesFilter || 2,
+    };
   }
 
   setFilter(filter) {
-    this.state.angleFilter = parseInt(filter);
+    this.setState({
+      angleFilter: parseInt(filter),
+    });
     this.stopHeadingUpdates();
     this.startHeadingUpdates();
   }
 
   startHeadingUpdates() {
     ReactNativeHeading.start(this.state.angleFilter)
-    .then(didStart => {
-        this.setState({
-            headingIsSupported: didStart,
-        })
+    .then((didStart) => {
+      this.setState({
+        headingIsSupported: didStart,
+      });
     });
 
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
-        this.startAnimation(data.heading || data);
+      this.startAnimation(data.heading || data);
     });
   }
 
@@ -57,7 +61,7 @@ export default class Compass extends Component {
     if (offset != 0) {
       z -= offset;
     }
-    this.state.rotation.setValue(this.state.defaultAzimut - z);
+    this.state.rotation.setValue(this.state.defaultAzimuth - z);
   }
 
   toDegrees(x) {
@@ -89,22 +93,26 @@ export default class Compass extends Component {
   }
 
   render() {
-    return (<Animated.Image style={[{transform: [{rotate: this.state.rotation.interpolate({
-      inputRange:[0, 360],
-      outputRange: ['0 deg', '360 deg']
-    })}]}]}
-      source={require('./assets/arrow.png')}
+    return (
+      <Animated.Image 
+        style={[
+          {transform: [{
+            rotate: this.state.rotation.interpolate({
+              inputRange:[0, 360],
+              outputRange: ['0 deg', '360 deg']}),
+          }],
+          },
+        ]}
+        source={require('./assets/arrow.png')}
     />);  
   }
 }
 
 Compass.propTypes = {
-  azimut: React.PropTypes.number,
+  azimuth: React.PropTypes.number,
   degreesFilter: React.PropTypes.number,
   fromLat: React.PropTypes.number,
   fromLon: React.PropTypes.number,
   toLat: React.PropTypes.number,
-  toLon: React.PropTypes.number
+  toLon: React.PropTypes.number,
 };
-
-module.exports = Compass;

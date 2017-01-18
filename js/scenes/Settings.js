@@ -1,3 +1,5 @@
+/* global __DEV__ */
+
 import React, { Component, PropTypes } from 'react';
 import {
   View,
@@ -31,7 +33,7 @@ export default class Settings extends Component {
     });
   }
 
-  onNavigate(id) {
+  navigate(id) {
     this.navigator.push({ id });
   }
 
@@ -63,7 +65,7 @@ export default class Settings extends Component {
   renderDebug() {
     if (__DEV__) {
       return (<TouchableOpacity
-          onPress={this.onNavigate.bind(this, 'debug')}>
+          onPress={this.navigate.bind(this, 'debug')}>
           <Text style={styles.text}>Go to Debug</Text>
         </TouchableOpacity>);
     } else {

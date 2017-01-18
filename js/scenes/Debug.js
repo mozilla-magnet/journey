@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-} from 'react-native'
+} from 'react-native';
 
 import Header from '../components/Header';
 import Compass from '../components/Compass';
@@ -18,7 +18,7 @@ export default class Debug extends Component {
 
     this.state = {
       latitude: 0,
-      longitude: 0
+      longitude: 0,
     };
   }
 
@@ -26,26 +26,26 @@ export default class Debug extends Component {
     this.navigator.pop();
   }
 
-  // Watch for position for testing the compass
-  componentWillUnmount() { 
-    navigator.geolocation.clearWatch(this.watchID); 
-  }
-
   componentDidMount() { 
     navigator.geolocation.getCurrentPosition( (position) => { 
       var initialPosition = JSON.stringify(position); 
       this.setState({initialPosition}); 
-      }
+    }
       , (error) => console.log(JSON.stringify(error)), 
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     ); 
     this.watchID = navigator.geolocation.watchPosition((position) => { 
       this.setState({
         latitude: position.coords.latitude,
-        longitude: position.coords.longitude 
+        longitude: position.coords.longitude, 
       }); 
     }); 
-}
+  }
+
+  // Watch for position for testing the compass
+  componentWillUnmount() { 
+    navigator.geolocation.clearWatch(this.watchID); 
+  }
 
   render() {
     return (
