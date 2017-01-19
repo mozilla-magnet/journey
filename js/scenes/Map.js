@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import MagnetMapView from '../components/MagnetMapView';
+import MapMarker from '../components/MapMarker';
 import { defaultTextStyle } from '../../config';
 
 export class Map extends Component {
@@ -31,7 +32,18 @@ export class Map extends Component {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        renderMarkers={() => (
+          <MapMarker
+            coordinate={{
+              latitude: 51.504444,
+              longitude: -0.086667,
+            }}
+            source={{
+              uri:'https://media-cdn.tripadvisor.com/media/photo-s/07/a2/b2/e6/shoreditch-street-art.jpg',
+            }}/>
+        )}
       >
+
         <Header title="Map"/>
 
         <TouchableOpacity
@@ -50,6 +62,7 @@ Map.propTypes = {
 const styles = StyleSheet.create({
   text: {
     ...defaultTextStyle,
+    color: 'white',
   },
 });
 
