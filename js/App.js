@@ -11,7 +11,7 @@ import {
 
 import { theme } from '../config';
 
-import List from './scenes/List';
+import Home from './scenes/Home';
 import Item from './scenes/Item';
 import Map from './scenes/Map';
 import Profile from './scenes/Profile';
@@ -23,7 +23,7 @@ export default class App extends Component {
     super(props);
 
     this.routes = {
-      list: { component: List },
+      home: { component: Home },
       item: { component: Item },
       map: { component: Map },
       profile: { component: Profile },
@@ -95,8 +95,9 @@ export default class App extends Component {
         />
         <Navigator
           ref="navigator"
-          initialRoute={{ id: 'list' }}
-          renderScene={this.renderScene}/>
+          initialRoute={{ id: 'home' }}
+          renderScene={this.renderScene}
+          sceneStyle={styles.scene}/>
       </View>
     );
   }
@@ -104,8 +105,7 @@ export default class App extends Component {
   renderScene(route, navigator) {
     const Component = this.routes[route.id].component;
     return (
-      <Component
-        navigator={navigator}/>
+      <Component navigator={navigator}/>
     );
   }
 }
@@ -114,5 +114,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colorBackground,
+  },
+
+  scene: {
+    backgroundColor: '#333',
   },
 });
