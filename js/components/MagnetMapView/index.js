@@ -8,8 +8,7 @@ import {
 
 export default class MagnetMapView extends Component {
   render() {
-    const { style } = this.props;
-    const { region } = this.props;
+    const { style, region, renderMarkers, children } = this.props;
 
     return (
       <View style={[styles.root, style]}>
@@ -18,8 +17,10 @@ export default class MagnetMapView extends Component {
           style={styles.map}
           region={region}
           customMapStyle={mapStyle}
-        />
-        {this.props.children}
+        >
+          {renderMarkers()}
+        </MapView>
+        {children}
       </View>
     );
   }
@@ -27,6 +28,7 @@ export default class MagnetMapView extends Component {
 
 MagnetMapView.propTypes = {
   region: PropTypes.object,
+  renderMarkers: PropTypes.func,
   children: PropTypes.array,
   style: PropTypes.object,
 };

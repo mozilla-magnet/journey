@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import MagnetMapView from '../components/MagnetMapView';
+import MapMarker from '../components/MapMarker';
 
 export class Map extends Component {
   constructor(props) {
@@ -30,7 +31,19 @@ export class Map extends Component {
             longitude: -0.0992752,
             latitudeDelta: 0.0222,
             longitudeDelta: 0.0321,
-          }}/>
+          }}
+
+          renderMarkers={() => (
+            <MapMarker
+              coordinate={{
+                latitude: 51.504444,
+                longitude: -0.086667,
+              }}
+              source={{
+                uri:'https://media-cdn.tripadvisor.com/media/photo-s/07/a2/b2/e6/shoreditch-street-art.jpg',
+              }}/>
+          )}
+          />
       </View>
     );
   }
