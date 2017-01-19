@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 
 import Header from '../components/Header';
@@ -47,6 +48,10 @@ export default class Debug extends Component {
     navigator.geolocation.clearWatch(this.watchID); 
   }
 
+  onBackPress() {
+    this.navigator.pop();
+  }
+
   render() {
     return (
       <View>
@@ -59,6 +64,11 @@ export default class Debug extends Component {
             toLat={51.504263}
             toLon={-0.088266}/>
         </View>
+
+        <TouchableOpacity
+          onPress={this.onBackPress}>
+          <Text style={styles.text}>Back</Text>
+        </TouchableOpacity>
       </View>
     );
   }
