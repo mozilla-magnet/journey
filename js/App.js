@@ -1,5 +1,3 @@
-/* global __DEV__ */
-
 import React, { Component } from 'react';
 import {
   Navigator,
@@ -7,16 +5,18 @@ import {
   View,
   StatusBar,
   StyleSheet,
+  Platform,
 } from 'react-native';
 
 import { theme } from '../config';
 
+import Settings from './scenes/Settings';
+import Profile from './scenes/Profile';
+import Compass from './scenes/Compass';
+import Demos from './scenes/Demos';
 import Home from './scenes/Home';
 import Item from './scenes/Item';
 import Map from './scenes/Map';
-import Profile from './scenes/Profile';
-import Settings from './scenes/Settings';
-import Debug from './scenes/Debug';
 
 export default class App extends Component {
   constructor(props) {
@@ -28,11 +28,9 @@ export default class App extends Component {
       map: { component: Map },
       profile: { component: Profile },
       settings: { component: Settings },
+      compass: { component: Compass },
+      demos: { component: Demos },
     };
-
-    if (__DEV__) {
-      this.routes['debug'] = { component: Debug };
-    }
 
     this.renderScene = this.renderScene.bind(this);
     this.onAndroidBack = this.onAndroidBack.bind(this);
@@ -118,5 +116,6 @@ const styles = StyleSheet.create({
 
   scene: {
     backgroundColor: '#333',
+    paddingTop:  Platform.OS === 'ios' ? 20 : 24,
   },
 });

@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  Text,
-  TouchableOpacity,
+  View,
   StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -24,21 +23,19 @@ export class Map extends Component {
 
   render() {
     return (
-      <MagnetMapView
-        region={{
-          latitude: 51.525,
-          longitude: -0.078315,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        <Header title="Map"/>
-
-        <TouchableOpacity
-          onPress={this.onBackPress}>
-          <Text style={styles.text}>Back</Text>
-        </TouchableOpacity>
-      </MagnetMapView>
+      <View style={{ flex: 1 }}>
+        <Header
+          title="Map"
+          navigator={this.navigator}/>
+        <MagnetMapView
+          style={{flex: 1}}
+          region={{
+            latitude: 51.504589,
+            longitude: -0.0992752,
+            latitudeDelta: 0.0222,
+            longitudeDelta: 0.0321,
+          }}/>
+      </View>
     );
   }
 }

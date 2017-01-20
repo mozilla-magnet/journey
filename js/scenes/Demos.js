@@ -22,10 +22,13 @@ export class List extends Component {
   }
 
   render() {
+    const { navigator } = this.props;
+
     return (
       <View>
-        <Header title="List"/>
-
+        <Header
+          title="Component Demos"
+          navigator={navigator}/>
         <TouchableOpacity
           onPress={this.onItemPress.bind(this, 'item')}>
           <Text style={styles.text}>Go to Item scene</Text>
@@ -39,8 +42,8 @@ export class List extends Component {
           <Text style={styles.text}>Go to Profile scene</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={this.onItemPress.bind(this, 'settings')}>
-          <Text style={styles.text}>Go to Settings scene</Text>
+          onPress={this.onItemPress.bind(this, 'compass')}>
+          <Text style={styles.text}>Go to Compass scene</Text>
         </TouchableOpacity>
       </View>
     );

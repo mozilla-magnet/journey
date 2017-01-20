@@ -25,12 +25,9 @@ export class Profile extends Component {
   render() {
     return (
       <View>
-        <Header title="Profile"/>
-
-        <TouchableOpacity
-          onPress={this.onBackPress}>
-          <Text style={styles.text}>Back</Text>
-        </TouchableOpacity>
+        <Header
+          title="Profile"
+          navigator={this.navigator}/>
       </View>
     );
   }
