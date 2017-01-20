@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "9C2D690EE56F4A262856F571E20AF699AEB65DC5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9C2D690EE56F4A262856F571E20AF699AEB65DC5" : 9223372036854775807,
+    "F4EA675952FCB322E17E8A69C250A5AFA650FCDD" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "176FC024-5E17-4D24-9E96-E3AC258DF098",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9C2D690EE56F4A262856F571E20AF699AEB65DC5" : "journey\/",
+    "F4EA675952FCB322E17E8A69C250A5AFA650FCDD" : "journey\/node_modules\/react-native-heading\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MagnetJourney",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/MagnetJourney.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mozilla-magnet\/journey.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9C2D690EE56F4A262856F571E20AF699AEB65DC5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:arcturus\/react-native-heading.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F4EA675952FCB322E17E8A69C250A5AFA650FCDD"
+    }
+  ]
+}

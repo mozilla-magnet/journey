@@ -12,6 +12,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2BF989F931DF4EA3BF24104D /* libReactNativeHeading.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFD921D31A84B34AEA7385D /* libReactNativeHeading.a */; };
 		4171ADEE82944774BC4A228B /* FiraSans-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */; };
 		607DD96F3FEB4B86AC5BD465 /* FiraSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */; };
 		7F558011D4C60F7A813814D3 /* libPods-MagnetJourneyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C09C03B39773328749B2D616 /* libPods-MagnetJourneyTests.a */; };
@@ -64,6 +65,13 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = MagnetJourney;
 		};
+		553AEBBB1E31F48A00C2AFC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
+			remoteInfo = ReactNativeHeading;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +80,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MagnetJourneyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagnetJourneyTests.m; sourceTree = "<group>"; };
 		02C9C5A5BDA0F4AF55883F59 /* Pods-MagnetJourney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourney/Pods-MagnetJourney.debug.xcconfig"; sourceTree = "<group>"; };
+		08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeHeading.xcodeproj; path = "../node_modules/react-native-heading/ReactNativeHeading.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MagnetJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagnetJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MagnetJourney/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MagnetJourney/AppDelegate.m; sourceTree = "<group>"; };
@@ -84,6 +93,7 @@
 		73B2FAA79832672659A874E4 /* Pods-MagnetJourneyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourneyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourneyTests/Pods-MagnetJourneyTests.release.xcconfig"; sourceTree = "<group>"; };
 		7865610A5D44127C15ED68BB /* Pods-MagnetJourneyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourneyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourneyTests/Pods-MagnetJourneyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagnetJourney.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FFD921D31A84B34AEA7385D /* libReactNativeHeading.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeHeading.a; sourceTree = "<group>"; };
 		8D9DF3941E2EF1B80064F323 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8D9DF3961E2EF1C20064F323 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8D9DF3981E2EF1CA0064F323 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -179,6 +189,7 @@
 				8D9DF3971E2EF1C20064F323 /* SystemConfiguration.framework in Frameworks */,
 				8D9DF3951E2EF1B80064F323 /* MapKit.framework in Frameworks */,
 				FF4D1F78779D414536A98557 /* libPods-MagnetJourney.a in Frameworks */,
+				2BF989F931DF4EA3BF24104D /* libReactNativeHeading.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +249,22 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		41CE2C8FA9674CE696178BFF /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		553AEBB81E31F48A00C2AFC2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				553AEBBC1E31F48A00C2AFC2 /* libReactNativeHeading.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +276,7 @@
 				2F0A17BC77814540B01C778F /* Resources */,
 				8976AB27DE9E58310CE22453 /* Pods */,
 				2AA980885F18DF7FD21C564F /* Frameworks */,
+				41CE2C8FA9674CE696178BFF /* Libraries */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -418,7 +446,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -442,6 +470,12 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 553AEBB81E31F48A00C2AFC2 /* Products */;
+					ProjectRef = 08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* MagnetJourney */,
@@ -449,6 +483,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		553AEBBC1E31F48A00C2AFC2 /* libReactNativeHeading.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeHeading.a;
+			remoteRef = 553AEBBB1E31F48A00C2AFC2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -669,6 +713,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagnetJourney.app/MagnetJourney";
@@ -687,6 +732,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

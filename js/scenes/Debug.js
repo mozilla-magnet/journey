@@ -48,10 +48,6 @@ export default class Debug extends Component {
     navigator.geolocation.clearWatch(this.watchID); 
   }
 
-  onBackPress() {
-    this.navigator.pop();
-  }
-
   render() {
     return (
       <View>
