@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
 
   titleText: {
     color: 'white',
-    fontSize: 19,
+    fontSize: 18,
     marginTop: -2,
   },
 });
