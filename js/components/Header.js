@@ -33,7 +33,9 @@ export default class Header extends Component {
             numberOfLines={1}>{title}</Text>
         </View>
         <View style={styles.right}>
-          <TouchableOpacity onPress={this.onActionPress}>
+          <TouchableOpacity
+            style={styles.action}
+            onPress={this.onActionPress}>
             <Text style={styles.actionText}>{action}</Text>
           </TouchableOpacity>
         </View>
