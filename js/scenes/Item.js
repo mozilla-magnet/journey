@@ -1,30 +1,32 @@
 import React, { Component, PropTypes } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { fetchItemIfNeeded } from '../store/actions';
+import { defaultTextStyle } from '../../config';
+import Header from '../components/Header';
 import { connect } from 'react-redux';
 
-import Header from '../components/Header';
-import { defaultTextStyle } from '../../config';
+import {
+  View,
+  StyleSheet,
+} from 'react-native';
 
 export class Item extends Component {
   constructor(props) {
     super(props);
-
     this.navigator = this.props.navigator;
-    this.onMapPress = this.onMapPress.bind(this);
-    this.onBackPress = this.onBackPress.bind(this);
   }
 
-  onMapPress() {
-    this.navigator.push({ id: 'map' });
+  componentDidMount() {
+    this.fetchData();
   }
 
-  onBackPress() {
-    this.navigator.pop();
+  componentWillReceiveProps({ itemId }) {
+    if (itemId !== this.props.itemId) this.fetchData();
+  }
+
+  fetchData() {
+    const { dispatch, itemId } = this.props;
+    console.log('XXX', itemId);
+    // dispatch(fetchItemIfNeeded());
   }
 
   render() {
@@ -33,17 +35,15 @@ export class Item extends Component {
         <Header
           title="Item"
           navigator={this.navigator}/>
-        <TouchableOpacity
-          onPress={this.onMapPress}>
-          <Text style={styles.text}>Go to Map scene</Text>
-        </TouchableOpacity>
       </View>
     );
   }
 }
 
 Item.propTypes = {
+  itemId: PropTypes.string,
   navigator: PropTypes.object,
+  dispatch: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -56,11 +56,4 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Item);
+export default connect(mapStateToProps)(Item);

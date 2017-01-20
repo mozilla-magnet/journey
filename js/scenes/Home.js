@@ -8,9 +8,10 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
-  ActivityIndicator,
   ListView,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 
 import {
@@ -29,6 +30,7 @@ export class Home extends Component {
     // never bind functions in render(), it
     // messes with react's diffing logic
     this.onSettingsPress = this.onSettingsPress.bind(this);
+    this.renderRow = this.renderRow.bind(this);
 
     this.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
@@ -98,19 +100,27 @@ export class Home extends Component {
 
   renderRow({ id, image }) {
     return (
-      <View
+      <TouchableOpacity
         key={id}
-        style={styles.row}>
+        style={styles.row}
+        onPress={() => this.onItemPress(id) }>
         <Image
           source={{ uri: image }}
           resizeMode={Image.resizeMode.cover}
           style={styles.image}/>
-      </View>
+      </TouchableOpacity>
     );
   }
 
   renderItemsErrored() {
     return <Text>Something went wrong :(</Text>;
+  }
+
+  onItemPress(id) {
+    this.navigator.push({
+      id: 'item',
+      data: { itemId: id },
+    });
   }
 }
 
