@@ -9,7 +9,7 @@ yarn global add react-native-cli
 yarn global add s3-cli-upload
 
 # Install project
-yarn install
+npm install
 
 export PATH=$PATH:./node_modules/.bin
 
