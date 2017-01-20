@@ -1,5 +1,3 @@
-/* global __DEV__ */
-
 import React, { Component } from 'react';
 import {
   Navigator,
@@ -7,32 +5,32 @@ import {
   View,
   StatusBar,
   StyleSheet,
+  Platform,
 } from 'react-native';
 
 import { theme } from '../config';
 
-import List from './scenes/List';
+import Settings from './scenes/Settings';
+import Profile from './scenes/Profile';
+import Compass from './scenes/Compass';
+import Demos from './scenes/Demos';
+import Home from './scenes/Home';
 import Item from './scenes/Item';
 import Map from './scenes/Map';
-import Profile from './scenes/Profile';
-import Settings from './scenes/Settings';
-import Debug from './scenes/Debug';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.routes = {
-      list: { component: List },
+      home: { component: Home },
       item: { component: Item },
       map: { component: Map },
       profile: { component: Profile },
       settings: { component: Settings },
+      compass: { component: Compass },
+      demos: { component: Demos },
     };
-
-    if (__DEV__) {
-      this.routes['debug'] = { component: Debug };
-    }
 
     this.renderScene = this.renderScene.bind(this);
     this.onAndroidBack = this.onAndroidBack.bind(this);
@@ -95,8 +93,9 @@ export default class App extends Component {
         />
         <Navigator
           ref="navigator"
-          initialRoute={{ id: 'list' }}
-          renderScene={this.renderScene}/>
+          initialRoute={{ id: 'home' }}
+          renderScene={this.renderScene}
+          sceneStyle={styles.scene}/>
       </View>
     );
   }
@@ -104,8 +103,7 @@ export default class App extends Component {
   renderScene(route, navigator) {
     const Component = this.routes[route.id].component;
     return (
-      <Component
-        navigator={navigator}/>
+      <Component navigator={navigator}/>
     );
   }
 }
@@ -114,5 +112,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colorBackground,
+  },
+
+  scene: {
+    backgroundColor: '#333',
+    paddingTop:  Platform.OS === 'ios' ? 20 : 24,
   },
 });

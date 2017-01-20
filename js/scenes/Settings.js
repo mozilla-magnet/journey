@@ -1,6 +1,10 @@
 /* global __DEV__ */
 
+import { defaultTextStyle, settings } from '../../config';
 import React, { Component, PropTypes } from 'react';
+import Header from '../components/Header';
+import { connect } from 'react-redux';
+
 import {
   View,
   Text,
@@ -8,21 +12,11 @@ import {
   Linking,
   StyleSheet,
 } from 'react-native';
-import { connect } from 'react-redux';
-
-import Header from '../components/Header';
-import { defaultTextStyle, settings } from '../../config';
 
 export class Settings extends Component {
   constructor(props) {
     super(props);
-
     this.navigator = this.props.navigator;
-    this.onBackPress = this.onBackPress.bind(this);
-  }
-
-  onBackPress() {
-    this.navigator.pop();
   }
 
   onItemPress(url) {
@@ -39,11 +33,11 @@ export class Settings extends Component {
   }
 
   render() {
-    const debugOptions = this.renderDebug();
     return (
       <View>
-        <Header title="Settings"/>
-
+        <Header
+          title="Settings"
+          navigator={this.navigator}/>
         {settings.links.map((link, id) => (
           <View key={id}>
             <TouchableOpacity
@@ -52,26 +46,22 @@ export class Settings extends Component {
             </TouchableOpacity>
           </View>
         ))}
-
-        {debugOptions}
-
-        <TouchableOpacity
-          onPress={this.onBackPress}>
-          <Text style={styles.text}>Back</Text>
-        </TouchableOpacity>
+        {this.renderDebug()}
       </View>
     );
   }
 
   renderDebug() {
     if (!__DEV__) {
-      return; 
+      return;
     }
-    
-    return (<TouchableOpacity
-      onPress={this.navigate.bind(this, 'debug')}>
-      <Text style={styles.text}>Go to Debug</Text>
-    </TouchableOpacity>);
+
+    return (
+      <TouchableOpacity
+      onPress={() => this.navigator.push({ id: 'demos' })}>
+        <Text style={styles.text}>Component Demos</Text>
+      </TouchableOpacity>
+    );
   }
 }
 

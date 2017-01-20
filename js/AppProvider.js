@@ -1,7 +1,17 @@
+import createStore  from './store/create-store';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import store from './store';
 import App from './App';
+
+/**
+ * Create the global app redux store.
+ *
+ * This store is a singleton that lasts
+ * for the lifetime of the app.
+ *
+ * @type {ReduxStore}
+ */
+const store = createStore();
 
 /**
  * The (data) Provider 'container' view.

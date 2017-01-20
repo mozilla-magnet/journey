@@ -30,15 +30,12 @@ export class Item extends Component {
   render() {
     return (
       <View>
-        <Header title="Item"/>
-
+        <Header
+          title="Item"
+          navigator={this.navigator}/>
         <TouchableOpacity
           onPress={this.onMapPress}>
           <Text style={styles.text}>Go to Map scene</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.onBackPress}>
-          <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
       </View>
     );

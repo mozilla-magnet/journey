@@ -1,14 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import MagnetMapView from '../components/MagnetMapView';
-import { defaultTextStyle } from '../../config';
 
 export class Map extends Component {
   constructor(props) {
@@ -24,21 +19,19 @@ export class Map extends Component {
 
   render() {
     return (
-      <MagnetMapView
-        region={{
-          latitude: 51.525,
-          longitude: -0.078315,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        <Header title="Map"/>
-
-        <TouchableOpacity
-          onPress={this.onBackPress}>
-          <Text style={styles.text}>Back</Text>
-        </TouchableOpacity>
-      </MagnetMapView>
+      <View style={styles.root}>
+        <Header
+          title="Map"
+          navigator={this.navigator}/>
+        <MagnetMapView
+          style={styles.map}
+          region={{
+            latitude: 51.504589,
+            longitude: -0.0992752,
+            latitudeDelta: 0.0222,
+            longitudeDelta: 0.0321,
+          }}/>
+      </View>
     );
   }
 }
@@ -48,8 +41,12 @@ Map.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  text: {
-    ...defaultTextStyle,
+  root: {
+    flex: 1,
+  },
+
+  map: {
+    flex: 1,
   },
 });
 

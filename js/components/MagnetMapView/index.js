@@ -3,17 +3,16 @@ import MapView from 'react-native-maps';
 import mapStyle from './style';
 import {
   View,
-  Dimensions,
   StyleSheet,
 } from 'react-native';
 
 export default class MagnetMapView extends Component {
   render() {
-    const { height, width } = Dimensions.get('window');
+    const { style } = this.props;
     const { region } = this.props;
 
     return (
-      <View style={[styles.container, { height, width }]}>
+      <View style={[styles.root, style]}>
         <MapView
           provider={MapView.PROVIDER_GOOGLE}
           style={styles.map}
@@ -29,11 +28,11 @@ export default class MagnetMapView extends Component {
 MagnetMapView.propTypes = {
   region: PropTypes.object,
   children: PropTypes.array,
+  style: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
+  root: {
     justifyContent: 'flex-start',
   },
   map: {
