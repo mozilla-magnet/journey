@@ -16,13 +16,7 @@ import {
 export class Settings extends Component {
   constructor(props) {
     super(props);
-
     this.navigator = this.props.navigator;
-    this.onBackPress = this.onBackPress.bind(this);
-  }
-
-  onBackPress() {
-    this.navigator.pop();
   }
 
   onItemPress(url) {

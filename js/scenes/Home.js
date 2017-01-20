@@ -1,4 +1,3 @@
-
 import { fetchItemsIfNeeded } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
 import { defaultTextStyle } from '../../config';
@@ -80,28 +79,34 @@ export class Home extends Component {
   }
 
   renderItemsFetching() {
-    return <ActivityIndicator
-      animating={true}
-      style={[styles.centering, {height: 80}]} size="large" />;
+    return (
+      <ActivityIndicator
+        animating={true}
+        style={[styles.centering, {height: 80}]} size="large" />
+    );
   }
 
   renderList() {
-    return <ListView
-      dataSource={this.dataSource}
-      renderRow={this.renderRow}
-      style={styles.list}>
-    </ListView>;
+    return (
+      <ListView
+        dataSource={this.dataSource}
+        renderRow={this.renderRow}
+        style={styles.list}>
+      </ListView>
+    );
   }
 
   renderRow({ id, image }) {
-    return <View
-      key={id}
-      style={styles.row}>
-      <Image
-        source={{ uri: image }}
-        resizeMode={Image.resizeMode.cover}
-        style={styles.image}/>
-    </View>;
+    return (
+      <View
+        key={id}
+        style={styles.row}>
+        <Image
+          source={{ uri: image }}
+          resizeMode={Image.resizeMode.cover}
+          style={styles.image}/>
+      </View>
+    );
   }
 
   renderItemsErrored() {

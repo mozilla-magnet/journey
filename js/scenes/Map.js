@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
@@ -19,12 +19,12 @@ export class Map extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.root}>
         <Header
           title="Map"
           navigator={this.navigator}/>
         <MagnetMapView
-          style={{flex: 1}}
+          style={styles.map}
           region={{
             latitude: 51.504589,
             longitude: -0.0992752,
@@ -39,6 +39,16 @@ export class Map extends Component {
 Map.propTypes = {
   navigator: PropTypes.object,
 };
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+  },
+
+  map: {
+    flex: 1,
+  },
+});
 
 const mapStateToProps = () => {
   return {};

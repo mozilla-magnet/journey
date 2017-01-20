@@ -46,11 +46,13 @@ export default class Header extends Component {
   renderBackButton() {
     if (!this.canGoBack()) return;
 
-    return <TouchableOpacity
-      style={styles.action}
-      onPress={this.onBackPress}>
-      <Text style={styles.actionText}>Back</Text>
-    </TouchableOpacity>;
+    return (
+      <TouchableOpacity
+        style={styles.action}
+        onPress={this.onBackPress}>
+        <Text style={styles.actionText}>Back</Text>
+      </TouchableOpacity>
+    );
   }
 
   canGoBack() {

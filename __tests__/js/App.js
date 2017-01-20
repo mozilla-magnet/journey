@@ -1,5 +1,5 @@
+import createStore from '../../js/store/create-store';
 import renderer from 'react-test-renderer';
-import createStore from '../../js/store';
 import { Provider } from 'react-redux';
 import App from '../../js/App';
 import React from 'react';

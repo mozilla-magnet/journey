@@ -1,6 +1,6 @@
+import createStore  from './store/create-store';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import createStore  from './store';
 import App from './App';
 
 /**

@@ -1,5 +1,3 @@
-'use strict';
-
 import fetchItems from '../api/fetch-items';
 
 import {

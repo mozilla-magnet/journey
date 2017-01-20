@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
 } from 'react-native';
 
 import Header from '../components/Header';
@@ -15,7 +14,6 @@ export default class Debug extends Component {
     super(props);
 
     this.navigator = this.props.navigator;
-    this.onBackPress = this.onBackPress.bind(this);
 
     this.state = {
       latitude: 0,
@@ -23,35 +21,33 @@ export default class Debug extends Component {
     };
   }
 
-  onBackPress() {
-    this.navigator.pop();
-  }
-
-  componentDidMount() { 
-    navigator.geolocation.getCurrentPosition( (position) => { 
-      var initialPosition = JSON.stringify(position); 
-      this.setState({initialPosition}); 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition( (position) => {
+      var initialPosition = JSON.stringify(position);
+      this.setState({initialPosition});
     }
-      , (error) => console.log(JSON.stringify(error)), 
+      , (error) => console.log(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    ); 
-    this.watchID = navigator.geolocation.watchPosition((position) => { 
+    );
+    this.watchID = navigator.geolocation.watchPosition((position) => {
       this.setState({
         latitude: position.coords.latitude,
-        longitude: position.coords.longitude, 
-      }); 
-    }); 
+        longitude: position.coords.longitude,
+      });
+    });
   }
 
   // Watch for position for testing the compass
-  componentWillUnmount() { 
-    navigator.geolocation.clearWatch(this.watchID); 
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
   }
 
   render() {
     return (
       <View>
-        <Header title="Debug"/>
+        <Header
+          title="Compass"
+          navigator={this.navigator}/>
         <View>
           <Text style={styles.text}>To the Shard</Text>
           <Compass
@@ -60,11 +56,6 @@ export default class Debug extends Component {
             toLat={51.504263}
             toLon={-0.088266}/>
         </View>
-
-        <TouchableOpacity
-          onPress={this.onBackPress}>
-          <Text style={styles.text}>Back</Text>
-        </TouchableOpacity>
       </View>
     );
   }

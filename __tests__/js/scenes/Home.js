@@ -1,5 +1,5 @@
+import createStore from '../../../js/store/create-store';
 import Home from '../../../js/scenes/Home';
-import createStore from '../../../js/store';
 import renderer from 'react-test-renderer';
 import React from 'react';
 import 'react-native';

@@ -1,4 +1,3 @@
-
 import dummyData from './dummy-data';
 
 export default () => {
