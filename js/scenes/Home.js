@@ -24,6 +24,7 @@ import {
 export class Home extends Component {
   constructor(props) {
     super(props);
+
     this.navigator = this.props.navigator;
 
     // never bind functions in render(), it

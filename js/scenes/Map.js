@@ -1,13 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import {
-  View,
-  StyleSheet,
-} from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import MagnetMapView from '../components/MagnetMapView';
-import { defaultTextStyle } from '../../config';
 
 export class Map extends Component {
   constructor(props) {
@@ -43,12 +39,6 @@ export class Map extends Component {
 Map.propTypes = {
   navigator: PropTypes.object,
 };
-
-const styles = StyleSheet.create({
-  text: {
-    ...defaultTextStyle,
-  },
-});
 
 const mapStateToProps = () => {
   return {};

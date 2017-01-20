@@ -1,14 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-
 import Header from '../components/Header';
-import { defaultTextStyle } from '../../config';
 
 export class Profile extends Component {
   constructor(props) {
@@ -36,12 +29,6 @@ export class Profile extends Component {
 Profile.propTypes = {
   navigator: PropTypes.object,
 };
-
-const styles = StyleSheet.create({
-  text: {
-    ...defaultTextStyle,
-  },
-});
 
 const mapStateToProps = () => {
   return {};

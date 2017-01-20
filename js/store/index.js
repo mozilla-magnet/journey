@@ -15,7 +15,17 @@ if (global.__DEV__) {
   }));
 }
 
-export default createStore(
-  reducers,
-  applyMiddleware.apply(null, middlewares)
-);
+/**
+ * Create a brand new store.
+ *
+ * This is helpful for unit-testing when we
+ * don't want to carry state between tests.
+ *
+ * @return {ReduxStore}
+ */
+export default () => {
+  return createStore(
+    reducers,
+    applyMiddleware.apply(null, middlewares)
+  );
+};
