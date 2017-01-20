@@ -1,3 +1,5 @@
+/* global __DEV__ */
+
 import React, { Component, PropTypes } from 'react';
 import {
   View,
@@ -32,7 +34,12 @@ export class Settings extends Component {
     });
   }
 
+  navigate(id) {
+    this.navigator.push({ id });
+  }
+
   render() {
+    const debugOptions = this.renderDebug();
     return (
       <View>
         <Header title="Settings"/>
@@ -46,12 +53,25 @@ export class Settings extends Component {
           </View>
         ))}
 
+        {debugOptions}
+
         <TouchableOpacity
           onPress={this.onBackPress}>
           <Text style={styles.text}>Back</Text>
         </TouchableOpacity>
       </View>
     );
+  }
+
+  renderDebug() {
+    if (!__DEV__) {
+      return; 
+    }
+    
+    return (<TouchableOpacity
+      onPress={this.navigate.bind(this, 'debug')}>
+      <Text style={styles.text}>Go to Debug</Text>
+    </TouchableOpacity>);
   }
 }
 

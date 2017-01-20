@@ -1,3 +1,5 @@
+/* global __DEV__ */
+
 import React, { Component } from 'react';
 import {
   Navigator,
@@ -14,6 +16,7 @@ import Item from './scenes/Item';
 import Map from './scenes/Map';
 import Profile from './scenes/Profile';
 import Settings from './scenes/Settings';
+import Debug from './scenes/Debug';
 
 export default class App extends Component {
   constructor(props) {
@@ -26,6 +29,10 @@ export default class App extends Component {
       profile: { component: Profile },
       settings: { component: Settings },
     };
+
+    if (__DEV__) {
+      this.routes['debug'] = { component: Debug };
+    }
 
     this.renderScene = this.renderScene.bind(this);
     this.onAndroidBack = this.onAndroidBack.bind(this);
