@@ -11,7 +11,7 @@ import {
   Image,
   StyleSheet,
   ActivityIndicator,
-  ScrollView,
+  ListView,
 } from 'react-native';
 
 import {
@@ -25,11 +25,27 @@ export class Home extends Component {
   constructor(props) {
     super(props);
     this.navigator = this.props.navigator;
+
+    // never bind functions in render(), it
+    // messes with react's diffing logic
+    this.onSettingsPress = this.onSettingsPress.bind(this);
+
+    this.dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    });
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchItemsIfNeeded());
+  }
+
+  componentWillReceiveProps({ items }) {
+    if (items !== this.props.items) this.onItemsChanged(items);
+  }
+
+  onItemsChanged({ value }) {
+    this.dataSource = this.dataSource.cloneWithRows(value || []);
   }
 
   onMapPress() {
@@ -38,19 +54,27 @@ export class Home extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.root}>
-        <Header title="Home"/>
+      <View style={styles.root}>
+        <Header
+          title="Home"
+          action="Settings"
+          navigator={this.navigator}
+          onActionPress={this.onSettingsPress}/>
         {this.renderItems(this.props.items)}
-      </ScrollView>
+      </View>
     );
   }
 
-  renderItems({ status, value }) {
+  onSettingsPress() {
+    this.navigator.push({ id: 'settings' });
+  }
+
+  renderItems({ status }) {
     switch (status) {
-      case FETCHING: return this.renderItemsFetching();
-      case FETCHED: return this.renderItemsFetched(value);
-      case ERRORED: return this.renderItemsErrored();
       case EMPTY: return;
+      case FETCHING: return this.renderItemsFetching();
+      case ERRORED: return this.renderItemsErrored();
+      case FETCHED: return this.renderList();
     }
   }
 
@@ -60,17 +84,23 @@ export class Home extends Component {
       style={[styles.centering, {height: 80}]} size="large" />;
   }
 
-  renderItemsFetched(items) {
-    return items.map(({ id, image }) => {
-      return <View
-        key={id}
-        style={styles.item}>
-        <Image
-          source={{ uri: image }}
-          resizeMode={Image.resizeMode.cover}
-          style={styles.image}/>
-      </View>;
-    });
+  renderList() {
+    return <ListView
+      dataSource={this.dataSource}
+      renderRow={this.renderRow}
+      style={styles.list}>
+    </ListView>;
+  }
+
+  renderRow({ id, image }) {
+    return <View
+      key={id}
+      style={styles.row}>
+      <Image
+        source={{ uri: image }}
+        resizeMode={Image.resizeMode.cover}
+        style={styles.image}/>
+    </View>;
   }
 
   renderItemsErrored() {
@@ -89,7 +119,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  item: {
+  list: {
+
+  },
+
+  row: {
     height: 300,
     flexDirection: 'row',
   },
