@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import Item from '../../../js/scenes/Item';
+import { Item } from '../../../js/scenes/Item';
 
 import renderer from 'react-test-renderer';
 

@@ -5,11 +5,12 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import { defaultTextStyle } from '../../config';
 
-export default class List extends Component {
+export class List extends Component {
   constructor(props) {
     super(props);
 
@@ -55,3 +56,16 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 });
+
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List);

@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import List from '../../../js/scenes/List';
+import { List } from '../../../js/scenes/List';
 
 import renderer from 'react-test-renderer';
 

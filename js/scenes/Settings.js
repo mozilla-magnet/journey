@@ -6,11 +6,12 @@ import {
   Linking,
   StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import { defaultTextStyle, settings } from '../../config';
 
-export default class Settings extends Component {
+export class Settings extends Component {
   constructor(props) {
     super(props);
 
@@ -63,3 +64,16 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 });
+
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Settings);

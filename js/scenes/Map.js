@@ -4,12 +4,13 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import MagnetMapView from '../components/MagnetMapView';
 import { defaultTextStyle } from '../../config';
 
-export default class Map extends Component {
+export class Map extends Component {
   constructor(props) {
     super(props);
 
@@ -51,3 +52,16 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 });
+
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Map);

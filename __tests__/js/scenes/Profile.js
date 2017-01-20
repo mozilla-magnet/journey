@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import Profile from '../../../js/scenes/Profile';
+import { Profile } from '../../../js/scenes/Profile';
 
 import renderer from 'react-test-renderer';
 
