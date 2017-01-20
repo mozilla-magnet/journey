@@ -46,12 +46,9 @@ export class Home extends Component {
     if (items !== this.props.items) this.onItemsChanged(items);
   }
 
-  onItemsChanged({ value }) {
-    this.dataSource = this.dataSource.cloneWithRows(value || []);
-  }
-
-  onMapPress() {
-    this.navigator.push({ id: 'map' });
+  onItemsChanged(items) {
+    console.log('on items changed', items);
+    this.dataSource = this.dataSource.cloneWithRows(items);
   }
 
   render() {
@@ -62,7 +59,7 @@ export class Home extends Component {
           action="Settings"
           navigator={this.navigator}
           onActionPress={this.onSettingsPress}/>
-        {this.renderItems(this.props.items)}
+        {this.renderItems()}
       </View>
     );
   }
@@ -71,8 +68,10 @@ export class Home extends Component {
     this.navigator.push({ id: 'settings' });
   }
 
-  renderItems({ status }) {
-    switch (status) {
+  renderItems() {
+    const { itemsStatus } = this.props;
+
+    switch (itemsStatus) {
       case EMPTY: return;
       case FETCHING: return this.renderItemsFetching();
       case ERRORED: return this.renderItemsErrored();
@@ -84,7 +83,7 @@ export class Home extends Component {
     return (
       <ActivityIndicator
         animating={true}
-        style={[styles.centering, {height: 80}]} size="large" />
+        style={[styles.loading]} size="large" />
     );
   }
 
@@ -98,7 +97,8 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ id, image }) {
+  renderRow({ value: {id, image} }) {
+    console.log('render row', id, image);
     return (
       <TouchableOpacity
         key={id}
@@ -127,7 +127,8 @@ export class Home extends Component {
 Home.propTypes = {
   navigator: PropTypes.object,
   dispatch: PropTypes.func,
-  items: PropTypes.object,
+  items: PropTypes.array,
+  itemsStatus: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -154,16 +155,26 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 
-  centering: {
+  loading: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
   },
 });
 
-const mapStateToProps = ({ items }) => {
+const mapStateToProps = ({ items, itemsCache }) => {
+  const itemIds = items.value || [];
+
+  // create a list of fetched/inflated items
+  const fetchedItems = itemIds.reduce((result, id) => {
+    const item = itemsCache[id];
+    if (item) result.push(item);
+    return result;
+  }, []);
+
   return {
-    items,
+    items: fetchedItems,
+    itemsStatus: items.status,
   };
 };
 

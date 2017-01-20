@@ -1,4 +1,5 @@
-import fetchItems from '../api/fetch-items';
+import fetchAllItems from '../api/item/get-all';
+import fetchItem from '../api/item/get';
 
 import {
   EMPTY,
@@ -13,13 +14,18 @@ export const dummyAction = (content) => {
   };
 };
 
+/**
+ * Fetch all items from the API.
+ *
+ * @return {[type]} [description]
+ */
 export const fetchItemsIfNeeded = () => {
   return (dispatch, getState) => {
     if (!shouldFetchItems(getState())) return Promise.resolve();
 
     dispatch(itemsFetching());
 
-    return fetchItems()
+    return fetchAllItems()
       .then((items) => {
         dispatch(itemsFetched(items));
       })
@@ -50,6 +56,46 @@ export const itemsFetchErrored = (value) => {
   };
 };
 
+export const fetchItemIfNeeded = (id) => {
+  return (dispatch, getState) => {
+    if (!shouldFetchItem(getState(), id)) return Promise.resolve();
+
+    dispatch(itemFetching(id));
+
+    return fetchItem(id)
+      .then((value) => {
+        dispatch(itemFetched(id, value));
+      })
+
+      .catch((e) => {
+        dispatch(itemFetchErrored(id, e));
+      });
+  };
+};
+
+export const itemFetching = (id) => {
+  return {
+    type: 'ITEM_FETCHING',
+    id,
+  };
+};
+
+export const itemFetched = (id, value) => {
+  return {
+    type: 'ITEM_FETCHED',
+    value,
+    id,
+  };
+};
+
+export const itemFetchErrored = (id, value) => {
+  return {
+    type: 'ITEM_FETCH_ERRORED',
+    value,
+    id,
+  };
+};
+
 /**
  * Items should only be fetched if:
  *  - empty
@@ -63,6 +109,31 @@ function shouldFetchItems({ items }) {
   switch (items.status) {
     case EMPTY:
     case FETCHED:
+    case ERRORED:
+      return true;
+    default:
+      return false;
+  }
+}
+
+/**
+ * Item should only be fetched if:
+ *  - item is not in the cache
+ *  - previous fetch errored
+ *
+ * TODO: We should probably also fetch when
+ * a fetched item is considered 'stale'.
+ * Let's keep an eye on this and see if
+ * the use-case arises.
+ *
+ * @param  {Object} items
+ * @return {Boolean}
+ */
+function shouldFetchItem({ itemsCache }, id) {
+  const item = itemsCache[id];
+  if (!item) return true;
+
+  switch (item.status) {
     case ERRORED:
       return true;
     default:
