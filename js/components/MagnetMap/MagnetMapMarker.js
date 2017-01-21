@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 
-export default class MapMarker extends Component {
+export default class MagnetMapMarker extends Component {
   render() {
     const { coordinate, source } = this.props;
 
@@ -24,7 +24,7 @@ export default class MapMarker extends Component {
   }
 }
 
-MapMarker.propTypes = {
+MagnetMapMarker.propTypes = {
   coordinate: PropTypes.object,
   source: Image.propTypes.source,
 };

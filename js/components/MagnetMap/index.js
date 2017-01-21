@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import MapView from 'react-native-maps';
 import mapStyle from './style';
-import Marker from './Marker'
+import MagnetMapMarker from './MagnetMapMarker';
 
 import {
   View,
@@ -32,8 +32,8 @@ MagnetMap.propTypes = {
   style: View.propTypes.style,
 };
 
-// expose marker through `MagnetMap.Marker`
-MagnetMap.Marker = Marker;
+// expose `MagnetMapMarker`
+MagnetMap.Marker = MagnetMapMarker;
 
 const styles = StyleSheet.create({
   root: {

@@ -30,8 +30,7 @@
   "jest": {
     "preset": "react-native",
     "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/__tests__/__mocks__/"
+      "/node_modules/"
     ]
   },
   "rnpm": {
