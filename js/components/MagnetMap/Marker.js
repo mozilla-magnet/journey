@@ -13,12 +13,10 @@ export default class MapMarker extends Component {
     return (
       <MapView.Marker coordinate={coordinate}>
         <View style={styles.container}>
-          <View style={styles.bubble}>
-            <Image
-              style={styles.thumbnail}
-              source={source}/>
-          </View>
-          <View style={styles.arrowBorder}/>
+          <Image
+            style={styles.thumbnail}
+            resizeMode={Image.resizeMode.cover}
+            source={source}/>
           <View style={styles.arrow}/>
         </View>
       </MapView.Marker>
@@ -28,7 +26,7 @@ export default class MapMarker extends Component {
 
 MapMarker.propTypes = {
   coordinate: PropTypes.object,
-  source: PropTypes.object,
+  source: Image.propTypes.source,
 };
 
 const styles = StyleSheet.create({
@@ -36,35 +34,26 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignSelf: 'flex-start',
   },
-  bubble: {
+
+  thumbnail: {
+    width: 50,
+    height: 50,
+
     flex: 0,
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    backgroundColor: '#fff',
     padding: 2,
-    borderRadius: 100,
     borderColor: '#fff',
-    borderWidth: 0.5,
+    borderWidth: 2,
+    borderRadius: 100,
   },
-  thumbnail: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-  },
+
   arrow: {
     backgroundColor: 'transparent',
-    borderWidth: 4,
+    borderWidth: 6,
     borderColor: 'transparent',
     borderTopColor: '#fff',
     alignSelf: 'center',
-    marginTop: -9,
-  },
-  arrowBorder: {
-    backgroundColor: 'transparent',
-    borderWidth: 4,
-    borderColor: 'transparent',
-    borderTopColor: '#fff',
-    alignSelf: 'center',
-    marginTop: -0.5,
+    marginTop: -1,
   },
 });
