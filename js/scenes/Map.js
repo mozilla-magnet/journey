@@ -1,9 +1,9 @@
+/* global require*/
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-
+import MagnetMap from '../components/MagnetMap';
 import Header from '../components/Header';
-import MagnetMapView from '../components/MagnetMapView';
+import { connect } from 'react-redux';
 
 export class Map extends Component {
   constructor(props) {
@@ -23,14 +23,21 @@ export class Map extends Component {
         <Header
           title="Map"
           navigator={this.navigator}/>
-        <MagnetMapView
+        <MagnetMap
           style={styles.map}
           region={{
-            latitude: 51.504589,
-            longitude: -0.0992752,
+            latitude: 51.504444,
+            longitude: -0.086667,
             latitudeDelta: 0.0222,
             longitudeDelta: 0.0321,
-          }}/>
+          }}>
+          <MagnetMap.Marker
+            source={require('../images/dummy/dank.jpg')}
+            coordinate={{
+              latitude: 51.504444,
+              longitude: -0.086667,
+            }}/>
+        </MagnetMap>
       </View>
     );
   }
