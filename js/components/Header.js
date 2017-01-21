@@ -74,7 +74,7 @@ export default class Header extends Component {
 Header.propTypes = {
   title: PropTypes.string,
   titleColor: PropTypes.string,
-  style: PropTypes.object,
+  style: View.propTypes.style,
   action: PropTypes.string,
   onActionPress: PropTypes.func,
   navigator: PropTypes.object,

@@ -10,7 +10,7 @@ import {
   Image,
   ListView,
   StyleSheet,
-  TouchableOpacity,
+  TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
 
@@ -47,7 +47,6 @@ export class Home extends Component {
   }
 
   onItemsChanged(items) {
-    console.log('on items changed', items);
     this.dataSource = this.dataSource.cloneWithRows(items);
   }
 
@@ -98,9 +97,8 @@ export class Home extends Component {
   }
 
   renderRow({ value: {id, image} }) {
-    console.log('render row', id, image);
     return (
-      <TouchableOpacity
+      <TouchableHighlight
         key={id}
         style={styles.row}
         onPress={() => this.onItemPress(id) }>
@@ -108,7 +106,7 @@ export class Home extends Component {
           source={{ uri: image }}
           resizeMode={Image.resizeMode.cover}
           style={styles.image}/>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 
@@ -143,6 +141,7 @@ const styles = StyleSheet.create({
   row: {
     height: 300,
     flexDirection: 'row',
+    backgroundColor: 'black',
   },
 
   image: {
