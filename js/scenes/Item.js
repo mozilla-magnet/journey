@@ -15,7 +15,7 @@ import {
   FETCHING,
 } from '../store/constants';
 
-export class Item extends Component {
+class Item extends Component {
   constructor(props) {
     super(props);
     this.navigator = this.props.navigator;
