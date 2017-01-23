@@ -30,10 +30,6 @@ export class List extends Component {
           title="Component Demos"
           navigator={navigator}/>
         <TouchableOpacity
-          onPress={this.onItemPress.bind(this, 'item')}>
-          <Text style={styles.text}>Go to Item scene</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           onPress={this.onItemPress.bind(this, 'map')}>
           <Text style={styles.text}>Go to Map scene</Text>
         </TouchableOpacity>

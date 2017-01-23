@@ -27,7 +27,6 @@ export default class MagnetMap extends Component {
 
 MagnetMap.propTypes = {
   region: PropTypes.object,
-  renderMarkers: PropTypes.func,
   children: PropTypes.oneOfType([ PropTypes.object, PropTypes.array ]),
   style: View.propTypes.style,
 };

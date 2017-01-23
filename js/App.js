@@ -100,11 +100,13 @@ export default class App extends Component {
     );
   }
 
-  renderScene(route, navigator) {
-    const Component = this.routes[route.id].component;
-    return (
-      <Component navigator={navigator}/>
-    );
+  renderScene({ id, data }, navigator) {
+    switch (id) {
+      case 'item': return <Item itemId={data.itemId} navigator={navigator}/>;
+      default:
+        var Component = this.routes[id].component;
+        return <Component navigator={navigator}/>;
+    }
   }
 }
 

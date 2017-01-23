@@ -8,9 +8,10 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
-  ActivityIndicator,
   ListView,
+  StyleSheet,
+  TouchableHighlight,
+  ActivityIndicator,
 } from 'react-native';
 
 import {
@@ -29,6 +30,7 @@ export class Home extends Component {
     // never bind functions in render(), it
     // messes with react's diffing logic
     this.onSettingsPress = this.onSettingsPress.bind(this);
+    this.renderRow = this.renderRow.bind(this);
 
     this.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
@@ -44,12 +46,8 @@ export class Home extends Component {
     if (items !== this.props.items) this.onItemsChanged(items);
   }
 
-  onItemsChanged({ value }) {
-    this.dataSource = this.dataSource.cloneWithRows(value || []);
-  }
-
-  onMapPress() {
-    this.navigator.push({ id: 'map' });
+  onItemsChanged(items) {
+    this.dataSource = this.dataSource.cloneWithRows(items);
   }
 
   render() {
@@ -60,17 +58,15 @@ export class Home extends Component {
           action="Settings"
           navigator={this.navigator}
           onActionPress={this.onSettingsPress}/>
-        {this.renderItems(this.props.items)}
+        {this.renderItems()}
       </View>
     );
   }
 
-  onSettingsPress() {
-    this.navigator.push({ id: 'settings' });
-  }
+  renderItems() {
+    const { itemsStatus } = this.props;
 
-  renderItems({ status }) {
-    switch (status) {
+    switch (itemsStatus) {
       case EMPTY: return;
       case FETCHING: return this.renderItemsFetching();
       case ERRORED: return this.renderItemsErrored();
@@ -82,7 +78,7 @@ export class Home extends Component {
     return (
       <ActivityIndicator
         animating={true}
-        style={[styles.centering, {height: 80}]} size="large" />
+        style={[styles.loading]} size="large" />
     );
   }
 
@@ -96,28 +92,41 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ id, image }) {
+  renderRow({ value: {id, image} }) {
     return (
-      <View
+      <TouchableHighlight
         key={id}
-        style={styles.row}>
+        style={styles.row}
+        onPress={() => this.onItemPress(id) }>
         <Image
           source={{ uri: image }}
-          resizeMode={Image.resizeMode.cover}
+          resizeMode="cover"
           style={styles.image}/>
-      </View>
+      </TouchableHighlight>
     );
   }
 
   renderItemsErrored() {
     return <Text>Something went wrong :(</Text>;
   }
+
+  onItemPress(itemId) {
+    this.navigator.push({
+      id: 'item',
+      data: { itemId },
+    });
+  }
+
+  onSettingsPress() {
+    this.navigator.push({ id: 'settings' });
+  }
 }
 
 Home.propTypes = {
   navigator: PropTypes.object,
   dispatch: PropTypes.func,
-  items: PropTypes.object,
+  items: PropTypes.array,
+  itemsStatus: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -132,6 +141,7 @@ const styles = StyleSheet.create({
   row: {
     height: 300,
     flexDirection: 'row',
+    backgroundColor: 'black',
   },
 
   image: {
@@ -144,16 +154,24 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 
-  centering: {
+  loading: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
   },
 });
 
-const mapStateToProps = ({ items }) => {
+const mapStateToProps = ({ items, itemsCache }) => {
+  const itemIds = items.value || [];
+
+  // filtered list of items that have been fetched
+  const fetchedItems = itemIds
+    .filter((itemId) => !!itemsCache[itemId])
+    .map((itemId) => itemsCache[itemId]);
+
   return {
-    items,
+    items: fetchedItems,
+    itemsStatus: items.status,
   };
 };
 
