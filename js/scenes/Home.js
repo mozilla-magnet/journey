@@ -63,10 +63,6 @@ export class Home extends Component {
     );
   }
 
-  onSettingsPress() {
-    this.navigator.push({ id: 'settings' });
-  }
-
   renderItems() {
     const { itemsStatus } = this.props;
 
@@ -104,7 +100,7 @@ export class Home extends Component {
         onPress={() => this.onItemPress(id) }>
         <Image
           source={{ uri: image }}
-          resizeMode={Image.resizeMode.cover}
+          resizeMode="cover"
           style={styles.image}/>
       </TouchableHighlight>
     );
@@ -114,11 +110,15 @@ export class Home extends Component {
     return <Text>Something went wrong :(</Text>;
   }
 
-  onItemPress(id) {
+  onItemPress(itemId) {
     this.navigator.push({
       id: 'item',
-      data: { itemId: id },
+      data: { itemId },
     });
+  }
+
+  onSettingsPress() {
+    this.navigator.push({ id: 'settings' });
   }
 }
 
@@ -164,12 +164,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ items, itemsCache }) => {
   const itemIds = items.value || [];
 
-  // create a list of fetched/inflated items
-  const fetchedItems = itemIds.reduce((result, id) => {
-    const item = itemsCache[id];
-    if (item) result.push(item);
-    return result;
-  }, []);
+  // filtered list of items that have been fetched
+  const fetchedItems = itemIds
+    .filter((itemId) => !!itemsCache[itemId])
+    .map((itemId) => itemsCache[itemId]);
 
   return {
     items: fetchedItems,

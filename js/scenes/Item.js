@@ -55,7 +55,7 @@ class Item extends Component {
       <Image
         style={styles.image}
         source={{ uri: image }}
-        resizeMode={Image.resizeMode.cover}
+        resizeMode="cover"
         ></Image>
     );
   }
@@ -64,7 +64,7 @@ class Item extends Component {
     return (
       <ActivityIndicator
         animating={true}
-        style={[styles.loading]} size="large" />
+        style={[styles.loading]} size="large"/>
     );
   }
 }
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({itemsCache }, { itemId }) => {
+const mapStateToProps = ({ itemsCache }, { itemId }) => {
   return {
     item: itemsCache[itemId],
   };
