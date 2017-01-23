@@ -5,11 +5,20 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import {
+  EMPTY,
+  GEO_ADQUIRING,
+  GEO_ADQUIRED,
+  GEO_ERROR,
+} from '../store/constants';
+
 import Header from '../components/Header';
 import Compass from '../components/Compass';
 import { defaultTextStyle } from '../../config';
 
-export default class Debug extends Component {
+import { connect } from 'react-redux';
+
+export class Debug extends Component {
   constructor(props) {
     super(props);
 
@@ -21,25 +30,40 @@ export default class Debug extends Component {
     };
   }
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition( (position) => {
-      var initialPosition = JSON.stringify(position);
-      this.setState({initialPosition});
+  componentWillReceiveProps({ geolocation }) {
+    if (!geolocation) {
+      return;
     }
-      , (error) => console.log(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.setState({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
+
+    this.setState({
+      latitude: geolocation.value.coords.latitude,
+      longitude: geolocation.value.coords.longitude,
     });
   }
 
-  // Watch for position for testing the compass
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
+  renderLocation({ status }) {
+    switch(status) {
+      case EMPTY: return this.renderGeoMessage('No data');
+      case GEO_ADQUIRED: return this.renderGeo();
+      case GEO_ADQUIRING: return this.renderGeoMessage('Adquiring geolocation ...');
+      case GEO_ERROR: return this.renderGeoMessage('Error getting geolocation');
+    }
+  }
+
+  renderGeoMessage(msg) {
+    return(
+      <Text>{msg}</Text>
+    );
+  }
+
+  renderGeo() {
+    var when = new Date(this.props.geolocation.value.timestamp);
+    when = '' + when;
+    const latitude = this.props.geolocation.value.coords.latitude;
+    const longitude = this.props.geolocation.value.coords.longitude;
+    return(
+      <Text>Last location at ({latitude},{longitude}) on {when}</Text>
+    );
   }
 
   render() {
@@ -56,6 +80,7 @@ export default class Debug extends Component {
             toLat={51.504263}
             toLon={-0.088266}/>
         </View>
+        {this.renderLocation(this.props.geolocation)}
       </View>
     );
   }
@@ -63,6 +88,7 @@ export default class Debug extends Component {
 
 Debug.propTypes = {
   navigator: PropTypes.object,
+  geolocation: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -70,3 +96,11 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 });
+
+const mapStateToProps = ({ geolocation }) => {
+  return {
+    geolocation,
+  };
+};
+
+export default connect(mapStateToProps)(Debug);

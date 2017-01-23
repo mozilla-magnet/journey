@@ -1,10 +1,41 @@
 import fetchItems from '../api/fetch-items';
+import { geoWatch } from '../api/geolocation';
 
 import {
   EMPTY,
   FETCHED,
   ERRORED,
 } from './constants';
+
+export const watchGeoLocation = () => {
+  return (dispatch) => {
+    dispatch(geoAdquiring);
+    geoWatch((geo) => {
+      dispatch(geoAdquired(geo));
+    },() => {
+      dispatch(geoError);
+    });
+  };
+};
+
+export const geoAdquiring = () => {
+  return {
+    type: 'GEO_ADQUIRING',
+  };
+};
+
+export const geoAdquired = (value) => {
+  return {
+    type: 'GEO_ADQUIRED',
+    value,
+  };
+};
+
+export const geoError = () => {
+  return {
+    type: 'GEO_ERROR',
+  };
+};
 
 export const dummyAction = (content) => {
   return {
