@@ -1,3 +1,6 @@
+[![Stories Done](https://badge.waffle.io/mozilla-magnet/journey.svg?label=done&title=Done)](http://waffle.io/mozilla-magnet/magnet) 
+[![Build Status](https://travis-ci.org/mozilla-magnet/journey.svg?branch=master)](https://travis-ci.org/mozilla-magnet/journey)
+
 # Project Magnet
 
 > Code name Journey
