@@ -1,5 +1,4 @@
-import fetchAllItems from '../api/item/get-all';
-import fetchItem from '../api/item/get';
+import journeyData from '../api';
 
 import {
   EMPTY,
@@ -25,7 +24,7 @@ export const fetchItemsIfNeeded = () => {
 
     dispatch(itemsFetching());
 
-    return fetchAllItems()
+    return journeyData.getNewestStories()
       .then((items) => {
         dispatch(itemsFetched(items));
       })
@@ -62,7 +61,7 @@ export const fetchItemIfNeeded = (id) => {
 
     dispatch(itemFetching(id));
 
-    return fetchItem(id)
+    return journeyData.getStory({ id })
       .then((value) => {
         dispatch(itemFetched(id, value));
       })

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MagnetJourneyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MagnetJourneyTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -55,6 +54,9 @@
 		8DA139D51E2EE8BE00E32D10 /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA139B21E2EE8BE00E32D10 /* SMCalloutView.m */; };
 		8DA139D61E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA139B41E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.m */; };
 		FF4D1F78779D414536A98557 /* libPods-MagnetJourney.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */; };
+		EA1EA222AB6E42A0ACF1114D /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E4EECA02044D1D8044B61B /* libRealmReact.a */; };
+		C12094AB6AA24DEE88BAC523 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A080AE6574364C2696EB6959 /* libc++.tbd */; };
+		38AE31607F7045CBAE669370 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B3AEA0CBC4561A297C347 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +171,10 @@
 		8DA139B41E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+MoreMapKit.m"; sourceTree = "<group>"; };
 		BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-LightItalic.ttf"; path = "../js/fonts/FiraSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		C09C03B39773328749B2D616 /* libPods-MagnetJourneyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagnetJourneyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9B1E499BC8242BA82EABB75 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		05E4EECA02044D1D8044B61B /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		A080AE6574364C2696EB6959 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		D36B3AEA0CBC4561A297C347 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +196,9 @@
 				8D9DF3951E2EF1B80064F323 /* MapKit.framework in Frameworks */,
 				FF4D1F78779D414536A98557 /* libPods-MagnetJourney.a in Frameworks */,
 				2BF989F931DF4EA3BF24104D /* libReactNativeHeading.a in Frameworks */,
+				EA1EA222AB6E42A0ACF1114D /* libRealmReact.a in Frameworks */,
+				C12094AB6AA24DEE88BAC523 /* libc++.tbd in Frameworks */,
+				38AE31607F7045CBAE669370 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +245,8 @@
 				8D9DF3941E2EF1B80064F323 /* MapKit.framework */,
 				7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */,
 				C09C03B39773328749B2D616 /* libPods-MagnetJourneyTests.a */,
+				A080AE6574364C2696EB6959 /* libc++.tbd */,
+				D36B3AEA0CBC4561A297C347 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */,
+				B9B1E499BC8242BA82EABB75 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -714,6 +726,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MagnetJourney.app/MagnetJourney";
@@ -732,6 +745,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

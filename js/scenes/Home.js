@@ -92,14 +92,14 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ value: {id, image} }) {
+  renderRow({ value: {id, imageUri } }) {
     return (
       <TouchableHighlight
         key={id}
         style={styles.row}
         onPress={() => this.onItemPress(id) }>
         <Image
-          source={{ uri: image }}
+          source={{ uri: imageUri }}
           resizeMode="cover"
           style={styles.image}/>
       </TouchableHighlight>
