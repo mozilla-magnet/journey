@@ -1,4 +1,4 @@
-import { fetchItemsIfNeeded, watchGeoLocation } from '../store/actions';
+import { fetchItemsIfNeeded, watchLocation } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
 import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
@@ -38,7 +38,7 @@ export class Home extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchItemsIfNeeded());
-    dispatch(watchGeoLocation());
+    dispatch(watchLocation());
   }
 
   componentWillReceiveProps({ items }) {

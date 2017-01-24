@@ -5,6 +5,6 @@ export const FETCHED = 'fetched';
 export const ERRORED = 'errored';
 
 // Geolocation contants
-export const GEO_ADQUIRING = 'geo_adquiring';
-export const GEO_ERROR = 'geo_error';
-export const GEO_ADQUIRED = 'geo_adquired';
+export const LOCATION_ACQUIRING = 'location_acquiring';
+export const LOCATION_ERRORERED = 'location_errored';
+export const LOCATION_ACQUIRED = 'location_acquired';

@@ -1,5 +1,5 @@
 import fetchItems from '../api/fetch-items';
-import { geoWatch } from '../api/geolocation';
+import { locationWatch } from '../api/location';
 
 import {
   EMPTY,
@@ -7,33 +7,33 @@ import {
   ERRORED,
 } from './constants';
 
-export const watchGeoLocation = () => {
+export const watchLocation = () => {
   return (dispatch) => {
-    dispatch(geoAdquiring);
-    geoWatch((geo) => {
-      dispatch(geoAdquired(geo));
+    dispatch(locationAcquiring);
+    locationWatch((geo) => {
+      dispatch(locationAcquired(geo));
     },() => {
-      dispatch(geoError);
+      dispatch(locationErrored);
     });
   };
 };
 
-export const geoAdquiring = () => {
+export const locationAcquiring = () => {
   return {
-    type: 'GEO_ADQUIRING',
+    type: 'LOCATION_ACQUIRING',
   };
 };
 
-export const geoAdquired = (value) => {
+export const locationAcquired = (value) => {
   return {
-    type: 'GEO_ADQUIRED',
+    type: 'LOCATION_ACQUIRED',
     value,
   };
 };
 
-export const geoError = () => {
+export const locationErrored = () => {
   return {
-    type: 'GEO_ERROR',
+    type: 'LOCATION_ERRORED',
   };
 };
 

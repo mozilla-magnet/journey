@@ -2,9 +2,9 @@ import {
   EMPTY,
   FETCHING,
   FETCHED,
-  GEO_ADQUIRING,
-  GEO_ERROR,
-  GEO_ADQUIRED,
+  LOCATION_ACQUIRING,
+  LOCATION_ERRORED,
+  LOCATION_ACQUIRED,
 } from './constants';
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
     timestamp: null,
     value: null,
   },
-  geolocation: {
+  location: {
     status: EMPTY,
     value: null,
   },
@@ -23,9 +23,9 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'ITEMS_FETCHING': return itemsFetching(state, action);
     case 'ITEMS_FETCHED': return itemsFetched(state, action);
-    case 'GEO_ADQUIRING': return geoAdquiring(state, action);
-    case 'GEO_ADQUIRED': return geoAdquired(state, action);
-    case 'GEO_ERROR': return geoError(state, action);
+    case 'LOCATION_ACQUIRING': return locationAcquiring(state, action);
+    case 'LOCATION_ACQUIRED': return locationAcquired(state, action);
+    case 'LOCATION_ERRORED': return locationErrored(state, action);
     default: return state;
   }
 };
@@ -47,36 +47,36 @@ function itemsFetched(state, { value }) {
     items: {
       status: FETCHED,
       timestamp: Date.now(),
-      value: value,
+      value,
     },
   };
 }
 
-function geoAdquiring(state) {
+function locationAcquiring(state) {
   return {
     ... state,
-    geolocation: {
-      status: GEO_ADQUIRING,
+    location: {
+      status: LOCATION_ACQUIRING,
       value: null,
     },
   };
 }
 
-function geoAdquired(state, { value }) {
+function locationAcquired(state, { value }) {
   return {
     ... state,
-    geolocation: {
-      status: GEO_ADQUIRED,
-      value: value,
+    location: {
+      status: LOCATION_ACQUIRED,
+      value,
     },
   };
 }
 
-function geoError(state) {
+function locationErrored(state) {
   return {
     ... state,
-    geolocation: {
-      status: GEO_ERROR,
+    location: {
+      status: LOCATION_ERRORED,
       value: null,
     },
   };

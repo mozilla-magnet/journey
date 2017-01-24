@@ -7,9 +7,9 @@ import {
 
 import {
   EMPTY,
-  GEO_ADQUIRING,
-  GEO_ADQUIRED,
-  GEO_ERROR,
+  LOCATION_ACQUIRING,
+  LOCATION_ACQUIRED,
+  LOCATION_ERRORED,
 } from '../store/constants';
 
 import Header from '../components/Header';
@@ -30,40 +30,15 @@ export class Debug extends Component {
     };
   }
 
-  componentWillReceiveProps({ geolocation }) {
-    if (!geolocation) {
+  componentWillReceiveProps({ location }) {
+    if (!location) {
       return;
     }
 
     this.setState({
-      latitude: geolocation.value.coords.latitude,
-      longitude: geolocation.value.coords.longitude,
+      latitude: location.value.coords.latitude,
+      longitude: location.value.coords.longitude,
     });
-  }
-
-  renderLocation({ status }) {
-    switch(status) {
-      case EMPTY: return this.renderGeoMessage('No data');
-      case GEO_ADQUIRED: return this.renderGeo();
-      case GEO_ADQUIRING: return this.renderGeoMessage('Adquiring geolocation ...');
-      case GEO_ERROR: return this.renderGeoMessage('Error getting geolocation');
-    }
-  }
-
-  renderGeoMessage(msg) {
-    return(
-      <Text>{msg}</Text>
-    );
-  }
-
-  renderGeo() {
-    var when = new Date(this.props.geolocation.value.timestamp);
-    when = '' + when;
-    const latitude = this.props.geolocation.value.coords.latitude;
-    const longitude = this.props.geolocation.value.coords.longitude;
-    return(
-      <Text>Last location at ({latitude},{longitude}) on {when}</Text>
-    );
   }
 
   render() {
@@ -80,15 +55,39 @@ export class Debug extends Component {
             toLat={51.504263}
             toLon={-0.088266}/>
         </View>
-        {this.renderLocation(this.props.geolocation)}
+        {this.renderLocation(this.props.location)}
       </View>
+    );
+  }
+
+  renderLocation({ status }) {
+    switch(status) {
+      case EMPTY: return this.renderGeoMessage('No data');
+      case LOCATION_ACQUIRED: return this.renderGeo();
+      case LOCATION_ACQUIRING: return this.renderGeoMessage('Adquiring geolocation ...');
+      case LOCATION_ERRORED: return this.renderGeoMessage('Error getting geolocation');
+    }
+  }
+
+  renderGeoMessage(msg) {
+    return(
+      <Text>{msg}</Text>
+    );
+  }
+
+  renderGeo() {
+    const when = `${new Date(this.props.location.value.timestamp)}`;
+    const latitude = this.props.location.value.coords.latitude;
+    const longitude = this.props.location.value.coords.longitude;
+    return(
+      <Text>Last location at ({latitude},{longitude}) on {when}</Text>
     );
   }
 }
 
 Debug.propTypes = {
   navigator: PropTypes.object,
-  geolocation: PropTypes.object,
+  location: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -97,9 +96,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ geolocation }) => {
+const mapStateToProps = ({ location }) => {
   return {
-    geolocation,
+    location,
   };
 };
 
