@@ -3,6 +3,11 @@ const LOCATION_CONFIG = {
   enableHighAccuracy: true, 
   timeout: 10000, 
   maximumAge: 1000,
+  distanceFilter: 5,
+};
+
+const _watchStatus = {
+  watchId: null,
 };
 
 // Returns the location if not timeout
@@ -18,5 +23,9 @@ export const getLocation = () => {
 
 // Watch for any changes in the location of the user
 export const locationWatch = (onUpdate, onError) => {
-  return navigator.geolocation.watchPosition(onUpdate, onError, LOCATION_CONFIG);
+  _watchStatus.watchId = navigator.geolocation.watchPosition(onUpdate, onError, LOCATION_CONFIG);
+};
+
+export const clearLocationWatch = () => {
+  navigator.geolocation.clearWatch(_watchStatus.watchId);
 };
