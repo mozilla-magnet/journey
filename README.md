@@ -1,4 +1,4 @@
-[![Stories Done](https://badge.waffle.io/mozilla-magnet/journey.svg?label=done&title=Done)](http://waffle.io/mozilla-magnet/magnet) 
+[![Stories Done](https://badge.waffle.io/mozilla-magnet/journey.svg?label=done&title=Done)](http://waffle.io/mozilla-magnet/magnet)
 [![Build Status](https://travis-ci.org/mozilla-magnet/journey.svg?branch=master)](https://travis-ci.org/mozilla-magnet/journey)
 
 # Project Magnet
@@ -31,7 +31,7 @@ $ react-native run-ios
 
 Install the pre-commit hook by running this command:
 ```bash
-$ ln -s ../../hooks/pre-commit.sh .git/hooks/pre-commit
+$ ln -s ./hooks/pre-commit.sh .git/hooks/pre-commit
 ```
 
 This will ensure that no major issues on the JavaScript syntax will be committed.
