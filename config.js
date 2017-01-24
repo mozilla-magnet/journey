@@ -10,8 +10,6 @@ export const defaultTextStyle = {
   color: 'white',
 };
 
-export const defaultDataStorage = 'MockStorage';
-
 export const settings = {
   links: [
     {
