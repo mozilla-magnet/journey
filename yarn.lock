@@ -3301,6 +3301,10 @@ react-native-maps@^0.13.0:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.13.0.tgz#f3d791a06d36d553bcc177514ee52fdea45474c0"
 
+react-native-share:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.0.18.tgz#c7ef6dd8cbe1c24e70596c69f83ba895b0c3a9cc"
+
 react-native@0.40.0:
   version "0.40.0"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.40.0.tgz#ca7b86a8e8fbc7653634ad47ca2ffd69fdf18ad5"

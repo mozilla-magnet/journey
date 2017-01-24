@@ -3,6 +3,7 @@ import { fetchItemIfNeeded } from '../store/actions';
 import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
+import SocialShare from '../components/SocialShare';
 
 import {
   View,
@@ -56,7 +57,9 @@ class Item extends Component {
         style={styles.image}
         source={{ uri: image }}
         resizeMode="cover"
-        ></Image>
+        >
+        <SocialShare/>
+        </Image>
     );
   }
 
@@ -98,6 +101,8 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     opacity: 0.6,
+    alignItems: 'flex-end',
+    paddingTop: 60,
   },
 
   loading: {
