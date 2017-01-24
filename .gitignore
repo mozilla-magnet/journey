@@ -54,5 +54,6 @@ fastlane/screenshots
 
 TODO.md
 
+# Generated database files for Realm when you run any of the realm APIs locally.
 realm-object-server/
-default.realm*
+./*.realm*
