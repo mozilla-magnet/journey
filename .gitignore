@@ -53,3 +53,6 @@ fastlane/Preview.html
 fastlane/screenshots
 
 TODO.md
+
+realm-object-server/
+default.realm*
