@@ -15,6 +15,8 @@ import {
   FETCHING,
 } from '../store/constants';
 
+import Star from '../components/Star';
+
 class Item extends Component {
   constructor(props) {
     super(props);
@@ -53,9 +55,13 @@ class Item extends Component {
 
     return (
       <Image
-        style={styles.image}
         source={{ uri: imageUri }}
-        resizeMode="cover"/>
+        resizeMode="cover"
+        style={styles.image}>
+        <Star
+          value={false}
+          onValueChange={() => {}}/>
+      </Image>
     );
   }
 
@@ -97,6 +103,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     opacity: 0.6,
+    alignItems: 'flex-end',
   },
 
   loading: {
