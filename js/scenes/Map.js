@@ -1,4 +1,3 @@
-/* global require*/
 import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MagnetMap from '../components/MagnetMap';
