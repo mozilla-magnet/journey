@@ -109,6 +109,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MagnetJourney/main.m; sourceTree = "<group>"; };
 		200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-Book.ttf"; path = "../js/fonts/FiraSans-Book.ttf"; sourceTree = "<group>"; };
 		314F1A56902FAACF1656397C /* Pods-MagnetJourney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourney.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourney/Pods-MagnetJourney.release.xcconfig"; sourceTree = "<group>"; };
+		557F12C41E39063400AF9A82 /* libRealmJS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRealmJS.a; path = "../../../../../Library/Developer/Xcode/DerivedData/MagnetJourney-elqkvsmmtefodvadepfieldqllyd/Build/Products/Debug-iphoneos/libRealmJS.a"; sourceTree = "<group>"; };
 		73B2FAA79832672659A874E4 /* Pods-MagnetJourneyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourneyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourneyTests/Pods-MagnetJourneyTests.release.xcconfig"; sourceTree = "<group>"; };
 		7865610A5D44127C15ED68BB /* Pods-MagnetJourneyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourneyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourneyTests/Pods-MagnetJourneyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagnetJourney.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +259,7 @@
 		2AA980885F18DF7FD21C564F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				557F12C41E39063400AF9A82 /* libRealmJS.a */,
 				8D9DF39A1E2EF1D30064F323 /* AudioToolbox.framework */,
 				8D9DF3981E2EF1CA0064F323 /* MobileCoreServices.framework */,
 				8D9DF3961E2EF1C20064F323 /* SystemConfiguration.framework */,
