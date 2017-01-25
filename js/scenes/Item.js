@@ -58,7 +58,11 @@ class Item extends Component {
         source={{ uri: image }}
         resizeMode="cover"
         >
-        <SocialShare/>
+        <SocialShare
+          message={ "Shared from magnet!" }
+          url={ "https://trymagnet.org/" }
+          style={{ margin: 10 }}
+          />
         </Image>
     );
   }

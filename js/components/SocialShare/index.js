@@ -15,24 +15,15 @@ export default class SocialShare extends Component {
   }
 
   share() {
-    let shareOptions = this.props.itemId ? 
-      this.fromStore() : 
-      Object.assign({}, this.props);
+    let shareOptions = Object.assign({}, this.props);
 
     Share.open(shareOptions);
-  }
-
-  fromStore() {
-    // TODO: Retrieve the share options from an item in the store
-    return {
-      message: 'Shared from Magnet',
-    };
   }
 
   render() {
     return(
       <TouchableOpacity
-        style = { styles.container }
+        style = { [ styles.container, this.props.style ] }
         onPress = { this.share }>
         <Image source = { require('./assets/share.png') }/>
       </TouchableOpacity>
@@ -46,13 +37,12 @@ SocialShare.propTypes = {
   message: PropTypes.string,
   title: PropTypes.string,
   subject: PropTypes.string,
-  itemId: PropTypes.number,
+  style: PropTypes.style,
 };
 
 const styles = StyleSheet.create({
   container: {
     height: 24,
     width: 24,
-    margin: 10,
   },
 });
