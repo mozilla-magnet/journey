@@ -3,6 +3,7 @@ import { fetchItemIfNeeded } from '../store/actions';
 import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
+import SocialShare from '../components/SocialShare';
 
 import {
   View,
@@ -57,11 +58,19 @@ class Item extends Component {
       <Image
         source={{ uri: imageUri }}
         resizeMode="cover"
-        style={styles.image}>
-        <Star
-          value={false}
-          onValueChange={() => {}}
-          style={styles.star}/>
+        style={styles.image}
+        >
+         <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
+          <SocialShare
+            message={ 'Shared from magnet!' }
+            url={ 'https://trymagnet.org/' }
+            style={{ margin: 10 }}
+            />
+          <Star
+            value={false}
+            onValueChange={() => {}}
+            style={ styles.star }/>
+         </View>
       </Image>
     );
   }

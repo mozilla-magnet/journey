@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
+               BlueprintIdentifier = "F63FF2B01C1241E500B3B8E0"
+               BuildableName = "libRealmJS.a"
+               BlueprintName = "RealmJS"
+               ReferencedContainer = "container:../node_modules/realm/src/RealmJS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FB978D0E07DF493723CF878E1A77C49A"
                BuildableName = "libReact.a"
                BlueprintName = "React"
-               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
