@@ -60,16 +60,16 @@ class Item extends Component {
         resizeMode="cover"
         style={styles.image}
         >
-         <View style={{flex: 1, flexDirection: 'row', paddingTop: 60}}>
+         <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
           <SocialShare
-            message={ "Shared from magnet!" }
-            url={ "https://trymagnet.org/" }
+            message={ 'Shared from magnet!' }
+            url={ 'https://trymagnet.org/' }
             style={{ margin: 10 }}
             />
           <Star
             value={false}
             onValueChange={() => {}}
-	    style={styles.star}/>
+            style={ styles.star }/>
          </View>
       </Image>
     );

@@ -21,9 +21,9 @@ export default class SocialShare extends Component {
   }
 
   render() {
-    return(
+    return (
       <TouchableOpacity
-        style = { [ styles.container, this.props.style ] }
+        style = { [styles.container, this.props.style] }
         onPress = { this.share }>
         <Image source = { require('./assets/share.png') }/>
       </TouchableOpacity>
