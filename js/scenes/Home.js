@@ -20,6 +20,7 @@ import {
   EMPTY,
 } from '../store/constants';
 
+import Profile from '../components/Profile';
 import Star from '../components/Star';
 
 export class Home extends Component {
@@ -103,10 +104,16 @@ export class Home extends Component {
           source={{ uri: imageUri }}
           resizeMode="cover"
           style={styles.image}>
-          <Star
-            value={false}
-            onValueChange={() => {}}
-            style={styles.star}/>
+          <View style={styles.topBar}>
+            <Profile
+              name="Dan Kitchener"
+              source={require('../images/dummy/dank.jpg')}
+              subtitle={`${Math.round(Math.random() * 15)} days ago`}
+              style={styles.profile}/>
+            <Star
+              value={false}
+              onValueChange={() => {}}/>
+          </View>
         </Image>
       </TouchableHighlight>
     );
@@ -150,11 +157,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    alignItems: 'flex-end',
   },
 
-  star: {
+  topBar: {
+    flexDirection: 'row',
     margin: 10,
+  },
+
+  profile: {
+    flex: 1,
   },
 
   loading: {
