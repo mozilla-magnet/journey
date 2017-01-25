@@ -10,11 +10,11 @@ const IMAGES = {
   ON: require('./assets/star.png'),
 };
 
-const Star = ({ value, onValueChange }) => {
+const Star = ({ value = false, onValueChange, style }) => {
   const source = value ? IMAGES.ON : IMAGES.OFF;
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container, style]}
       onPress={onValueChange}>
       <Image source={source}/>
     </TouchableOpacity>
@@ -24,13 +24,13 @@ const Star = ({ value, onValueChange }) => {
 Star.propTypes = {
   value: PropTypes.bool,
   onValueChange: PropTypes.func,
+  style: Image.propTypes.style,
 };
 
 const styles = StyleSheet.create({
   container: {
     height: 24,
     width: 24,
-    margin: 10,
   },
 });
 

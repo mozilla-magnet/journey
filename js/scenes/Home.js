@@ -106,7 +106,8 @@ export class Home extends Component {
           style={styles.image}>
           <Star
             value={false}
-            onValueChange={() => {}}/>
+            onValueChange={() => {}}
+            style={styles.star}/>
         </Image>
       </TouchableHighlight>
     );
@@ -153,6 +154,10 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     alignItems: 'flex-end',
+  },
+
+  star: {
+    margin: 10,
   },
 
   text: {

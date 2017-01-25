@@ -60,7 +60,8 @@ class Item extends Component {
         style={styles.image}>
         <Star
           value={false}
-          onValueChange={() => {}}/>
+          onValueChange={() => {}}
+          style={styles.star}/>
       </Image>
     );
   }
@@ -104,6 +105,10 @@ const styles = StyleSheet.create({
     flex: 1,
     opacity: 0.6,
     alignItems: 'flex-end',
+  },
+
+  star: {
+    margin: 10,
   },
 
   loading: {
