@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.facebook.react.ReactApplication;
 import cl.json.RNSharePackage;
+import io.realm.react.RealmReactPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.joshblour.reactnativeheading.ReactNativeHeadingPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -29,6 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new RNSharePackage(),
+          new RealmReactPackage(),
           new ReactNativeHeadingPackage(),
           new MapsPackage()
       );

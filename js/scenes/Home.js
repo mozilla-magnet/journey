@@ -21,6 +21,8 @@ import {
   EMPTY,
 } from '../store/constants';
 
+import Star from '../components/Star';
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -78,7 +80,7 @@ export class Home extends Component {
     return (
       <ActivityIndicator
         animating={true}
-        style={[styles.loading]} size="large" />
+        style={[styles.loading]} size="large"/>
     );
   }
 
@@ -92,16 +94,20 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ value: {id, image} }) {
+  renderRow({ value: { id, imageUri } }) {
     return (
       <TouchableHighlight
         key={id}
         style={styles.row}
         onPress={() => this.onItemPress(id) }>
         <Image
-          source={{ uri: image }}
+          source={{ uri: imageUri }}
           resizeMode="cover"
-          style={styles.image}/>
+          style={styles.image}>
+          <Star
+            value={false}
+            onValueChange={() => {}}/>
+        </Image>
       </TouchableHighlight>
     );
   }
@@ -134,9 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  list: {
-
-  },
+  list: {},
 
   row: {
     height: 300,
@@ -148,6 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
+    alignItems: 'flex-end',
   },
 
   text: {
