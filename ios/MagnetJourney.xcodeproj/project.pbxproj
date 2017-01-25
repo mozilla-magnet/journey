@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MagnetJourneyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MagnetJourneyTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -12,6 +13,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2BF989F931DF4EA3BF24104D /* libReactNativeHeading.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FFD921D31A84B34AEA7385D /* libReactNativeHeading.a */; };
+		38AE31607F7045CBAE669370 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B3AEA0CBC4561A297C347 /* libz.tbd */; };
 		4171ADEE82944774BC4A228B /* FiraSans-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */; };
 		607DD96F3FEB4B86AC5BD465 /* FiraSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */; };
 		7F558011D4C60F7A813814D3 /* libPods-MagnetJourneyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C09C03B39773328749B2D616 /* libPods-MagnetJourneyTests.a */; };
@@ -54,10 +56,9 @@
 		8DA139D51E2EE8BE00E32D10 /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA139B21E2EE8BE00E32D10 /* SMCalloutView.m */; };
 		8DA139D61E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA139B41E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.m */; };
 		9366479775B644C0BF00F4CB /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E185FDC828D842B2B45D3BE8 /* libRNShare.a */; };
-		FF4D1F78779D414536A98557 /* libPods-MagnetJourney.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */; };
-		EA1EA222AB6E42A0ACF1114D /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E4EECA02044D1D8044B61B /* libRealmReact.a */; };
 		C12094AB6AA24DEE88BAC523 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A080AE6574364C2696EB6959 /* libc++.tbd */; };
-		38AE31607F7045CBAE669370 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D36B3AEA0CBC4561A297C347 /* libz.tbd */; };
+		EA1EA222AB6E42A0ACF1114D /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E4EECA02044D1D8044B61B /* libRealmReact.a */; };
+		FF4D1F78779D414536A98557 /* libPods-MagnetJourney.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNShare;
 		};
+		55283ED41E39018700A490A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9B1E499BC8242BA82EABB75 /* RealmReact.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
+		};
 		553AEBBB1E31F48A00C2AFC2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */;
@@ -90,6 +98,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MagnetJourneyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MagnetJourneyTests.m; sourceTree = "<group>"; };
 		02C9C5A5BDA0F4AF55883F59 /* Pods-MagnetJourney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagnetJourney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagnetJourney/Pods-MagnetJourney.debug.xcconfig"; sourceTree = "<group>"; };
+		05E4EECA02044D1D8044B61B /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeHeading.xcodeproj; path = "../node_modules/react-native-heading/ReactNativeHeading.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MagnetJourney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MagnetJourney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MagnetJourney/AppDelegate.h; sourceTree = "<group>"; };
@@ -177,14 +186,13 @@
 		8DA139B21E2EE8BE00E32D10 /* SMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCalloutView.m; sourceTree = "<group>"; };
 		8DA139B31E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+MoreMapKit.h"; sourceTree = "<group>"; };
 		8DA139B41E2EE8BE00E32D10 /* RCTConvert+MoreMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+MoreMapKit.m"; sourceTree = "<group>"; };
+		A080AE6574364C2696EB6959 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B9B1E499BC8242BA82EABB75 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "FiraSans-LightItalic.ttf"; path = "../js/fonts/FiraSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		BC9CD6964B32434F859E5209 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		C09C03B39773328749B2D616 /* libPods-MagnetJourneyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagnetJourneyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D36B3AEA0CBC4561A297C347 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E185FDC828D842B2B45D3BE8 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
-		B9B1E499BC8242BA82EABB75 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		05E4EECA02044D1D8044B61B /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		A080AE6574364C2696EB6959 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		D36B3AEA0CBC4561A297C347 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +293,14 @@
 			isa = PBXGroup;
 			children = (
 				551FB6941E37C5CA00775F93 /* libRNShare.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55283ED01E39018700A490A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55283ED51E39018700A490A7 /* libRealmReact.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -508,6 +524,10 @@
 					ProjectRef = 08624E4D9E524F7D885A4EAE /* ReactNativeHeading.xcodeproj */;
 				},
 				{
+					ProductGroup = 55283ED01E39018700A490A7 /* Products */;
+					ProjectRef = B9B1E499BC8242BA82EABB75 /* RealmReact.xcodeproj */;
+				},
+				{
 					ProductGroup = 551FB68F1E37C5C900775F93 /* Products */;
 					ProjectRef = BC9CD6964B32434F859E5209 /* RNShare.xcodeproj */;
 				},
@@ -526,6 +546,13 @@
 			fileType = archive.ar;
 			path = libRNShare.a;
 			remoteRef = 551FB6931E37C5CA00775F93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55283ED51E39018700A490A7 /* libRealmReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRealmReact.a;
+			remoteRef = 55283ED41E39018700A490A7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		553AEBBC1E31F48A00C2AFC2 /* libReactNativeHeading.a */ = {
