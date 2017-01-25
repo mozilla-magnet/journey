@@ -21,6 +21,8 @@ import {
   EMPTY,
 } from '../store/constants';
 
+import Star from '../components/Star';
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -101,7 +103,11 @@ export class Home extends Component {
         <Image
           source={{ uri: imageUri }}
           resizeMode="cover"
-          style={styles.image}/>
+          style={styles.image}>
+          <Star
+            value={false}
+            onValueChange={() => {}}/>
+        </Image>
       </TouchableHighlight>
     );
   }
@@ -134,9 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  list: {
-
-  },
+  list: {},
 
   row: {
     height: 300,
@@ -148,6 +152,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
+    alignItems: 'flex-end',
   },
 
   text: {
