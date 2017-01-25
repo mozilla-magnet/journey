@@ -38,13 +38,13 @@ export default class App extends Component {
 
   componentDidMount() {
     BackAndroid.addEventListener('hardwareBackPress', this.onAndroidBack);
-    //Linking.addEventListener('url', this.onDeepLink);
+    // Linking.addEventListener('url', this.onDeepLink);
   }
 
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.onAndroidBack);
-    //Linking.getInitialURL().then((url) => this.onDeepLink({ url }));
-    //Linking.removeEventListener('url', this.onDeepLink);
+    // Linking.getInitialURL().then((url) => this.onDeepLink({ url }));
+    // Linking.removeEventListener('url', this.onDeepLink);
   }
 
   /**
@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
 
   scene: {
     backgroundColor: '#333',
-    paddingTop:  Platform.OS === 'ios' ? 20 : 24,
+    paddingTop: Platform.OS === 'ios' ? 20 : 24,
   },
 });

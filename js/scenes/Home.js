@@ -78,7 +78,7 @@ export class Home extends Component {
     return (
       <ActivityIndicator
         animating={true}
-        style={[styles.loading]} size="large" />
+        style={[styles.loading]} size="large"/>
     );
   }
 
@@ -92,7 +92,7 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ value: {id, imageUri } }) {
+  renderRow({ value: { id, imageUri } }) {
     return (
       <TouchableHighlight
         key={id}

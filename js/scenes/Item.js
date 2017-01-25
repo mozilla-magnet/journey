@@ -49,14 +49,13 @@ class Item extends Component {
   renderContent() {
     const { item } = this.props;
     if (!item || item.status === FETCHING) return this.renderContentLoading();
-    const { value: { imageUri }} = item;
+    const { value: { imageUri } } = item;
 
     return (
       <Image
         style={styles.image}
         source={{ uri: imageUri }}
-        resizeMode="cover"
-        ></Image>
+        resizeMode="cover"/>
     );
   }
 
