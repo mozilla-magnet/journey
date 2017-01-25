@@ -37,7 +37,7 @@ SocialShare.propTypes = {
   message: PropTypes.string,
   title: PropTypes.string,
   subject: PropTypes.string,
-  style: PropTypes.style,
+  style: Image.propTypes.style,
 };
 
 const styles = StyleSheet.create({
