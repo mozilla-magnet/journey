@@ -58,7 +58,7 @@ export class Settings extends Component {
 
     return (
       <TouchableOpacity
-      onPress={() => this.navigator.push({ id: 'demos' })}>
+        onPress={() => this.navigator.push({ id: 'demos' })}>
         <Text style={styles.text}>Component Demos</Text>
       </TouchableOpacity>
     );

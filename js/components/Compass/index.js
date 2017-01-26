@@ -1,7 +1,6 @@
-/* global require */
 import React, { Component } from 'react';
 import {
-  /*eslint-disable no-unused-vars*/
+  /* eslint-disable no-unused-vars */
   Image,
   Animated,
   DeviceEventEmitter,
@@ -30,11 +29,11 @@ export default class Compass extends Component {
 
   startHeadingUpdates() {
     ReactNativeHeading.start(this.state.angleFilter)
-    .then((didStart) => {
-      this.setState({
-        headingIsSupported: didStart,
+      .then((didStart) => {
+        this.setState({
+          headingIsSupported: didStart,
+        });
       });
-    });
 
     DeviceEventEmitter.addListener('headingUpdated', (data) => {
       this.startAnimation(data.heading || data);
@@ -46,7 +45,7 @@ export default class Compass extends Component {
     DeviceEventEmitter.removeAllListeners('headingUpdated');
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.startAnimation(0);
     this.startHeadingUpdates();
   }
@@ -91,17 +90,17 @@ export default class Compass extends Component {
 
   render() {
     return (
-      <Animated.Image 
+      <Animated.Image
         style={[
-          {transform: [{
+          { transform: [{
             rotate: this.state.rotation.interpolate({
-              inputRange:[0, 360],
-              outputRange: ['0 deg', '360 deg']}),
+              inputRange: [0, 360],
+              outputRange: ['0 deg', '360 deg'] }),
           }],
           },
         ]}
         source={require('./assets/arrow.png')}
-    />);  
+    />);
   }
 }
 

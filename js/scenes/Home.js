@@ -1,6 +1,5 @@
 import { fetchItemsIfNeeded, watchLocation } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
-import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 
@@ -20,6 +19,8 @@ import {
   ERRORED,
   EMPTY,
 } from '../store/constants';
+
+import Star from '../components/Star';
 
 export class Home extends Component {
   constructor(props) {
@@ -79,7 +80,7 @@ export class Home extends Component {
     return (
       <ActivityIndicator
         animating={true}
-        style={[styles.loading]} size="large" />
+        style={[styles.loading]} size="large"/>
     );
   }
 
@@ -93,16 +94,21 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ value: {id, image} }) {
+  renderRow({ value: { id, imageUri } }) {
     return (
       <TouchableHighlight
         key={id}
         style={styles.row}
-        onPress={() => this.onItemPress(id) }>
+        onPress={() => this.onItemPress(id)}>
         <Image
-          source={{ uri: image }}
+          source={{ uri: imageUri }}
           resizeMode="cover"
-          style={styles.image}/>
+          style={styles.image}>
+          <Star
+            value={false}
+            onValueChange={() => {}}
+            style={styles.star}/>
+        </Image>
       </TouchableHighlight>
     );
   }
@@ -135,10 +141,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  list: {
-
-  },
-
   row: {
     height: 300,
     flexDirection: 'row',
@@ -149,10 +151,11 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
+    alignItems: 'flex-end',
   },
 
-  text: {
-    ...defaultTextStyle,
+  star: {
+    margin: 10,
   },
 
   loading: {

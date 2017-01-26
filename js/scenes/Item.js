@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchItemIfNeeded } from '../store/actions';
-import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
+import SocialShare from '../components/SocialShare';
 
 import {
   View,
@@ -14,6 +14,8 @@ import {
 import {
   FETCHING,
 } from '../store/constants';
+
+import Star from '../components/Star';
 
 class Item extends Component {
   constructor(props) {
@@ -49,14 +51,26 @@ class Item extends Component {
   renderContent() {
     const { item } = this.props;
     if (!item || item.status === FETCHING) return this.renderContentLoading();
-    const { value: { image }} = item;
+    const { value: { imageUri } } = item;
 
     return (
       <Image
-        style={styles.image}
-        source={{ uri: image }}
+        source={{ uri: imageUri }}
         resizeMode="cover"
-        ></Image>
+        style={styles.image}
+      >
+        <View style={styles.topBar}>
+          <SocialShare
+            message={'Shared from magnet!'}
+            url={'https://trymagnet.org/'}
+            style={styles.social}
+          />
+          <Star
+            value={false}
+            onValueChange={() => {}}
+            style={styles.star}/>
+        </View>
+      </Image>
     );
   }
 
@@ -70,7 +84,7 @@ class Item extends Component {
 }
 
 Item.propTypes = {
-  itemId: PropTypes.string,
+  itemId: PropTypes.number,
   item: PropTypes.object,
   navigator: PropTypes.object,
   dispatch: PropTypes.func,
@@ -91,13 +105,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
 
-  text: {
-    ...defaultTextStyle,
-  },
-
   image: {
     flex: 1,
     opacity: 0.6,
+    alignItems: 'flex-end',
+  },
+
+  topBar: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingTop: 60,
+  },
+
+  social: {
+    margin: 10,
+  },
+
+  star: {
+    margin: 10,
   },
 
   loading: {

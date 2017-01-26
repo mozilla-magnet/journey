@@ -18,7 +18,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const { title='', style, action } = this.props;
+    const { title = '', style, action } = this.props;
 
     return (
       <View style={[styles.header, style]}>

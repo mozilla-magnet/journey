@@ -34,7 +34,7 @@ export class Debug extends Component {
     if (!location) {
       return;
     }
-
+    
     this.setState({
       latitude: location.value.coords.latitude,
       longitude: location.value.coords.longitude,
