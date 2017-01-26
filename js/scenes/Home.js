@@ -1,4 +1,4 @@
-import { fetchItemsIfNeeded, watchLocation } from '../store/actions';
+import { fetchItemsIfNeeded } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
@@ -41,7 +41,6 @@ export class Home extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchItemsIfNeeded());
-    dispatch(watchLocation());
   }
 
   componentWillReceiveProps({ items }) {

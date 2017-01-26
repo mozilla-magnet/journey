@@ -1,5 +1,5 @@
-import { locationWatch } from '../api/location';
 import journeyData from '../api';
+import LocationObserver from '../api/locationObserver';
 
 import {
   EMPTY,
@@ -10,12 +10,12 @@ import {
 export const watchLocation = () => {
   return (dispatch) => {
     dispatch(locationAcquiring);
-    locationWatch((geo) => {
+    let watch = new LocationObserver((geo) => {
       dispatch(locationAcquired(geo));
-    },() => {
+    }, () => {
       dispatch(locationErrored);
-    });
-  };
+    })
+  }
 };
 
 export const locationAcquiring = () => {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Navigator,
   BackAndroid,
@@ -18,7 +18,10 @@ import Home from './scenes/Home';
 import Item from './scenes/Item';
 import Map from './scenes/Map';
 
-export default class App extends Component {
+import { connect } from 'react-redux';
+import { watchLocation } from './store/actions';
+
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +40,9 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(watchLocation());
+
     BackAndroid.addEventListener('hardwareBackPress', this.onAndroidBack);
     // Linking.addEventListener('url', this.onDeepLink);
   }
@@ -110,6 +116,10 @@ export default class App extends Component {
   }
 }
 
+App.propTypes = {
+  dispatch: PropTypes.func,
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -121,3 +131,9 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 20 : 24,
   },
 });
+
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps)(App);
