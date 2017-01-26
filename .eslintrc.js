@@ -20,6 +20,7 @@ module.exports = {
 
   'plugins': [
     'react',
+    'react-native',
   ],
 
   'rules': {
@@ -39,7 +40,6 @@ module.exports = {
       'SwitchCase': 1,
       'MemberExpression': 1,
     }],
-    'jsx-quotes': ['error', 'prefer-double'],
     'key-spacing': ['error', {
       'beforeColon': false,
       'afterColon': true,
@@ -65,5 +65,21 @@ module.exports = {
     'space-in-parens': ['error', 'never'],
     'space-infix-ops': 'error',
     'spaced-comment': ['error', 'always', { 'block': { 'balanced': true } }],
+
+    // JSX specific rules.
+    'no-extra-parens': ['error', 'all', { 'ignoreJSX': 'multi-line' }],
+    'jsx-quotes': ['error', 'prefer-double'],
+    'react/jsx-boolean-value': ['error', 'always'],
+    'react/jsx-curly-spacing': ['error', 'never'],
+    'react/jsx-tag-spacing': ['error', {
+      'closingSlash': 'never',
+      'beforeSelfClosing': 'never',
+      'afterOpening': 'never',
+    }],
+
+    // React Native specific rules.
+    'react-native/no-unused-styles': 'error',
+    'react-native/split-platform-components': 'error',
+    'react-native/no-inline-styles': 'error',
   },
 };

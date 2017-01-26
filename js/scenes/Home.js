@@ -1,6 +1,5 @@
 import { fetchItemsIfNeeded } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
-import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 
@@ -99,7 +98,7 @@ export class Home extends Component {
       <TouchableHighlight
         key={id}
         style={styles.row}
-        onPress={() => this.onItemPress(id) }>
+        onPress={() => this.onItemPress(id)}>
         <Image
           source={{ uri: imageUri }}
           resizeMode="cover"
@@ -141,8 +140,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  list: {},
-
   row: {
     height: 300,
     flexDirection: 'row',
@@ -158,10 +155,6 @@ const styles = StyleSheet.create({
 
   star: {
     margin: 10,
-  },
-
-  text: {
-    ...defaultTextStyle,
   },
 
   loading: {

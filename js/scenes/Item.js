@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { fetchItemIfNeeded } from '../store/actions';
-import { defaultTextStyle } from '../../config';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 import SocialShare from '../components/SocialShare';
@@ -59,18 +58,18 @@ class Item extends Component {
         source={{ uri: imageUri }}
         resizeMode="cover"
         style={styles.image}
-        >
-         <View style={{ flex: 1, flexDirection: 'row', paddingTop: 60 }}>
+      >
+        <View style={styles.topBar}>
           <SocialShare
-            message={ 'Shared from magnet!' }
-            url={ 'https://trymagnet.org/' }
-            style={{ margin: 10 }}
-            />
+            message={'Shared from magnet!'}
+            url={'https://trymagnet.org/'}
+            style={styles.social}
+          />
           <Star
             value={false}
             onValueChange={() => {}}
-            style={ styles.star }/>
-         </View>
+            style={styles.star}/>
+        </View>
       </Image>
     );
   }
@@ -106,14 +105,20 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
 
-  text: {
-    ...defaultTextStyle,
-  },
-
   image: {
     flex: 1,
     opacity: 0.6,
     alignItems: 'flex-end',
+  },
+
+  topBar: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingTop: 60,
+  },
+
+  social: {
+    margin: 10,
   },
 
   star: {
