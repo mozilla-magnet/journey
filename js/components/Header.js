@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 
 export default class Header extends Component {
@@ -81,14 +82,16 @@ Header.propTypes = {
 };
 
 const HEADER_HEIGHT = 54;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 24;
 
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#333',
-    height: HEADER_HEIGHT,
+    height: HEADER_HEIGHT + STATUSBAR_HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
+    paddingTop: STATUSBAR_HEIGHT,
   },
 
   left: {

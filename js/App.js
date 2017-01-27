@@ -5,10 +5,7 @@ import {
   View,
   StatusBar,
   StyleSheet,
-  Platform,
 } from 'react-native';
-
-import { theme } from '../config';
 
 import Settings from './scenes/Settings';
 import Profile from './scenes/Profile';
@@ -94,8 +91,7 @@ export default class App extends Component {
         <Navigator
           ref="navigator"
           initialRoute={{ id: 'home' }}
-          renderScene={this.renderScene}
-          sceneStyle={styles.scene}/>
+          renderScene={this.renderScene}/>
       </View>
     );
   }
@@ -113,11 +109,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colorBackground,
-  },
-
-  scene: {
     backgroundColor: '#333',
-    paddingTop: Platform.OS === 'ios' ? 20 : 24,
   },
 });
