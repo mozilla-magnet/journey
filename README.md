@@ -21,6 +21,16 @@ With a [virtual or real device running](https://facebook.github.io/react-native/
 $ react-native run-android
 ```
 
+#### Using Android Studio (OSX)
+
+On OSX Android Studio must be launched from the command line in order to inherit `$PATH` so that a specific Gradle script inside Realm can run `npm --version`.
+
+Attempting to build using Android Studio that has been launched via the normal OSX icon will fail to build. We've included a shortcut script to help.
+
+```bash
+$ npm run launch-android-studio
+```
+
 ### iOS
 
 ```bash
