@@ -7,7 +7,8 @@
     "fix": "eslint ./*.js ./js/ ./__test__/ --fix",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "pretest": "npm run lint"
+    "pretest": "npm run lint",
+    "open-android-studio": "open -a /Applications/Android\\ Studio.app/ ."
   },
   "dependencies": {
     "journey-data": "https://github.com/mozilla-magnet/journey-data.git",
