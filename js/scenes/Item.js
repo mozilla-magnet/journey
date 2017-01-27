@@ -15,7 +15,6 @@ import {
   FETCHING,
 } from '../store/constants';
 
-import Profile from '../components/Profile';
 import Star from '../components/Star';
 
 class Item extends Component {
@@ -60,11 +59,6 @@ class Item extends Component {
         resizeMode="cover"
         style={styles.image}>
         <View style={styles.topBar}>
-          <Profile
-            name="Dan Kitchener"
-            source={require('../images/dummy/dank.jpg')}
-            subtitle={`${Math.round(Math.random() * 15)} days ago`}
-            style={styles.profile}/>
           <SocialShare
             message="Shared from magnet!"
             url="https://trymagnet.org/"
@@ -126,10 +120,6 @@ const styles = StyleSheet.create({
 
   star: {
     flexDirection: 'row',
-  },
-
-  profile: {
-    flex: 1,
   },
 
   loading: {
