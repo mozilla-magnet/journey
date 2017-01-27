@@ -98,11 +98,6 @@ class Item extends Component {
     return (
       <View style={styles.content}>
         <View style={styles.topBar}>
-          <Profile
-            name="Dan Kitchener"
-            source={require('../images/dummy/dank.jpg')}
-            subtitle={`${Math.round(Math.random() * 15)} days ago`}
-            style={styles.profile}/>
           <SocialShare
             message={'Shared from magnet!'}
             url={'https://trymagnet.org/'}
@@ -266,10 +261,6 @@ const styles = StyleSheet.create({
 
   star: {
     flexDirection: 'row',
-  },
-
-  profile: {
-    flex: 1,
   },
 
   loading: {

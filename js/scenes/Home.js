@@ -7,6 +7,7 @@ import Star from '../components/Star';
 import {
   View,
   Text,
+<<<<<<< 6b1fd2dab1c70f21a91e864bb61ee66bdd6f0496
   Image,
   Easing,
   Animated,
@@ -14,6 +15,10 @@ import {
   StyleSheet,
   PanResponder,
   TouchableHighlight,
+=======
+  ListView,
+  StyleSheet,
+>>>>>>> Make it a ListItem component
   ActivityIndicator,
 } from 'react-native';
 
@@ -24,6 +29,11 @@ import {
   EMPTY,
 } from '../store/constants';
 
+<<<<<<< 6b1fd2dab1c70f21a91e864bb61ee66bdd6f0496
+=======
+import ListItem from '../components/ListItem';
+
+>>>>>>> Make it a ListItem component
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -434,33 +444,26 @@ export class Home extends Component {
         scrollEventThrottle={16}
         scrollEnabled={this.scrollEnabled}
         bounces={false}
-        style={[styles.list]}>
-      </ListView>
+        style={[styles.list]}/>
     );
   }
 
-  renderRow({ value: { id, imageUri } }) {
+  renderRow({ value: { id, imageUri, createdByUser } }) {
+    const userImageUri = createdByUser.imageUri;
+
     return (
-      <TouchableHighlight
+      <ListItem
         key={id}
-        style={styles.row}
-        onPress={() => this.onItemPress(id)}>
-        <Image
-          source={{ uri: imageUri }}
-          resizeMode="cover"
-          style={styles.image}>
-          <View style={styles.topBar}>
-            <Profile
-              name="Dan Kitchener"
-              source={require('../images/dummy/dank.jpg')}
-              subtitle={`${Math.round(Math.random() * 15)} days ago`}
-              style={styles.profile}/>
-            <Star
-              value={false}
-              onValueChange={() => {}}/>
-          </View>
-        </Image>
-      </TouchableHighlight>
+
+        onPress={() => this.onItemPress(id)}
+        imageUri={imageUri}
+
+        name="Dan Kitchener"
+        userImageUri={userImageUri}
+        profileSubtitle={`${Math.round(Math.random() * 15)} days ago`}
+
+        StarValue={false}
+        StarOnValueChange={() => {}}/>
     );
   }
 
@@ -503,6 +506,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 
+<<<<<<< 6b1fd2dab1c70f21a91e864bb61ee66bdd6f0496
   row: {
     height: 400,
     flexDirection: 'row',
@@ -524,6 +528,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+=======
+>>>>>>> Make it a ListItem component
   loading: {
     alignItems: 'center',
     justifyContent: 'center',
