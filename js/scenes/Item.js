@@ -57,14 +57,12 @@ class Item extends Component {
       <Image
         source={{ uri: imageUri }}
         resizeMode="cover"
-        style={styles.image}
-      >
+        style={styles.image}>
         <View style={styles.topBar}>
           <SocialShare
-            message={'Shared from magnet!'}
-            url={'https://trymagnet.org/'}
-            style={styles.social}
-          />
+            message="Shared from magnet!"
+            url="https://trymagnet.org/"
+            style={styles.social}/>
           <Star
             value={false}
             onValueChange={() => {}}
@@ -107,22 +105,21 @@ const styles = StyleSheet.create({
 
   image: {
     flex: 1,
-    opacity: 0.6,
-    alignItems: 'flex-end',
   },
 
   topBar: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: 60,
+    margin: 10,
   },
 
   social: {
-    margin: 10,
+    marginRight: 10,
   },
 
   star: {
-    margin: 10,
+    flexDirection: 'row',
   },
 
   loading: {

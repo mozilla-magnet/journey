@@ -6,10 +6,8 @@ import { connect } from 'react-redux';
 import {
   View,
   Text,
-  Image,
   ListView,
   StyleSheet,
-  TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
 
@@ -20,7 +18,7 @@ import {
   EMPTY,
 } from '../store/constants';
 
-import Star from '../components/Star';
+import ListItem from '../components/ListItem';
 
 export class Home extends Component {
   constructor(props) {
@@ -87,28 +85,27 @@ export class Home extends Component {
     return (
       <ListView
         dataSource={this.dataSource}
-        renderRow={this.renderRow}
-        style={styles.list}>
+        renderRow={this.renderRow}>
       </ListView>
     );
   }
 
-  renderRow({ value: { id, imageUri } }) {
+  renderRow({ value: { id, imageUri, createdByUser } }) {
+    const userImageUri = createdByUser.imageUri;
+
     return (
-      <TouchableHighlight
+      <ListItem
         key={id}
-        style={styles.row}
-        onPress={() => this.onItemPress(id)}>
-        <Image
-          source={{ uri: imageUri }}
-          resizeMode="cover"
-          style={styles.image}>
-          <Star
-            value={false}
-            onValueChange={() => {}}
-            style={styles.star}/>
-        </Image>
-      </TouchableHighlight>
+
+        onPress={() => this.onItemPress(id)}
+        imageUri={imageUri}
+
+        name="Dan Kitchener"
+        userImageUri={userImageUri}
+        profileSubtitle={`${Math.round(Math.random() * 15)} days ago`}
+
+        StarValue={false}
+        StarOnValueChange={() => {}}/>
     );
   }
 
@@ -138,23 +135,6 @@ Home.propTypes = {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-  },
-
-  row: {
-    height: 300,
-    flexDirection: 'row',
-    backgroundColor: 'black',
-  },
-
-  image: {
-    flex: 1,
-    width: null,
-    height: null,
-    alignItems: 'flex-end',
-  },
-
-  star: {
-    margin: 10,
   },
 
   loading: {
