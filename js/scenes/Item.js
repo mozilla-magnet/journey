@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
 
   image: {
     flex: 1,
-    opacity: 0.6,
     alignItems: 'flex-end',
   },
 

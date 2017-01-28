@@ -11,6 +11,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   ActivityIndicator,
+  Platform,
 } from 'react-native';
 
 import {
@@ -22,6 +23,8 @@ import {
 
 import Star from '../components/Star';
 
+const SCROLL_TOP = 54 + (Platform.OS === 'ios' ? 20 : 24);
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +34,7 @@ export class Home extends Component {
     // never bind functions in render(), it
     // messes with react's diffing logic
     this.onSettingsPress = this.onSettingsPress.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
     this.renderRow = this.renderRow.bind(this);
 
     this.dataSource = new ListView.DataSource({
@@ -41,6 +45,14 @@ export class Home extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchItemsIfNeeded());
+
+    setTimeout(() => {
+      const { listView } = this.refs;
+      if (!listView) {
+        return;
+      }
+      listView.scrollTo({ x: 0, y: SCROLL_TOP, animated: false });
+    });
   }
 
   componentWillReceiveProps({ items }) {
@@ -54,11 +66,6 @@ export class Home extends Component {
   render() {
     return (
       <View style={styles.root}>
-        <Header
-          title="Home"
-          action="Settings"
-          navigator={this.navigator}
-          onActionPress={this.onSettingsPress}/>
         {this.renderItems()}
       </View>
     );
@@ -86,10 +93,22 @@ export class Home extends Component {
   renderList() {
     return (
       <ListView
+        ref="listView"
         dataSource={this.dataSource}
+        renderHeader={this.renderHeader}
         renderRow={this.renderRow}
         style={styles.list}>
       </ListView>
+    );
+  }
+
+  renderHeader() {
+    return (
+      <Header
+        title="Home"
+        action="Settings"
+        navigator={this.navigator}
+        onActionPress={this.onSettingsPress}/>
     );
   }
 
