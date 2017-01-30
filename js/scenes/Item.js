@@ -66,24 +66,6 @@ class Item extends Component {
   render() {
     return (
       <View style={styles.root}>
-        {this.renderContent()}
-      </View>
-    );
-  }
-
-  renderContent() {
-    const { item } = this.props;
-    if (!item || item.status === FETCHING) return this.renderContentLoading();
-    const {
-      value: {
-        imageUri,
-        latitude,
-        longitude,
-      },
-    } = item;
-
-    return (
-      <View style={styles.content}>
         <Animated.View
           style={[styles.topLayer, { transform: [{ translateY: this.translateY }] }]}
           {...this.panHandlers}>
@@ -91,40 +73,71 @@ class Item extends Component {
             title="Item"
             navigator={this.navigator}
             style={styles.header}/>
-          <Image
-            style={styles.image}
-            source={{ uri: imageUri }}
-            resizeMode="cover"/>
-          <View style={styles.topBar}>
-            <SocialShare
-              message={'Shared from magnet!'}
-              url={'https://trymagnet.org/'}
-              style={styles.social}
-            />
-            <Star
-              value={false}
-              onValueChange={() => {}}
-              style={styles.star}/>
-          </View>
+          {this.renderBackground()}
+          {this.renderContent()}
         </Animated.View>
         <View style={styles.bottomLayer}>
-          <MagnetMap
-            style={styles.map}
-            region={{
-              latitude,
-              longitude,
-              latitudeDelta: 0.0222,
-              longitudeDelta: 0.0321,
-            }}>
-            <MagnetMap.Marker
-              source={{ uri: imageUri }}
-              coordinate={{
-                latitude,
-                longitude,
-              }}/>
-          </MagnetMap>
+          {this.renderMap()}
+        </View>
+
+      </View>
+    );
+  }
+
+  renderBackground() {
+    if (!this.dataReady()) return;
+    const { value: { imageUri } } = this.props.item;
+    return <Image
+      style={styles.image}
+      source={{ uri: imageUri }}/>;
+  }
+
+  renderContent() {
+    if (!this.dataReady()) return this.renderContentLoading();
+
+    return (
+      <View style={styles.content}>
+        <View style={styles.topBar}>
+          <SocialShare
+            message={'Shared from magnet!'}
+            url={'https://trymagnet.org/'}
+            style={styles.social}/>
+          <Star
+            value={false}
+            onValueChange={() => {}}
+            style={styles.star}/>
         </View>
       </View>
+    );
+  }
+
+  renderMap() {
+    if (!this.dataReady()) return;
+
+    const {
+      value: {
+        imageUri,
+        latitude,
+        longitude,
+      },
+    } = this.props.item;
+
+    return (
+      <MagnetMap
+        style={styles.map}
+        region={{
+          latitude,
+          longitude,
+          latitudeDelta: 0.0222,
+          longitudeDelta: 0.0321,
+        }}>
+        <MagnetMap.Marker
+          source={{ uri: imageUri }}
+          coordinate={{
+            latitude,
+            longitude,
+          }}/>
+      </MagnetMap>
     );
   }
 
@@ -139,7 +152,9 @@ class Item extends Component {
   createPanHander() {
     return PanResponder.create({
       onMoveShouldSetPanResponder: (evt, { dy }) => {
-        return Math.abs(dy) >= 20;
+        const substantialVerticalPan = Math.abs(dy) >= 20;
+        const shouldPan = this.dataReady() && substantialVerticalPan;
+        return shouldPan;
       },
 
       onPanResponderGrant: () => {
@@ -176,6 +191,11 @@ class Item extends Component {
       velocity: 10,
     }).start();
   }
+
+  dataReady() {
+    const { item } = this.props;
+    return item && item.status !== FETCHING;
+  }
 }
 
 Item.propTypes = {
@@ -198,7 +218,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     position: 'relative',
-    backgroundColor: 'blue',
   },
 
   topLayer: {
@@ -206,13 +225,18 @@ const styles = StyleSheet.create({
     zIndex: 1,
     flex: 1,
     backgroundColor: '#222',
-    elevation: 4,
-  },
 
-  bottomLayer: {
-    ...StyleSheet.absoluteFillObject,
-    flex: 1,
-    backgroundColor: 'red',
+    // shadow android
+    elevation: 4,
+
+    // shadow ios
+    shadowColor: '#000000',
+    shadowOpacity: 0.8,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
 
   image: {
@@ -226,9 +250,9 @@ const styles = StyleSheet.create({
   },
 
   topBar: {
-    flex: 1,
+    flex: 0,
     flexDirection: 'row',
-    paddingTop: 60,
+    justifyContent: 'flex-end',
   },
 
   social: {
@@ -243,6 +267,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
+  },
+
+  bottomLayer: {
+    ...StyleSheet.absoluteFillObject,
+    flex: 1,
   },
 
   map: {
