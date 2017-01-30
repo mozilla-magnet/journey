@@ -14,9 +14,8 @@ export default class MagnetMapMarker extends Component {
       <MapView.Marker coordinate={coordinate}>
         <View style={styles.container}>
           <Image
-            style={styles.thumbnail}
-            resizeMode={Image.resizeMode.cover}
-            source={source}/>
+            source={source}
+            style={styles.image}/>
           <View style={styles.arrow}/>
         </View>
       </MapView.Marker>
@@ -29,23 +28,20 @@ MagnetMapMarker.propTypes = {
   source: Image.propTypes.source,
 };
 
+const IMAGE_WIDTH = 50;
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    alignSelf: 'flex-start',
   },
 
-  thumbnail: {
-    width: 50,
-    height: 50,
-
-    flex: 0,
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    padding: 2,
+  image: {
+    width: IMAGE_WIDTH,
+    height: IMAGE_WIDTH,
     borderColor: '#fff',
-    borderWidth: 2,
-    borderRadius: 100,
+    borderWidth: 1.5,
+    borderRadius: IMAGE_WIDTH / 2,
+    resizeMode: 'cover',
   },
 
   arrow: {
