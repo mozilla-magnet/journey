@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import timeAgo from '../utils/time-ago';
 import Star from '../components/Star';
+import { theme } from '../../config';
 
 import {
   TouchableHighlight,
@@ -36,7 +37,7 @@ export default class ListItem extends React.Component {
     return (
       <TouchableHighlight
         onPress={onPress}
-        style={[styles.row, style]}>
+        style={[styles.root, style]}>
         <Image
           source={{ uri: imageUri }}
           style={styles.image}>
@@ -46,8 +47,8 @@ export default class ListItem extends React.Component {
                 source={{ uri: userImageUri }}
                 style={styles.profileThumbnail}/>
               <View style={styles.profileTitleContainer}>
-                <Text style={styles.profileTitle}>{userName.toUpperCase()}</Text>
-                <Text style={styles.timestamp}>{timeAgo(timestamp)}</Text>
+                <Text style={styles.profileTitle}>{this.formatName(userName)}</Text>
+                <Text style={styles.timestamp}>{this.formatTime(timestamp)}</Text>
               </View>
             </View>
             <Star
@@ -57,6 +58,40 @@ export default class ListItem extends React.Component {
         </Image>
       </TouchableHighlight>
     );
+  }
+
+  /**
+   * Capitalize and letter-space.
+   *
+   * @param {String} value
+   */
+  formatName(value) {
+    return this.capitalizeAndSpace(value);
+  }
+
+  /**
+   * Format a unix timestamp to 'time ago'
+   * and capitalize and space letters.
+   *
+   * @param {Number} value
+   */
+  formatTime(value) {
+    return this.capitalizeAndSpace(timeAgo(value));
+  }
+
+  /**
+   * Capitalize and space letters.
+   *
+   * This is required because react-native doesn't
+   * support `letterSpacing` on Android yet.
+   *
+   * @param {String} value
+   */
+  capitalizeAndSpace(value) {
+    return value
+      .toUpperCase()
+      .split('')
+      .join('\u200A');
   }
 }
 
@@ -72,14 +107,15 @@ ListItem.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  row: {
-    height: 300,
+  root: {
     flexDirection: 'row',
     backgroundColor: 'black',
   },
 
   image: {
     flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
     width: null,
     height: null,
     resizeMode: 'cover',
@@ -87,7 +123,6 @@ const styles = StyleSheet.create({
 
   topBar: {
     flexDirection: 'row',
-    margin: 10,
   },
 
   profile: {
@@ -114,17 +149,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     color: 'white',
     fontSize: 14,
-    textShadowColor: 'black',
-    textShadowOffset: { width: 0.1, height: 0.1 },
-    textShadowRadius: 2,
+    fontFamily: theme.fontBook,
+    marginTop: 2,
+    textShadowColor: 'rgba(0,0,0,0.8)',
+    textShadowOffset: { width: 0, height: 0.5 },
+    textShadowRadius: 1,
+    letterSpacing: 1,
   },
 
   timestamp: {
     backgroundColor: 'transparent',
     color: 'white',
-    fontSize: 10,
-    textShadowColor: 'black',
-    textShadowOffset: { width: 0.1, height: 0.1 },
-    textShadowRadius: 2,
+    fontSize: 9,
+    fontFamily: theme.fontLightItalic,
+    textShadowColor: 'rgba(0,0,0,0.8)',
+    textShadowOffset: { width: 0, height: 0.5 },
+    textShadowRadius: 1,
   },
 });

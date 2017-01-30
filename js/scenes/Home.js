@@ -1,24 +1,17 @@
 import { fetchItemsIfNeeded } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
+import ListItem from '../components/ListItem';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
-import Star from '../components/Star';
 
 import {
   View,
   Text,
-<<<<<<< 6b1fd2dab1c70f21a91e864bb61ee66bdd6f0496
-  Image,
   Easing,
   Animated,
   ListView,
   StyleSheet,
   PanResponder,
-  TouchableHighlight,
-=======
-  ListView,
-  StyleSheet,
->>>>>>> Make it a ListItem component
   ActivityIndicator,
 } from 'react-native';
 
@@ -29,11 +22,6 @@ import {
   EMPTY,
 } from '../store/constants';
 
-<<<<<<< 6b1fd2dab1c70f21a91e864bb61ee66bdd6f0496
-=======
-import ListItem from '../components/ListItem';
-
->>>>>>> Make it a ListItem component
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -452,8 +440,6 @@ export class Home extends Component {
     const publisherImageUri = createdByUser.imageUri;
     const publisherName = createdByUser.name;
 
-    console.log({ createdByUser });
-
     return (
       <ListItem
         key={id}
@@ -463,7 +449,8 @@ export class Home extends Component {
         userImageUri={publisherImageUri}
         timestamp={timeCreated}
         starValue={false}
-        onStarChange={() => {}}/>
+        onStarChange={() => {}}
+        style={styles.row}/>
     );
   }
 
@@ -506,30 +493,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 
-<<<<<<< 6b1fd2dab1c70f21a91e864bb61ee66bdd6f0496
   row: {
-    height: 400,
-    flexDirection: 'row',
-    backgroundColor: 'black',
+    height: 300,
   },
 
-  image: {
-    flex: 1,
-    width: null,
-    height: null,
-  },
-
-  topBar: {
-    flexDirection: 'row',
-    margin: 10,
-  },
-
-  profile: {
-    flex: 1,
-  },
-
-=======
->>>>>>> Make it a ListItem component
   loading: {
     alignItems: 'center',
     justifyContent: 'center',
