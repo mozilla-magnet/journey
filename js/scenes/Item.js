@@ -88,8 +88,8 @@ class Item extends Component {
     if (!this.dataReady()) return;
     const { value: { imageUri } } = this.props.item;
     return <Image
-      style={styles.image}
-      source={{ uri: imageUri }}/>;
+      source={{ uri: imageUri }}
+      style={styles.image}/>;
   }
 
   renderContent() {
