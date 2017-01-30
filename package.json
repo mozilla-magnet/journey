@@ -19,6 +19,7 @@
     "react-native-heading": "git://github.com/arcturus/react-native-heading.git",
     "react-native-maps": "^0.13.0",
     "react-native-share": "^1.0.18",
+    "react-native-viewpager": "^0.2.13",
     "react-redux": "^5.0.1",
     "realm": "^0.15.4",
     "redux": "^3.6.0",
