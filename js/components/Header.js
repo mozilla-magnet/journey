@@ -56,7 +56,8 @@ export default class Header extends Component {
   }
 
   canGoBack() {
-    return this.props.navigator.getCurrentRoutes().length > 1;
+    const { navigator } = this.props;
+    return !!navigator && navigator.getCurrentRoutes().length > 1;
   }
 
   onBackPress() {
@@ -80,12 +81,12 @@ Header.propTypes = {
   navigator: PropTypes.object,
 };
 
-const HEADER_HEIGHT = 54;
+Header.HEIGHT = 54;
 
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#333',
-    height: HEADER_HEIGHT,
+    height: Header.HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 10,
