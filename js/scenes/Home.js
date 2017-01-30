@@ -107,7 +107,11 @@ export class Home extends Component {
   }
 
   componentWillMount() {
-    this._panResponder = PanResponder.create({
+    this.panHandlers = this.createPanHandlers();
+  }
+
+  createPanHandlers() {
+    return PanResponder.create({
 
       /**
        * Decides whether to handle the current gesture
@@ -156,7 +160,7 @@ export class Home extends Component {
       /**
        * Always attempt to keep control of the gesture.
        *
-       * @return {Booelan}
+       * @return {Boolean}
        */
       onPanResponderTerminationRequest: () => false,
 
@@ -208,7 +212,7 @@ export class Home extends Component {
         if (isPanningDown && scrollAtTop) this.snapOpen();
         else this.onPanEnd(e, gesture);
       },
-    });
+    }).panHandlers;
   }
 
   /**
@@ -299,7 +303,7 @@ export class Home extends Component {
    *
    * Gives us an opportunity to store the
    * last known scroll position and close
-   * the header shld it happen to be open.
+   * the header should it happen to be open.
    *
    * @type {Object}
    */
@@ -355,7 +359,11 @@ export class Home extends Component {
   }
 
   /**
-   * Clamps the
+   * Clamps the given Y value between the upper
+   * and lower bounds. Returns the clamped
+   * value and the offset from the bounds.
+   *
+   * @param {Number} y
    */
   clamp(y) {
     if (y > Header.HEIGHT) return { value: Header.HEIGHT, offset: y - Header.HEIGHT };
@@ -389,7 +397,7 @@ export class Home extends Component {
         </Animated.View>
 
         <Animated.View
-          {...this._panResponder.panHandlers}
+          {...this.panHandlers}
           style={[styles.listContainer, { transform: [{ translateY: this.translateY }] }]}>
           {this.renderItems()}
         </Animated.View>
