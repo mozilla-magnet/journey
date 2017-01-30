@@ -11,7 +11,8 @@
     "open-android-studio": "open -a /Applications/Android\\ Studio.app/ ."
   },
   "dependencies": {
-    "journey-data": "https://github.com/mozilla-magnet/journey-data.git",
+    "journey-data": "mozilla-magnet/journey-data",
+    "moment": "^2.17.1",
     "react": "~15.4.0-rc.4",
     "react-native": "0.40.0",
     "react-native-heading": "git://github.com/arcturus/react-native-heading.git",

@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react';
+import timeAgo from '../utils/time-ago';
+import Star from '../components/Star';
+
 import {
   TouchableHighlight,
   Image,
@@ -7,58 +10,64 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Star from '../components/Star';
-
 /**
  * Note: The name is turned into upper case. This is not recommended for some
  * languages. Unfortunately the CSS `text-transform: uppercase;` property is not
  * implemented in React Native.
  */
 
-const ListItem = ({
-  onPress, imageUri,
-  name, userImageUri, profileSubtitle = '',
-  StarValue = false, StarOnValueChange,
-  style,
-}) => (
-  <TouchableHighlight
-    onPress={onPress}
-    style={[styles.row, style]}>
-    <Image
-      source={{ uri: imageUri }}
-      resizeMode="cover"
-      style={styles.image}>
-      <View style={styles.topBar}>
+export default class ListItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-        <View style={styles.profile}>
-          <Image
-            source={{ uri: userImageUri }}
-            style={styles.profileThumbnail}/>
-          <View style={styles.profileTitleContainer}>
-            <Text style={styles.profileTitle}>{name.toUpperCase()}</Text>
-            <Text style={styles.profileSubtitle}>{profileSubtitle}</Text>
+  render() {
+    const {
+      onPress,
+      imageUri,
+      userName,
+      userImageUri,
+      timestamp = '',
+      startValue = false,
+      onStarChange,
+      style,
+    } = this.props;
+
+    return (
+      <TouchableHighlight
+        onPress={onPress}
+        style={[styles.row, style]}>
+        <Image
+          source={{ uri: imageUri }}
+          style={styles.image}>
+          <View style={styles.topBar}>
+            <View style={styles.profile}>
+              <Image
+                source={{ uri: userImageUri }}
+                style={styles.profileThumbnail}/>
+              <View style={styles.profileTitleContainer}>
+                <Text style={styles.profileTitle}>{userName.toUpperCase()}</Text>
+                <Text style={styles.timestamp}>{timeAgo(timestamp)}</Text>
+              </View>
+            </View>
+            <Star
+              value={startValue}
+              onValueChange={onStarChange}/>
           </View>
-        </View>
-
-        <Star
-          value={StarValue}
-          onValueChange={StarOnValueChange}/>
-      </View>
-    </Image>
-  </TouchableHighlight>
-);
+        </Image>
+      </TouchableHighlight>
+    );
+  }
+}
 
 ListItem.propTypes = {
   onPress: PropTypes.func,
   imageUri: PropTypes.string,
-
-  name: PropTypes.string,
-  userImageUri: PropTypes.number,
-  profileSubtitle: PropTypes.string,
-
-  StarValue: PropTypes.bool,
-  StarOnValueChange: PropTypes.func,
-
+  userName: PropTypes.string,
+  userImageUri: PropTypes.string,
+  timestamp: PropTypes.number,
+  startValue: PropTypes.bool,
+  onStarChange: PropTypes.func,
   style: View.propTypes.style,
 };
 
@@ -68,32 +77,39 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'black',
   },
+
   image: {
     flex: 1,
     width: null,
     height: null,
+    resizeMode: 'cover',
   },
+
   topBar: {
     flexDirection: 'row',
     margin: 10,
   },
+
   profile: {
     flex: 1,
     flexDirection: 'row',
   },
+
   profileThumbnail: {
-    height: 24,
-    width: 24,
-    borderRadius: 12,
+    height: 30,
+    width: 30,
+    borderRadius: 15,
     borderColor: 'white',
-    borderWidth: 2,
+    borderWidth: 1,
   },
+
   profileTitleContainer: {
     flex: 1,
     flexDirection: 'column',
     marginLeft: 8,
     marginTop: -3,
   },
+
   profileTitle: {
     backgroundColor: 'transparent',
     color: 'white',
@@ -102,7 +118,8 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 0.1, height: 0.1 },
     textShadowRadius: 2,
   },
-  profileSubtitle: {
+
+  timestamp: {
     backgroundColor: 'transparent',
     color: 'white',
     fontSize: 10,
@@ -111,5 +128,3 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
 });
-
-export default ListItem;

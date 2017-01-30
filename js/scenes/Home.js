@@ -448,22 +448,22 @@ export class Home extends Component {
     );
   }
 
-  renderRow({ value: { id, imageUri, createdByUser } }) {
-    const userImageUri = createdByUser.imageUri;
+  renderRow({ value: { id, imageUri, createdByUser, timeCreated } }) {
+    const publisherImageUri = createdByUser.imageUri;
+    const publisherName = createdByUser.name;
+
+    console.log({ createdByUser });
 
     return (
       <ListItem
         key={id}
-
         onPress={() => this.onItemPress(id)}
         imageUri={imageUri}
-
-        name="Dan Kitchener"
-        userImageUri={userImageUri}
-        profileSubtitle={`${Math.round(Math.random() * 15)} days ago`}
-
-        StarValue={false}
-        StarOnValueChange={() => {}}/>
+        userName={publisherName}
+        userImageUri={publisherImageUri}
+        timestamp={timeCreated}
+        starValue={false}
+        onStarChange={() => {}}/>
     );
   }
 
