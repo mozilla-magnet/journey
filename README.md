@@ -28,7 +28,7 @@ On OSX Android Studio must be launched from the command line in order to inherit
 Attempting to build using Android Studio that has been launched via the normal OSX icon will fail to build. We've included a shortcut script to help.
 
 ```bash
-$ npm run launch-android-studio
+$ npm run open-android-studio
 ```
 
 ### iOS
