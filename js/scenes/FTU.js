@@ -96,13 +96,13 @@ export class FTU extends Component {
       </View>
     );
   }
+
+  static propTypes = {
+    navigator: PropTypes.object,
+  }
 }
 
 const { width, height } = Dimensions.get('window');
-
-FTU.propTypes = {
-  navigator: PropTypes.object,
-};
 
 const styles = StyleSheet.create({
   container: {
