@@ -114,8 +114,7 @@ const styles = StyleSheet.create({
 
   image: {
     flex: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    padding: 12,
     width: null,
     height: null,
     resizeMode: 'cover',
