@@ -23,22 +23,6 @@ export class Debug extends Component {
     super(props);
 
     this.navigator = this.props.navigator;
-
-    this.state = {
-      latitude: 0,
-      longitude: 0,
-    };
-  }
-
-  componentWillReceiveProps({ location }) {
-    if (!location) {
-      return;
-    }
-
-    this.setState({
-      latitude: location.value.coords.latitude,
-      longitude: location.value.coords.longitude,
-    });
   }
 
   render() {
@@ -50,8 +34,8 @@ export class Debug extends Component {
         <View>
           <Text style={styles.text}>To the Shard</Text>
           <Compass
-            fromLat={this.state.latitude}
-            fromLon={this.state.longitude}
+            fromLat={this.props.location.value.coords.latitude}
+            fromLon={this.props.location.value.coords.longitude}
             toLat={51.504263}
             toLon={-0.088266}/>
         </View>
