@@ -256,11 +256,11 @@ const styles = StyleSheet.create({
   },
 
   social: {
-    margin: 10,
+    marginRight: 10,
   },
 
   star: {
-    margin: 10,
+    flexDirection: 'row',
   },
 
   loading: {

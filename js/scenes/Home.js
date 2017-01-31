@@ -1,19 +1,17 @@
 import { fetchItemsIfNeeded } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
+import ListItem from '../components/ListItem';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
-import Star from '../components/Star';
 
 import {
   View,
   Text,
-  Image,
   Easing,
   Animated,
   ListView,
   StyleSheet,
   PanResponder,
-  TouchableHighlight,
   ActivityIndicator,
 } from 'react-native';
 
@@ -434,27 +432,25 @@ export class Home extends Component {
         scrollEventThrottle={16}
         scrollEnabled={this.scrollEnabled}
         bounces={false}
-        style={[styles.list]}>
-      </ListView>
+        style={[styles.list]}/>
     );
   }
 
-  renderRow({ value: { id, imageUri } }) {
+  renderRow({ value: { id, imageUri, createdByUser, timeCreated } }) {
+    const publisherImageUri = createdByUser.imageUri;
+    const publisherName = createdByUser.name;
+
     return (
-      <TouchableHighlight
+      <ListItem
         key={id}
-        style={styles.row}
-        onPress={() => this.onItemPress(id)}>
-        <Image
-          source={{ uri: imageUri }}
-          resizeMode="cover"
-          style={styles.image}>
-          <Star
-            value={false}
-            onValueChange={() => {}}
-            style={styles.star}/>
-        </Image>
-      </TouchableHighlight>
+        onPress={() => this.onItemPress(id)}
+        imageUri={imageUri}
+        userName={publisherName}
+        userImageUri={publisherImageUri}
+        timestamp={timeCreated}
+        starValue={false}
+        onStarChange={() => {}}
+        style={styles.row}/>
     );
   }
 
@@ -498,20 +494,7 @@ const styles = StyleSheet.create({
   },
 
   row: {
-    height: 400,
-    flexDirection: 'row',
-    backgroundColor: 'black',
-  },
-
-  image: {
-    flex: 1,
-    width: null,
-    height: null,
-    alignItems: 'flex-end',
-  },
-
-  star: {
-    margin: 10,
+    height: 300,
   },
 
   loading: {
