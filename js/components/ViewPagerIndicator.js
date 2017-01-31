@@ -11,32 +11,45 @@ const DOT_SIZE = 12;
 const DOT_SPACING = DOT_SIZE / 2;
 const DOT_FULL_WIDTH = DOT_SIZE + DOT_SPACING * 2;
 
+/**
+ * This component is used to style the dots (or bullets) used by
+ * react-native-viewpager. It's a purely stateless functional component that is
+ * only concerned with rendering the dots and transitioning the active dot from
+ * one page of the view pager to another.
+ *
+ * @param pageCount {number} The total number of pages.
+ * @param activePage {number} The currently active page.
+ * @param scrollValue {Animated.Value} Used to transition the active dot.
+ * @param scrollOffset {number} Used to reset dot position after a transition.
+ * @return {Component}
+ */
 const ViewPagerIndicator = ({
   pageCount,
   activePage,
   scrollValue,
   scrollOffset,
 }) => {
+  // Initial left position of the active dot used during transition.
   const offsetX = (width - DOT_FULL_WIDTH * pageCount) / 2 +
     (activePage - scrollOffset) * DOT_FULL_WIDTH;
+  // The CSS `left` property.
   const left = scrollValue.interpolate({
     inputRange: [0, 1],
     outputRange: [offsetX, offsetX + DOT_FULL_WIDTH],
   });
 
+  // Create the elements for the inactive dots.
   const indicators = [];
   for (let i = 0; i < pageCount; i++) {
-    indicators.push((
-      <View key={i} style={styles.tab}>
-        <View style={styles.dot}/>
-      </View>
-    ));
+    indicators.push(
+      <View key={i} style={styles.dot}/>
+    );
   }
 
   return (
-    <View style={styles.tabs}>
+    <View style={styles.container}>
       {indicators}
-      <Animated.View style={[styles.dot, styles.selectedDot, { left }]}/>
+      <Animated.View style={[styles.dot, styles.activeDot, { left }]}/>
     </View>
   );
 };
@@ -50,12 +63,10 @@ ViewPagerIndicator.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  tab: {
-    marginBottom: 20,
-  },
-  tabs: {
+  container: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginBottom: 20,
   },
   dot: {
     width: DOT_SIZE,
@@ -64,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.5)',
     marginHorizontal: DOT_SPACING,
   },
-  selectedDot: {
+  activeDot: {
     position: 'absolute',
     backgroundColor: '#fff',
   },

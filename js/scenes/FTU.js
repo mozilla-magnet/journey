@@ -20,8 +20,8 @@ export class FTU extends Component {
     this.navigator = this.props.navigator;
 
     const PAGES = [
-      this.renderPage1(),
-      this.renderPage2(),
+      () => this.renderPage1(),
+      () => this.renderPage2(),
     ];
     const dataSource = new ViewPager.DataSource({
       pageHasChanged: (p1, p2) => p1 !== p2,
@@ -45,7 +45,7 @@ export class FTU extends Component {
             isLoop={false}
             locked={true}
             dataSource={this.state.dataSource}
-            renderPage={(data) => data}
+            renderPage={(render) => render()}
             renderPageIndicator={() => <ViewPagerIndicator/>}
             style={styles.viewPager}/>
         </View>
