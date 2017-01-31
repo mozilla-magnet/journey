@@ -7,26 +7,52 @@ import {
   Dimensions,
   StyleSheet,
   Platform,
+  StatusBar,
 } from 'react-native';
-import Carousel from 'react-native-looped-carousel';
+import ViewPager from 'react-native-viewpager';
+import ViewPagerIndicator from '../components/ViewPagerIndicator';
 import { connect } from 'react-redux';
+import { theme } from '../../config';
 
 export class FTU extends Component {
+  constructor(props) {
+    super(props);
+
+    const PAGES = [
+      this.renderPage1(),
+      this.renderPage2(),
+    ];
+    const dataSource = new ViewPager.DataSource({
+      pageHasChanged: (p1, p2) => p1 !== p2,
+    });
+
+    this.state = {
+      dataSource: dataSource.cloneWithPages(PAGES),
+    };
+  }
+
   render() {
     return (
       <Image
         source={require('../images/ftu/background.jpg')}
         resizeMode="cover"
         style={styles.container}>
-        <Carousel
-          autoplay={false}
-          bullets={true}
-          bulletStyle={styles.bulletStyle}
-          onAnimateNextPage={(p) => console.log(p)}
-          style={styles.carousel}>
-          {this.renderPage1()}
-          {this.renderPage2()}
-        </Carousel>
+        <StatusBar
+          translucent={true}
+          backgroundColor="rgba(0, 0, 0, 0)"
+          barStyle="light-content"
+        />
+        <View style={styles.scrim}>
+          <ViewPager
+            ref="viewPager"
+            autoPlay={false}
+            isLoop={false}
+            locked={true}
+            dataSource={this.state.dataSource}
+            renderPage={(data) => data}
+            renderPageIndicator={() => <ViewPagerIndicator/>}
+            style={styles.viewPager}/>
+        </View>
       </Image>
     );
   }
@@ -34,14 +60,14 @@ export class FTU extends Component {
   renderPage1() {
     return (
       <View style={styles.screen}>
-        <Text style={styles.title}>{'Hear the story of London vibrant street art'.toUpperCase()}</Text>
+        <Text style={styles.title}>{`Hear the story of London's vibrant street art`.toUpperCase()}</Text>
         <Text style={styles.text}>This month Project Magnet brings you a selection of amazing street art from around London.</Text>
         <View style={styles.button}>
           <View style={styles.border}>
             <Button
               title="GET STARTED"
               accessibilityLabel="Continue to the next screen."
-              onPress={() => {}}
+              onPress={() => this.refs.viewPager.goToPage(1)}
               color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
           </View>
         </View>
@@ -76,8 +102,6 @@ export class FTU extends Component {
   }
 }
 
-FTU.propTypes = {};
-
 const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -86,13 +110,13 @@ const styles = StyleSheet.create({
     width,
     height,
   },
-  carousel: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+  viewPager: {
+    flex: 1,
   },
-  bulletStyle: {
-    backgroundColor: 'rgba(255,255,255,0.5)',
-    borderWidth: 0,
+  scrim: {
+    width,
+    height,
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   screen: {
     width,
@@ -101,12 +125,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   title: {
+    fontFamily: theme.fontBook,
     fontSize: 30,
     lineHeight: Math.round(30 * 1.5),
-    fontWeight: 'bold',
     color: 'white',
   },
   text: {
+    fontFamily: theme.fontBook,
     fontSize: 20,
     lineHeight: Math.round(20 * 1.5),
     color: 'white',
