@@ -10,12 +10,13 @@ import {
 export const watchLocation = () => {
   return (dispatch) => {
     dispatch(locationAcquiring);
+    /* eslint-disable no-unused-vars */
     let watch = new LocationObserver((geo) => {
       dispatch(locationAcquired(geo));
     }, () => {
       dispatch(locationErrored);
-    })
-  }
+    });
+  };
 };
 
 export const locationAcquiring = () => {

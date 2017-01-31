@@ -34,7 +34,7 @@ export class Debug extends Component {
     if (!location) {
       return;
     }
-    
+
     this.setState({
       latitude: location.value.coords.latitude,
       longitude: location.value.coords.longitude,
@@ -61,7 +61,7 @@ export class Debug extends Component {
   }
 
   renderLocation({ status }) {
-    switch(status) {
+    switch (status) {
       case EMPTY: return this.renderGeoMessage('No data');
       case LOCATION_ACQUIRED: return this.renderGeo();
       case LOCATION_ACQUIRING: return this.renderGeoMessage('Adquiring geolocation ...');
@@ -70,7 +70,7 @@ export class Debug extends Component {
   }
 
   renderGeoMessage(msg) {
-    return(
+    return (
       <Text>{msg}</Text>
     );
   }
@@ -79,7 +79,7 @@ export class Debug extends Component {
     const when = `${new Date(this.props.location.value.timestamp)}`;
     const latitude = this.props.location.value.coords.latitude;
     const longitude = this.props.location.value.coords.longitude;
-    return(
+    return (
       <Text>Last location at ({latitude},{longitude}) on {when}</Text>
     );
   }

@@ -6,6 +6,7 @@ import {
   StatusBar,
   StyleSheet,
   Platform,
+  AppState,
 } from 'react-native';
 
 import { theme } from '../config';
@@ -20,8 +21,9 @@ import Map from './scenes/Map';
 
 import { connect } from 'react-redux';
 import { watchLocation } from './store/actions';
+import LocationObserver from './api/locationObserver';
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +39,8 @@ class App extends Component {
 
     this.renderScene = this.renderScene.bind(this);
     this.onAndroidBack = this.onAndroidBack.bind(this);
+
+    AppState.addEventListener('change', this.onAppStateChange.bind(this));
   }
 
   componentDidMount() {
@@ -87,6 +91,29 @@ class App extends Component {
     }
 
     console.log('App#onDeepLink()', url);
+  }
+
+  /**
+   * React to changes in the app status, like going to the background,
+   * becoming inactive, or coming to the foreground.
+   * There are other states, like memory pressure that are not being
+   * handled.
+   */
+  onAppStateChange(appState) {
+    let locationObserverInstance = LocationObserver.instance;
+    switch (appState) {
+      case 'active':
+        if (locationObserverInstance != null) {
+          locationObserverInstance.enable();
+        }
+        break;
+      case 'background':
+      case 'innactive':
+        if (locationObserverInstance != null) {
+          locationObserverInstance.disable();
+        }
+        break;
+    }
   }
 
   render() {

@@ -1,39 +1,41 @@
-const ReactNative = require('react-native');
-const { 
-  AppState,
-} = ReactNative;
-
 // Configuration for location options, using gps, timeout and age
 const LOCATION_CONFIG = {
-  enableHighAccuracy: true, 
-  timeout: 10000, 
+  enableHighAccuracy: true,
+  timeout: 10000,
   maximumAge: 1000,
-  distanceFilter: 5,
+  distanceFilter: 1,
 };
+
+let instance = null;
 
 export default class LocationObserver {
   constructor(onUpdate, onError) {
+    if (instance) {
+      return instance;
+    }
+
+    instance = this;
+
     this.watchId = null;
     this.onUpdate = onUpdate;
     this.onError = onError;
 
-    AppState.addEventListener('change', this.onAppStateChange.bind(this));
+    this.date = new Date();
 
+    this.enable();
+  }
+
+  static get instance() {
+    return instance;
+  }
+
+  enable() {
     this._getLocation();
     this._watchLocation();
   }
 
-  onAppStateChange(appState) {
-    switch(appState) {
-      case 'active':
-        this._getLocation();
-        this._watchLocation();
-        break;
-      case 'background':
-      case 'innactive':
-        this._clearWatch();
-        break;
-    }
+  disable() {
+    this._clearWatch();
   }
 
   _getLocation() {
@@ -47,4 +49,4 @@ export default class LocationObserver {
   _clearWatch() {
     navigator.geolocation.clearWatch(this.watchId);
   }
-};
+}
