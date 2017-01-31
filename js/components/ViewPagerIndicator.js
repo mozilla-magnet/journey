@@ -8,7 +8,8 @@ import {
 
 const { width } = Dimensions.get('window');
 const DOT_SIZE = 12;
-const DOT_SPACE = 6;
+const DOT_SPACING = DOT_SIZE / 2;
+const DOT_FULL_WIDTH = DOT_SIZE + DOT_SPACING * 2;
 
 const ViewPagerIndicator = ({
   pageCount,
@@ -16,11 +17,11 @@ const ViewPagerIndicator = ({
   scrollValue,
   scrollOffset,
 }) => {
-  const itemWidth = DOT_SIZE + DOT_SPACE * 2;
-  const offsetX = width / 2 - itemWidth - scrollOffset * activePage;
+  const offsetX = (width - DOT_FULL_WIDTH * pageCount) / 2 +
+    (activePage - scrollOffset) * DOT_FULL_WIDTH;
   const left = scrollValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [offsetX, offsetX + itemWidth],
+    outputRange: [offsetX, offsetX + DOT_FULL_WIDTH],
   });
 
   const indicators = [];
@@ -35,7 +36,7 @@ const ViewPagerIndicator = ({
   return (
     <View style={styles.tabs}>
       {indicators}
-      <Animated.View style={[styles.curDot, { left }]}/>
+      <Animated.View style={[styles.dot, styles.selectedDot, { left }]}/>
     </View>
   );
 };
@@ -50,30 +51,22 @@ ViewPagerIndicator.propTypes = {
 
 const styles = StyleSheet.create({
   tab: {
-    alignItems: 'center',
+    marginBottom: 20,
   },
   tabs: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
   },
   dot: {
     width: DOT_SIZE,
     height: DOT_SIZE,
     borderRadius: DOT_SIZE / 2,
     backgroundColor: 'rgba(255,255,255,0.5)',
-    marginLeft: DOT_SPACE,
-    marginRight: DOT_SPACE,
+    marginHorizontal: DOT_SPACING,
   },
-  curDot: {
+  selectedDot: {
     position: 'absolute',
-    width: DOT_SIZE,
-    height: DOT_SIZE,
-    borderRadius: DOT_SIZE / 2,
     backgroundColor: '#fff',
-    margin: DOT_SPACE,
-    bottom: 0,
   },
 });
 
