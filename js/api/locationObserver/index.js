@@ -39,11 +39,15 @@ export default class LocationObserver {
   }
 
   _getLocation() {
-    navigator.geolocation.getCurrentPosition(this.onUpdate, this.onError, LOCATION_CONFIG);
+    if (navigator.geolocation.getCurrentPosition) {
+      navigator.geolocation.getCurrentPosition(this.onUpdate, this.onError, LOCATION_CONFIG);
+    }
   }
 
   _watchLocation() {
-    this.watchId = navigator.geolocation.watchPosition(this.onUpdate, this.onError, LOCATION_CONFIG);
+    if (navigator.geolocation.watchPosition) {
+      this.watchId = navigator.geolocation.watchPosition(this.onUpdate, this.onError, LOCATION_CONFIG);
+    }
   }
 
   _clearWatch() {

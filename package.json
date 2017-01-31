@@ -34,8 +34,10 @@
   "jest": {
     "preset": "react-native",
     "testPathIgnorePatterns": [
-      "/node_modules/"
-    ]
+      "/node_modules/",
+      "./__tests__/setup.js"
+    ],
+    "setupFiles": ["./__tests__/setup.js"]
   },
   "rnpm": {
     "assets": [
