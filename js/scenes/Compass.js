@@ -5,41 +5,24 @@ import {
   StyleSheet,
 } from 'react-native';
 
+import {
+  EMPTY,
+  LOCATION_ACQUIRING,
+  LOCATION_ACQUIRED,
+  LOCATION_ERRORED,
+} from '../store/constants';
+
 import Header from '../components/Header';
 import Compass from '../components/Compass';
 import { defaultTextStyle } from '../../config';
 
-export default class Debug extends Component {
+import { connect } from 'react-redux';
+
+export class Debug extends Component {
   constructor(props) {
     super(props);
 
     this.navigator = this.props.navigator;
-
-    this.state = {
-      latitude: 0,
-      longitude: 0,
-    };
-  }
-
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      var initialPosition = JSON.stringify(position);
-      this.setState({ initialPosition });
-    }
-      , (error) => console.log(JSON.stringify(error)),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      this.setState({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
-    });
-  }
-
-  // Watch for position for testing the compass
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.watchID);
   }
 
   render() {
@@ -51,18 +34,44 @@ export default class Debug extends Component {
         <View>
           <Text style={styles.text}>To the Shard</Text>
           <Compass
-            fromLat={this.state.latitude}
-            fromLon={this.state.longitude}
+            fromLat={this.props.location.value.coords.latitude}
+            fromLon={this.props.location.value.coords.longitude}
             toLat={51.504263}
             toLon={-0.088266}/>
         </View>
+        {this.renderLocation(this.props.location)}
       </View>
+    );
+  }
+
+  renderLocation({ status }) {
+    switch (status) {
+      case EMPTY: return this.renderGeoMessage('No data');
+      case LOCATION_ACQUIRED: return this.renderGeo();
+      case LOCATION_ACQUIRING: return this.renderGeoMessage('Adquiring geolocation ...');
+      case LOCATION_ERRORED: return this.renderGeoMessage('Error getting geolocation');
+    }
+  }
+
+  renderGeoMessage(msg) {
+    return (
+      <Text>{msg}</Text>
+    );
+  }
+
+  renderGeo() {
+    const when = `${new Date(this.props.location.value.timestamp)}`;
+    const latitude = this.props.location.value.coords.latitude;
+    const longitude = this.props.location.value.coords.longitude;
+    return (
+      <Text>Last location at ({latitude},{longitude}) on {when}</Text>
     );
   }
 }
 
 Debug.propTypes = {
   navigator: PropTypes.object,
+  location: PropTypes.object,
 };
 
 const styles = StyleSheet.create({
@@ -70,3 +79,11 @@ const styles = StyleSheet.create({
     ...defaultTextStyle,
   },
 });
+
+const mapStateToProps = ({ location }) => {
+  return {
+    location,
+  };
+};
+
+export default connect(mapStateToProps)(Debug);

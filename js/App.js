@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Navigator,
   BackAndroid,
@@ -6,6 +6,7 @@ import {
   StatusBar,
   StyleSheet,
   Platform,
+  AppState,
 } from 'react-native';
 
 import { theme } from '../config';
@@ -18,7 +19,11 @@ import Home from './scenes/Home';
 import Item from './scenes/Item';
 import Map from './scenes/Map';
 
-export default class App extends Component {
+import { connect } from 'react-redux';
+import { watchLocation } from './store/actions';
+import LocationObserver from './api/locationObserver';
+
+export class App extends Component {
   constructor(props) {
     super(props);
 
@@ -34,9 +39,14 @@ export default class App extends Component {
 
     this.renderScene = this.renderScene.bind(this);
     this.onAndroidBack = this.onAndroidBack.bind(this);
+
+    AppState.addEventListener('change', this.onAppStateChange.bind(this));
   }
 
   componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(watchLocation());
+
     BackAndroid.addEventListener('hardwareBackPress', this.onAndroidBack);
     // Linking.addEventListener('url', this.onDeepLink);
   }
@@ -83,6 +93,29 @@ export default class App extends Component {
     console.log('App#onDeepLink()', url);
   }
 
+  /**
+   * React to changes in the app status, like going to the background,
+   * becoming inactive, or coming to the foreground.
+   * There are other states, like memory pressure that are not being
+   * handled.
+   */
+  onAppStateChange(appState) {
+    let locationObserverInstance = LocationObserver.instance;
+    switch (appState) {
+      case 'active':
+        if (locationObserverInstance != null) {
+          locationObserverInstance.enable();
+        }
+        break;
+      case 'background':
+      case 'innactive':
+        if (locationObserverInstance != null) {
+          locationObserverInstance.disable();
+        }
+        break;
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -110,6 +143,10 @@ export default class App extends Component {
   }
 }
 
+App.propTypes = {
+  dispatch: PropTypes.func,
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -121,3 +158,9 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === 'ios' ? 20 : 24,
   },
 });
+
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps)(App);

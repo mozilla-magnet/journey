@@ -2,6 +2,9 @@ import {
   EMPTY,
   FETCHING,
   FETCHED,
+  LOCATION_ACQUIRING,
+  LOCATION_ERRORED,
+  LOCATION_ACQUIRED,
 } from './constants';
 
 const initialState = {
@@ -13,7 +16,10 @@ const initialState = {
     timestamp: null,
     value: null,
   },
-
+  location: {
+    status: EMPTY,
+    value: null,
+  },
   // dictionary that stores the canonical item data
   itemsCache: {},
 };
@@ -24,6 +30,9 @@ export default (state = initialState, action) => {
     case 'ITEMS_FETCHED': return itemsFetched(state, action);
     case 'ITEM_FETCHING': return itemFetching(state, action);
     case 'ITEM_FETCHED': return itemFetched(state, action);
+    case 'LOCATION_ACQUIRING': return locationAcquiring(state, action);
+    case 'LOCATION_ACQUIRED': return locationAcquired(state, action);
+    case 'LOCATION_ERRORED': return locationErrored(state, action);
     default: return state;
   }
 };
@@ -61,6 +70,7 @@ function itemsFetched(state, { value }) {
     itemsCache: {
       ...state.itemsCache,
       ...toCache,
+      value,
     },
   };
 }
@@ -92,3 +102,34 @@ function createItem(status, value) {
     value,
   };
 }
+
+function locationAcquiring(state) {
+  return {
+    ... state,
+    location: {
+      status: LOCATION_ACQUIRING,
+      value: null,
+    },
+  };
+}
+
+function locationAcquired(state, { value }) {
+  return {
+    ... state,
+    location: {
+      status: LOCATION_ACQUIRED,
+      value,
+    },
+  };
+}
+
+function locationErrored(state) {
+  return {
+    ... state,
+    location: {
+      status: LOCATION_ERRORED,
+      value: null,
+    },
+  };
+}
+

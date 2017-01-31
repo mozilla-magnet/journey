@@ -1,10 +1,42 @@
 import journeyData from '../api';
+import LocationObserver from '../api/locationObserver';
 
 import {
   EMPTY,
   FETCHED,
   ERRORED,
 } from './constants';
+
+export const watchLocation = () => {
+  return (dispatch) => {
+    dispatch(locationAcquiring);
+    /* eslint-disable no-unused-vars */
+    let watch = new LocationObserver((geo) => {
+      dispatch(locationAcquired(geo));
+    }, () => {
+      dispatch(locationErrored);
+    });
+  };
+};
+
+export const locationAcquiring = () => {
+  return {
+    type: 'LOCATION_ACQUIRING',
+  };
+};
+
+export const locationAcquired = (value) => {
+  return {
+    type: 'LOCATION_ACQUIRED',
+    value,
+  };
+};
+
+export const locationErrored = () => {
+  return {
+    type: 'LOCATION_ERRORED',
+  };
+};
 
 export const dummyAction = (content) => {
   return {
