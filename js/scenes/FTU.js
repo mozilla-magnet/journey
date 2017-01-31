@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   View,
   Image,
@@ -17,6 +17,8 @@ import { theme } from '../../config';
 export class FTU extends Component {
   constructor(props) {
     super(props);
+
+    this.navigator = this.props.navigator;
 
     const PAGES = [
       this.renderPage1(),
@@ -86,14 +88,14 @@ export class FTU extends Component {
             <Button
               title="TURN ON"
               accessibilityLabel="Turn on notifications."
-              onPress={() => {}}
+              onPress={() => this.navigator.push({ id: 'home' })}
               color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
           </View>
           <View style={styles.border}>
             <Button
               title="SKIP"
               accessibilityLabel="Skip this step."
-              onPress={() => {}}
+              onPress={() => this.navigator.push({ id: 'home' })}
               color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
           </View>
         </View>
@@ -103,6 +105,10 @@ export class FTU extends Component {
 }
 
 const { width, height } = Dimensions.get('window');
+
+FTU.propTypes = {
+  navigator: PropTypes.object,
+};
 
 const styles = StyleSheet.create({
   container: {
