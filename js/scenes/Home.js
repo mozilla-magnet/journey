@@ -389,7 +389,7 @@ export class Home extends Component {
           style={{ opacity: this.opacity, transform: [{ scale: this.scale }] }}>
           <Header
             title="Home"
-            action="Settings"
+            action="Map"
             navigator={this.navigator}
             onActionPress={this.onSettingsPress}/>
         </Animated.View>
@@ -466,7 +466,7 @@ export class Home extends Component {
   }
 
   onSettingsPress() {
-    this.navigator.push({ id: 'settings' });
+    this.navigator.push({ id: 'map' });
   }
 }
 

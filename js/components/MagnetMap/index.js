@@ -12,7 +12,6 @@ import {
 export default class MagnetMap extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       usePlaceHolder: true,
     };

@@ -8,10 +8,16 @@ import MapView from 'react-native-maps';
 
 export default class MagnetMapMarker extends Component {
   render() {
-    const { coordinate, source } = this.props;
+    const {
+      id,
+      coordinate,
+      source,
+    } = this.props;
 
     return (
-      <MapView.Marker coordinate={coordinate}>
+      <MapView.Marker
+        identifier={String(id)}
+        coordinate={coordinate}>
         <View style={styles.container}>
           <Image
             source={source}
@@ -26,6 +32,7 @@ export default class MagnetMapMarker extends Component {
 MagnetMapMarker.propTypes = {
   coordinate: PropTypes.object,
   source: Image.propTypes.source,
+  id: PropTypes.number,
 };
 
 const IMAGE_WIDTH = 50;
