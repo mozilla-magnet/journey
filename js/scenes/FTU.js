@@ -7,7 +7,6 @@ import {
   Dimensions,
   StyleSheet,
   Platform,
-  StatusBar,
 } from 'react-native';
 import ViewPager from 'react-native-viewpager';
 import ViewPagerIndicator from '../components/ViewPagerIndicator';
@@ -39,11 +38,6 @@ export class FTU extends Component {
         source={require('../images/ftu/background.jpg')}
         resizeMode="cover"
         style={styles.container}>
-        <StatusBar
-          translucent={true}
-          backgroundColor="rgba(0, 0, 0, 0)"
-          barStyle="light-content"
-        />
         <View style={styles.scrim}>
           <ViewPager
             ref="viewPager"
