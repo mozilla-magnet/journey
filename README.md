@@ -37,6 +37,18 @@ $ npm run open-android-studio
 $ react-native run-ios
 ```
 
+#### Solving the headers problem
+We have found some problems in the workspace after introducing cocoapods. If your project fails to compile because the react native components are not able to compile, probably you will need to add manually the `Header search path`.
+
+In order to do so follow this instructions:
+- Go to the Libraries folder and for each dependant project
+- Click on the target <project_name> > Build Settings > find Header search path
+- For each project you need to enter a specific value (click once on the value):
+  - For ReactNativeHeading: ```$(SRCROOT)/../../ios/Pods/Headers/Public/React/**```
+  - For RNShare: ```$(SRCROOT)/../../../ios/Pods/Headers/Public/React/**```
+  - For RealmReact: ```$(SRCROOT)/../../../../ios/Pods/Headers/Public/React/** $(SRCROOT)/../../../../node_modules/realm/src/** $(SRCROOT)/../../../../node_modules/realm/vendor/core-2.2.0/include/** $(SRCROOT)/../../../../node_modules/realm/vendor/**```
+
+
 ## How to contribute?
 
 Install the pre-commit hook by running this command:
