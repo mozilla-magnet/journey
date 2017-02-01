@@ -83,13 +83,13 @@ Header.propTypes = {
   navigator: PropTypes.object,
 };
 
-const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
-Header.HEIGHT = 54 + STATUS_BAR_HEIGHT;
+Header.STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+Header.HEIGHT = 54 + Header.STATUS_BAR_HEIGHT;
 
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#333',
-    paddingTop: STATUS_BAR_HEIGHT,
+    paddingTop: Header.STATUS_BAR_HEIGHT,
     height: Header.HEIGHT,
     flexDirection: 'row',
     alignItems: 'center',
