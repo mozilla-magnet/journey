@@ -6,21 +6,49 @@ import MagnetMapMarker from './MagnetMapMarker';
 import {
   View,
   StyleSheet,
+  InteractionManager,
 } from 'react-native';
 
 export default class MagnetMap extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      usePlaceHolder: true,
+    };
+  }
+
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({
+        usePlaceHolder: false,
+      });
+    });
+  }
+
   render() {
-    const { style, region, children } = this.props;
+    const { style } = this.props;
     return (
       <View style={[styles.root, style]}>
-        <MapView
-          provider={MapView.PROVIDER_GOOGLE}
-          style={styles.map}
-          region={region}
-          customMapStyle={mapStyle}>
-          {children}
-        </MapView>
+        {this.renderMap()}
       </View>
+    );
+  }
+
+  renderMap() {
+    if (this.state.usePlaceHolder) {
+      return;
+    }
+
+    const { region, children } = this.props;
+    return (
+      <MapView
+        provider={MapView.PROVIDER_GOOGLE}
+        style={styles.map}
+        region={region}
+        customMapStyle={mapStyle}>
+        {children}
+      </MapView>
     );
   }
 }
