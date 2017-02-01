@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
   root: {
     justifyContent: 'flex-start',
   },
+
   map: {
     ...StyleSheet.absoluteFillObject,
   },
