@@ -11,13 +11,14 @@ import {
 
 import { theme } from '../config';
 
-import Settings from './scenes/Settings';
-import Profile from './scenes/Profile';
-import Compass from './scenes/Compass';
-import Demos from './scenes/Demos';
+import FTU from './scenes/FTU';
 import Home from './scenes/Home';
 import Item from './scenes/Item';
 import Map from './scenes/Map';
+import Profile from './scenes/Profile';
+import Settings from './scenes/Settings';
+import Compass from './scenes/Compass';
+import Demos from './scenes/Demos';
 
 import { connect } from 'react-redux';
 import { watchLocation } from './store/actions';
@@ -28,6 +29,7 @@ export class App extends Component {
     super(props);
 
     this.routes = {
+      ftu: { component: FTU },
       home: { component: Home },
       item: { component: Item },
       map: { component: Map },
