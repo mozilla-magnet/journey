@@ -42,12 +42,12 @@ export default class MagnetMap extends Component {
       return;
     }
 
-    const { region, children } = this.props;
+    const { children } = this.props;
     return (
       <MapView
         provider={MapView.PROVIDER_GOOGLE}
         style={styles.map}
-        region={region}
+        initialRegion={this.state.initialRegion}
         moveOnMarkerPress={false}
         customMapStyle={mapStyle}>
         {children}
