@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 
 const { width } = Dimensions.get('window');
-const DOT_SIZE = 12;
-const DOT_SPACING = DOT_SIZE / 2;
+const DOT_SIZE = 8;
+const DOT_SPACING = 6;
 const DOT_FULL_WIDTH = DOT_SIZE + DOT_SPACING * 2;
 
 /**
@@ -32,6 +32,7 @@ const ViewPagerIndicator = ({
   // Initial left position of the active dot used during transition.
   const offsetX = (width - DOT_FULL_WIDTH * pageCount) / 2 +
     (activePage - scrollOffset) * DOT_FULL_WIDTH;
+
   // The CSS `left` property.
   const left = scrollValue.interpolate({
     inputRange: [0, 1],

@@ -13,6 +13,18 @@ import ViewPagerIndicator from '../components/ViewPagerIndicator';
 import { connect } from 'react-redux';
 import { theme } from '../../config';
 
+const CONTENT = [
+  {
+    title: 'Hear the story of London\'s vibrant street art',
+    main: 'This month Project Magnet brings you a selection of amazing street art from around London.',
+    footer: 'Not in London? Tell us where you\'d like to go next.',
+  },
+  {
+    title: 'Turn on notifications?',
+    main: 'Notifications can alert you when you\'re close to a point of interest, even when you\'re not inside the app.',
+  },
+];
+
 export class FTU extends Component {
   constructor(props) {
     super(props);
@@ -54,10 +66,12 @@ export class FTU extends Component {
   }
 
   renderPage1() {
+    const DATA = CONTENT[0];
+
     return (
       <View style={styles.screen}>
-        <Text style={styles.title}>{`Hear the story of London's vibrant street art`.toUpperCase()}</Text>
-        <Text style={styles.text}>This month Project Magnet brings you a selection of amazing street art from around London.</Text>
+        <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
+        <Text style={styles.text}>{DATA.main}</Text>
         <View style={styles.button}>
           <View style={styles.border}>
             <Button
@@ -67,16 +81,18 @@ export class FTU extends Component {
               color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
           </View>
         </View>
-        <Text style={styles.text}>Not in London? Tell us where you&#39;d like to go next.</Text>
+        <Text style={styles.text}>{DATA.footer}</Text>
       </View>
     );
   }
 
   renderPage2() {
+    const DATA = CONTENT[1];
+
     return (
       <View style={styles.screen}>
-        <Text style={styles.title}>{'Turn on notifications?'.toUpperCase()}</Text>
-        <Text style={styles.text}>Notifications can alert you when you're close to a point of interest, even when you're not inside the app.</Text>
+        <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
+        <Text style={styles.text}>{DATA.main}</Text>
         <View style={styles.button}>
           <View style={styles.border}>
             <Button
