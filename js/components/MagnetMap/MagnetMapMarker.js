@@ -10,14 +10,16 @@ export default class MagnetMapMarker extends Component {
   render() {
     const {
       id,
-      coordinate,
       source,
+      onPress,
+      coordinate,
     } = this.props;
 
     return (
       <MapView.Marker
         identifier={String(id)}
-        coordinate={coordinate}>
+        coordinate={coordinate}
+        onPress={() => onPress(id)}>
         <View style={styles.container}>
           <Image
             source={source}
@@ -32,6 +34,7 @@ export default class MagnetMapMarker extends Component {
 MagnetMapMarker.propTypes = {
   coordinate: PropTypes.object,
   source: Image.propTypes.source,
+  onPress: PropTypes.func,
   id: PropTypes.number,
 };
 

@@ -14,13 +14,8 @@ import {
 export class Map extends Component {
   constructor(props) {
     super(props);
-
     this.navigator = this.props.navigator;
-    this.onBackPress = this.onBackPress.bind(this);
-  }
-
-  onBackPress() {
-    this.navigator.pop();
+    this.navigateToItem = this.navigateToItem.bind(this);
   }
 
   render() {
@@ -61,11 +56,17 @@ export class Map extends Component {
         key={id}
         id={id}
         source={{ uri: imageUri }}
+        onPress={this.navigateToItem}
         coordinate={{
           latitude,
           longitude,
         }}/>;
     });
+  }
+
+  navigateToItem(itemId) {
+    console.log('navigate to item', itemId);
+    this.navigator.push({ id: 'item', data: { itemId } });
   }
 }
 
