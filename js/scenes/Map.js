@@ -48,12 +48,6 @@ export class Map extends Component {
   renderMap() {
     return (
       <MagnetMap
-        region={{
-          latitude: 51.504444,
-          longitude: -0.086667,
-          latitudeDelta: 0.0222,
-          longitudeDelta: 0.0321,
-        }}
         style={styles.map}>
         {this.renderMarkers()}
       </MagnetMap>
