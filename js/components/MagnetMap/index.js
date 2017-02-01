@@ -27,18 +27,17 @@ export default class MagnetMap extends Component {
   }
 
   render() {
-    let map = this.renderMap();
     const { style } = this.props;
     return (
       <View style={[styles.root, style]}>
-        {map}
+        {this.renderMap()}
       </View>
     );
   }
 
   renderMap() {
     if (this.state.usePlaceHolder) {
-      return this.renderPlaceHolder();
+      return;
     }
 
     const { region, children } = this.props;
@@ -50,12 +49,6 @@ export default class MagnetMap extends Component {
         customMapStyle={mapStyle}>
         {children}
       </MapView>
-    );
-  }
-
-  renderPlaceHolder() {
-    return (
-      <View/>
     );
   }
 }
