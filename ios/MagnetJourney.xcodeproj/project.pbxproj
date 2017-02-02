@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MagnetJourneyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MagnetJourneyTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -59,6 +58,10 @@
 		C12094AB6AA24DEE88BAC523 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A080AE6574364C2696EB6959 /* libc++.tbd */; };
 		EA1EA222AB6E42A0ACF1114D /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E4EECA02044D1D8044B61B /* libRealmReact.a */; };
 		FF4D1F78779D414536A98557 /* libPods-MagnetJourney.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FF8B88148DAFE3A57084BE2 /* libPods-MagnetJourney.a */; };
+		263D15F3D06948ABB5232B07 /* FiraSans-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A96A5BE63A449D39C8098E3 /* FiraSans-BookItalic.ttf */; };
+		2F1849FF764149CC9215C977 /* FiraSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F55303D112784CE3A0A937E4 /* FiraSans-ExtraLight.ttf */; };
+		4F217B4295C04E4C987D3D35 /* FiraSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 60917C803F7F442CB2DA8BDB /* FiraSans-ExtraLightItalic.ttf */; };
+		6449D2F987D341768AACBB31 /* FiraSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61E339F75DA7454BB595109E /* FiraSans-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,6 +197,10 @@
 		C09C03B39773328749B2D616 /* libPods-MagnetJourneyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MagnetJourneyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D36B3AEA0CBC4561A297C347 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E185FDC828D842B2B45D3BE8 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
+		9A96A5BE63A449D39C8098E3 /* FiraSans-BookItalic.ttf */ = {isa = PBXFileReference; name = "FiraSans-BookItalic.ttf"; path = "../js/fonts/FiraSans-BookItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F55303D112784CE3A0A937E4 /* FiraSans-ExtraLight.ttf */ = {isa = PBXFileReference; name = "FiraSans-ExtraLight.ttf"; path = "../js/fonts/FiraSans-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		60917C803F7F442CB2DA8BDB /* FiraSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; name = "FiraSans-ExtraLightItalic.ttf"; path = "../js/fonts/FiraSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		61E339F75DA7454BB595109E /* FiraSans-Light.ttf */ = {isa = PBXFileReference; name = "FiraSans-Light.ttf"; path = "../js/fonts/FiraSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +284,10 @@
 			children = (
 				200F0BC049A247F6A9FD9A5C /* FiraSans-Book.ttf */,
 				BA448575D2574E7091F92885 /* FiraSans-LightItalic.ttf */,
+				9A96A5BE63A449D39C8098E3 /* FiraSans-BookItalic.ttf */,
+				F55303D112784CE3A0A937E4 /* FiraSans-ExtraLight.ttf */,
+				60917C803F7F442CB2DA8BDB /* FiraSans-ExtraLightItalic.ttf */,
+				61E339F75DA7454BB595109E /* FiraSans-Light.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -582,6 +593,10 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				4171ADEE82944774BC4A228B /* FiraSans-Book.ttf in Resources */,
 				607DD96F3FEB4B86AC5BD465 /* FiraSans-LightItalic.ttf in Resources */,
+				263D15F3D06948ABB5232B07 /* FiraSans-BookItalic.ttf in Resources */,
+				2F1849FF764149CC9215C977 /* FiraSans-ExtraLight.ttf in Resources */,
+				4F217B4295C04E4C987D3D35 /* FiraSans-ExtraLightItalic.ttf in Resources */,
+				6449D2F987D341768AACBB31 /* FiraSans-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

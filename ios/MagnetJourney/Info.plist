@@ -39,6 +39,10 @@
     <array>
       <string>FiraSans-Book.ttf</string>
       <string>FiraSans-LightItalic.ttf</string>
+      <string>FiraSans-BookItalic.ttf</string>
+      <string>FiraSans-ExtraLight.ttf</string>
+      <string>FiraSans-ExtraLightItalic.ttf</string>
+      <string>FiraSans-Light.ttf</string>
     </array>
     <key>UILaunchStoryboardName</key>
     <string>LaunchScreen</string>

@@ -1,7 +1,14 @@
 export const theme = {
   colorBackground: '#777',
-  fontLightItalic: 'FiraSans-LightItalic',
+
   fontBook: 'FiraSans-Book',
+  fontBookItalic: 'FiraSans-BookItalic',
+
+  fontLight: 'FiraSans-Light',
+  fontLightItalic: 'FiraSans-LightItalic',
+
+  fontExtraLight: 'FiraSans-ExtraLight',
+  fontExtraLightItalic: 'FiraSans-ExtraLightItalic',
 };
 
 export const defaultTextStyle = {
