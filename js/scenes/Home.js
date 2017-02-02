@@ -1,7 +1,6 @@
 import { fetchItemsIfNeeded } from '../store/actions';
 import React, { Component, PropTypes } from 'react';
 import ListItem from '../components/ListItem';
-import Header from '../components/Header';
 import { connect } from 'react-redux';
 
 import {
@@ -12,6 +11,7 @@ import {
   ListView,
   StyleSheet,
   PanResponder,
+  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
 
@@ -22,6 +22,8 @@ import {
   EMPTY,
 } from '../store/constants';
 
+const HEADER_HEIGHT = 60;
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +33,7 @@ export class Home extends Component {
     // never bind functions in render(), it
     // messes with react's diffing logic
     this.onSettingsPress = this.onSettingsPress.bind(this);
+    this.onMapPress = this.onMapPress.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.onPanEnd = this.onPanEnd.bind(this);
     this.onScroll = this.onScroll.bind(this);
@@ -46,20 +49,20 @@ export class Home extends Component {
     // create a clamped property that we can
     // use for translating the list view
     this.translateY = this.state.listY.interpolate({
-      inputRange: [0, Header.HEIGHT],
-      outputRange: [0, Header.HEIGHT],
+      inputRange: [0, HEADER_HEIGHT],
+      outputRange: [0, HEADER_HEIGHT],
       extrapolate: 'clamp',
     });
 
     // fades the header in/out in sync with list position
     this.opacity = this.translateY.interpolate({
-      inputRange: [0, Header.HEIGHT],
+      inputRange: [0, HEADER_HEIGHT],
       outputRange: [0, 1],
     });
 
     // scales the header in/out in sync with list position
     this.scale = this.translateY.interpolate({
-      inputRange: [0, Header.HEIGHT],
+      inputRange: [0, HEADER_HEIGHT],
       outputRange: [0.95, 1],
     });
 
@@ -168,7 +171,7 @@ export class Home extends Component {
        * We use this event to reset the the value to 0.
        * When .setValue() is called on the 'move' event
        * the value + the current offset must fall in
-       * the range: 0 - Header.HEIGHT.
+       * the range: 0 - HEADER_HEIGHT.
        */
       onPanResponderGrant: () => {
         this.setOffset(this.offsetY);
@@ -328,8 +331,8 @@ export class Home extends Component {
    * Snap the header open.
    */
   snapOpen() {
-    if (this.clampedY === Header.HEIGHT) return;
-    this.snap(Header.HEIGHT - this.yOffset);
+    if (this.clampedY === HEADER_HEIGHT) return;
+    this.snap(HEADER_HEIGHT - this.yOffset);
   }
 
   /**
@@ -364,7 +367,7 @@ export class Home extends Component {
    * @param {Number} y
    */
   clamp(y) {
-    if (y > Header.HEIGHT) return { value: Header.HEIGHT, offset: y - Header.HEIGHT };
+    if (y > HEADER_HEIGHT) return { value: HEADER_HEIGHT, offset: y - HEADER_HEIGHT };
     else if (y < 0) return { value: 0, offset: y };
     else return { value: y, offset: 0 };
   }
@@ -387,11 +390,18 @@ export class Home extends Component {
       <View style={styles.root}>
         <Animated.View
           style={{ opacity: this.opacity, transform: [{ scale: this.scale }] }}>
-          <Header
-            title="Home"
-            action="Settings"
-            navigator={this.navigator}
-            onActionPress={this.onSettingsPress}/>
+          <View style={styles.header}>
+            <TouchableOpacity
+              onPress={this.onMapPress}
+              style={styles.headerButton}>
+              <Text style={styles.headerText}>Map</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.headerButton}
+              onPress={this.onSettingsPress}>
+              <Text style={styles.headerText}>Settings</Text>
+            </TouchableOpacity>
+          </View>
         </Animated.View>
 
         <Animated.View
@@ -465,6 +475,10 @@ export class Home extends Component {
     });
   }
 
+  onMapPress() {
+    this.navigator.push({ id: 'map' });
+  }
+
   onSettingsPress() {
     this.navigator.push({ id: 'settings' });
   }
@@ -481,6 +495,22 @@ const styles = StyleSheet.create({
   root: {
     position: 'relative',
     flex: 1,
+  },
+
+  header: {
+    height: HEADER_HEIGHT,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  headerButton: {
+    justifyContent: 'center',
+    padding: 12,
+  },
+
+  headerText: {
+    color: '#999',
+    fontSize: 14,
   },
 
   listContainer: {

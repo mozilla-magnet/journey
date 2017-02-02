@@ -4,16 +4,18 @@ import MagnetMap from '../components/MagnetMap';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 
+import {
+  FETCHED,
+  FETCHING,
+  ERRORED,
+  EMPTY,
+} from '../store/constants';
+
 export class Map extends Component {
   constructor(props) {
     super(props);
-
     this.navigator = this.props.navigator;
-    this.onBackPress = this.onBackPress.bind(this);
-  }
-
-  onBackPress() {
-    this.navigator.pop();
+    this.navigateToItem = this.navigateToItem.bind(this);
   }
 
   render() {
@@ -22,32 +24,64 @@ export class Map extends Component {
         <Header
           title="Map"
           navigator={this.navigator}/>
-        <MagnetMap
-          style={styles.map}
-          region={{
-            latitude: 51.504444,
-            longitude: -0.086667,
-            latitudeDelta: 0.0222,
-            longitudeDelta: 0.0321,
-          }}>
-          <MagnetMap.Marker
-            source={require('../images/dummy/dank.jpg')}
-            coordinate={{
-              latitude: 51.504444,
-              longitude: -0.086667,
-            }}/>
-        </MagnetMap>
+        <View style={styles.content}>
+          {this.renderContent()}
+        </View>
       </View>
     );
+  }
+
+  renderContent() {
+    switch (this.props.itemsStatus) {
+      case EMPTY: return;
+      case FETCHING: return this.renderItemsFetching();
+      case ERRORED: return this.renderItemsErrored();
+      case FETCHED: return this.renderMap();
+    }
+  }
+
+  renderMap() {
+    return (
+      <MagnetMap
+        style={styles.map}>
+        {this.renderMarkers()}
+      </MagnetMap>
+    );
+  }
+
+  renderMarkers() {
+    const { fetchedItems } = this.props;
+    return fetchedItems.map(({ value: { id, imageUri, latitude, longitude } }) => {
+      return <MagnetMap.Marker
+        key={id}
+        id={id}
+        source={{ uri: imageUri }}
+        onPress={this.navigateToItem}
+        coordinate={{
+          latitude,
+          longitude,
+        }}/>;
+    });
+  }
+
+  navigateToItem(itemId) {
+    console.log('navigate to item', itemId);
+    this.navigator.push({ id: 'item', data: { itemId } });
   }
 }
 
 Map.propTypes = {
   navigator: PropTypes.object,
+  fetchedItems: PropTypes.array,
+  itemsStatus: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   root: {
+    flex: 1,
+  },
+
+  content: {
     flex: 1,
   },
 
@@ -56,15 +90,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = ({ items, itemsCache }) => {
+  const itemIds = items.value || [];
+
+  // filtered list of items that have been fetched
+  const fetchedItems = itemIds
+    .filter((itemId) => !!itemsCache[itemId])
+    .map((itemId) => itemsCache[itemId]);
+
+  return {
+    fetchedItems,
+    itemsStatus: items.status,
+  };
 };
 
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Map);
+export default connect(mapStateToProps)(Map);
