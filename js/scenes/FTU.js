@@ -3,13 +3,15 @@ import {
   View,
   Image,
   Text,
-  Button,
+  ScrollView,
   Dimensions,
   StyleSheet,
-  Platform,
+  TouchableOpacity,
 } from 'react-native';
+
 import ViewPager from 'react-native-viewpager';
 import ViewPagerIndicator from '../components/ViewPagerIndicator';
+import ButtonPrimary from '../components/ButtonPrimary';
 import { connect } from 'react-redux';
 import { theme } from '../../config';
 
@@ -17,7 +19,7 @@ const CONTENT = [
   {
     title: 'Hear the story of London\'s vibrant street art',
     main: 'This month Project Magnet brings you a selection of amazing street art from around London.',
-    footer: 'Not in London? Tell us where you\'d like to go next.',
+    footer: 'Not in London? Tell us where you\'d like us to go next.',
   },
   {
     title: 'Turn on notifications?',
@@ -48,7 +50,6 @@ export class FTU extends Component {
     return (
       <Image
         source={require('../images/ftu/background.jpg')}
-        resizeMode="cover"
         style={styles.container}>
         <View style={styles.scrim}>
           <ViewPager
@@ -70,18 +71,18 @@ export class FTU extends Component {
 
     return (
       <View style={styles.screen}>
-        <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
-        <Text style={styles.text}>{DATA.main}</Text>
-        <View style={styles.button}>
-          <View style={styles.border}>
-            <Button
-              title="GET STARTED"
-              accessibilityLabel="Continue to the next screen."
-              onPress={() => this.refs.viewPager.goToPage(1)}
-              color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
-          </View>
+        <ScrollView
+          style={styles.scroller}
+          contentContainerStyle={styles.scrollerContent}>
+          <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
+          <Text style={styles.text}>{DATA.main}</Text>
+          <Text style={styles.text}>{DATA.footer}</Text>
+        </ScrollView>
+        <View style={styles.footer}>
+          <ButtonPrimary
+            text="GET STARTED"
+            onPress={() => this.refs.viewPager.goToPage(1)}/>
         </View>
-        <Text style={styles.text}>{DATA.footer}</Text>
       </View>
     );
   }
@@ -91,23 +92,22 @@ export class FTU extends Component {
 
     return (
       <View style={styles.screen}>
-        <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
-        <Text style={styles.text}>{DATA.main}</Text>
-        <View style={styles.button}>
-          <View style={styles.border}>
-            <Button
-              title="TURN ON"
-              accessibilityLabel="Turn on notifications."
-              onPress={() => this.navigator.push({ id: 'home' })}
-              color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
-          </View>
-          <View style={styles.border}>
-            <Button
-              title="SKIP"
-              accessibilityLabel="Skip this step."
-              onPress={() => this.navigator.push({ id: 'home' })}
-              color={Platform.OS === 'ios' ? 'white' : 'transparent'}/>
-          </View>
+        <ScrollView
+          style={styles.scroller}
+          contentContainerStyle={styles.scrollerContent}>
+          <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
+          <Text style={styles.text}>{DATA.main}</Text>
+        </ScrollView>
+        <View style={styles.footer}>
+          <ButtonPrimary
+            text="TURN ON"
+            onPress={() => this.navigator.push({ id: 'home' })}/>
+          <TouchableOpacity
+            accessibilityLabel="Skip this step"
+            onPress={() => this.navigator.push({ id: 'home' })}
+            style={styles.buttonSecondary}>
+            <Text style={styles.buttonSecondaryText}>SKIP</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -118,51 +118,64 @@ export class FTU extends Component {
   }
 }
 
-const { width, height } = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width,
-    height,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
   },
+
+  scrim: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+  },
+
   viewPager: {
     flex: 1,
   },
-  scrim: {
-    width,
-    height,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
+
   screen: {
-    width,
-    padding: 30,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+    flex: 1,
   },
-  title: {
-    fontFamily: theme.fontBook,
-    fontSize: 30,
-    lineHeight: Math.round(30 * 1.5),
-    color: 'white',
+
+  scroller: {
+    flex: 1,
   },
-  text: {
-    fontFamily: theme.fontBook,
-    fontSize: 20,
-    lineHeight: Math.round(20 * 1.5),
-    color: 'white',
+
+  scrollerContent: {
+    padding: 28,
+    paddingTop: 30,
   },
-  button: {
-    flexDirection: 'column',
+
+  footer: {
+    padding: 25,
     alignItems: 'center',
   },
-  border: {
-    width: width / 2,
-    borderRadius: 15,
-    borderColor: 'white',
-    borderWidth: 2,
-    padding: 4,
-    marginBottom: 10,
+
+  title: {
+    fontFamily: theme.fontExtraLight,
+    fontSize: 37,
+    marginBottom: 20,
+    lineHeight: Math.round(30 * 1.45),
+    color: 'white',
+  },
+
+  text: {
+    marginBottom: 17,
+    fontFamily: theme.fontLight,
+    fontSize: 19,
+    lineHeight: Math.round(20 * 1.55),
+    color: 'white',
+  },
+
+  buttonSecondary: {
+    marginTop: 20,
+  },
+
+  buttonSecondaryText: {
+    color: 'white',
+    opacity: 0.8,
   },
 });
 
