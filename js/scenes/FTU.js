@@ -4,13 +4,11 @@ import {
   Image,
   Text,
   ScrollView,
-  Dimensions,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 
-import ViewPager from 'react-native-viewpager';
-import ViewPagerIndicator from '../components/ViewPagerIndicator';
+import MagnetPager from '../components/MagnetPager';
 import ButtonPrimary from '../components/ButtonPrimary';
 import { connect } from 'react-redux';
 import { theme } from '../../config';
@@ -30,20 +28,12 @@ const CONTENT = [
 export class FTU extends Component {
   constructor(props) {
     super(props);
-
     this.navigator = this.props.navigator;
 
-    const PAGES = [
+    this.pages = [
       () => this.renderPage1(),
       () => this.renderPage2(),
     ];
-    const dataSource = new ViewPager.DataSource({
-      pageHasChanged: (p1, p2) => p1 !== p2,
-    });
-
-    this.state = {
-      dataSource: dataSource.cloneWithPages(PAGES),
-    };
   }
 
   render() {
@@ -52,36 +42,33 @@ export class FTU extends Component {
         source={require('../images/ftu/background.jpg')}
         style={styles.container}>
         <View style={styles.scrim}>
-          <ViewPager
-            ref="viewPager"
-            autoPlay={false}
-            isLoop={false}
+          <MagnetPager
+            ref="pager"
+            style={styles.viewPager}
             locked={true}
-            dataSource={this.state.dataSource}
-            renderPage={(render) => render()}
-            renderPageIndicator={() => <ViewPagerIndicator/>}
-            style={styles.viewPager}/>
+            showIndicator={true}
+            pages={this.pages}/>
         </View>
       </Image>
     );
   }
 
   renderPage1() {
-    const DATA = CONTENT[0];
+    const { title, main, footer } = CONTENT[0];
 
     return (
       <View style={styles.screen}>
         <ScrollView
           style={styles.scroller}
           contentContainerStyle={styles.scrollerContent}>
-          <Text style={styles.title}>{DATA.title.toUpperCase()}</Text>
-          <Text style={styles.text}>{DATA.main}</Text>
-          <Text style={styles.text}>{DATA.footer}</Text>
+          <Text style={styles.title}>{title.toUpperCase()}</Text>
+          <Text style={styles.text}>{main}</Text>
+          <Text style={styles.text}>{footer}</Text>
         </ScrollView>
         <View style={styles.footer}>
           <ButtonPrimary
             text="GET STARTED"
-            onPress={() => this.refs.viewPager.goToPage(1)}/>
+            onPress={() => this.refs.pager.goToPage(1)}/>
         </View>
       </View>
     );
