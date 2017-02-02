@@ -5,7 +5,6 @@ import {
   View,
   StatusBar,
   StyleSheet,
-  Platform,
   AppState,
 } from 'react-native';
 
@@ -123,7 +122,7 @@ export class App extends Component {
       <View style={styles.container}>
         <StatusBar
           translucent={true}
-          backgroundColor="rgba(0, 0, 0, 0.2)"
+          backgroundColor="transparent"
           barStyle="light-content"
         />
         <Navigator
@@ -138,9 +137,10 @@ export class App extends Component {
   renderScene({ id, data }, navigator) {
     switch (id) {
       case 'item': return <Item itemId={data.itemId} navigator={navigator}/>;
-      default:
-        var Component = this.routes[id].component;
+      default: {
+        const Component = this.routes[id].component;
         return <Component navigator={navigator}/>;
+      }
     }
   }
 }
@@ -157,7 +157,6 @@ const styles = StyleSheet.create({
 
   scene: {
     backgroundColor: '#333',
-    paddingTop: Platform.OS === 'ios' ? 20 : 24,
   },
 });
 

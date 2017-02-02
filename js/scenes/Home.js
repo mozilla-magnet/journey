@@ -31,6 +31,7 @@ export class Home extends Component {
     // never bind functions in render(), it
     // messes with react's diffing logic
     this.onSettingsPress = this.onSettingsPress.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.onPanEnd = this.onPanEnd.bind(this);
     this.onScroll = this.onScroll.bind(this);
@@ -46,20 +47,20 @@ export class Home extends Component {
     // create a clamped property that we can
     // use for translating the list view
     this.translateY = this.state.listY.interpolate({
-      inputRange: [0, Header.HEIGHT],
-      outputRange: [0, Header.HEIGHT],
+      inputRange: [0, Header.HEIGHT - Header.STATUS_BAR_HEIGHT],
+      outputRange: [0, Header.HEIGHT - Header.STATUS_BAR_HEIGHT],
       extrapolate: 'clamp',
     });
 
     // fades the header in/out in sync with list position
     this.opacity = this.translateY.interpolate({
-      inputRange: [0, Header.HEIGHT],
+      inputRange: [0, Header.HEIGHT - Header.STATUS_BAR_HEIGHT],
       outputRange: [0, 1],
     });
 
     // scales the header in/out in sync with list position
     this.scale = this.translateY.interpolate({
-      inputRange: [0, Header.HEIGHT],
+      inputRange: [0, Header.HEIGHT - Header.STATUS_BAR_HEIGHT],
       outputRange: [0.95, 1],
     });
 
@@ -364,7 +365,10 @@ export class Home extends Component {
    * @param {Number} y
    */
   clamp(y) {
-    if (y > Header.HEIGHT) return { value: Header.HEIGHT, offset: y - Header.HEIGHT };
+    if (y > Header.HEIGHT) return {
+      value: Header.HEIGHT,
+      offset: y - Header.HEIGHT,
+    };
     else if (y < 0) return { value: 0, offset: y };
     else return { value: y, offset: 0 };
   }
@@ -391,7 +395,8 @@ export class Home extends Component {
             title="Home"
             action="Settings"
             navigator={this.navigator}
-            onActionPress={this.onSettingsPress}/>
+            onActionPress={this.onSettingsPress}
+            style={styles.header}/>
         </Animated.View>
 
         <Animated.View
@@ -427,12 +432,19 @@ export class Home extends Component {
       <ListView
         ref="list"
         dataSource={this.dataSource}
+        renderHeader={this.renderHeader}
         renderRow={this.renderRow}
         onScroll={this.onScroll}
         scrollEventThrottle={16}
         scrollEnabled={this.scrollEnabled}
         bounces={false}
         style={[styles.list]}/>
+    );
+  }
+
+  renderHeader() {
+    return (
+      <View style={styles.firstRow}/>
     );
   }
 
@@ -481,6 +493,15 @@ const styles = StyleSheet.create({
   root: {
     position: 'relative',
     flex: 1,
+  },
+
+  firstRow: {
+    height: Header.STATUS_BAR_HEIGHT,
+  },
+
+  header: {
+    height: 54,
+    marginTop: Header.STATUS_BAR_HEIGHT / 2,
   },
 
   listContainer: {
